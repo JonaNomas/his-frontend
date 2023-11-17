@@ -1,60 +1,65 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+  <div id="app">
+    <v-app>
+      <NavigationDrawer :value="drawer" @close="drawer = false" />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+      <!-- v-app-bar -->
+      <AppBar @toggle="drawer = !drawer" />
 
-      <v-spacer></v-spacer>
+      <v-main>
+        <v-container fluid>
+          <!-- content here -->
+          <Example />
+          <CalendarioCitas />
+        </v-container>
+      </v-main>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
+      <!-- v-footer -->
+      <AppFooter />
 
-    <v-main>
-      <HelloWorld/>
-    </v-main>
-  </v-app>
+      <!-- v-dialog -->
+      <AppDialog
+        :value="showDialog"
+        @close="showDialog = false"
+        v-bind="{ ...dialog }"
+      />
+    </v-app>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import AppBar from "./components/AppBar"
+import AppDialog from "./components/AppDialog"
+import AppFooter from "./components/AppFooter"
+import Example from "./components/Example"
+import NavigationDrawer from "./components/NavigationDrawer"
+import CalendarioCitas from "./components/CalendarioCitas"
 
 export default {
-  name: 'App',
-
+  name: "App",
   components: {
-    HelloWorld,
+    AppBar,
+    AppDialog,
+    AppFooter,
+    Example,
+    NavigationDrawer,
+    CalendarioCitas
   },
-
   data: () => ({
-    //
+    drawer: true,
+    dialog: {},
+    showDialog: false,
   }),
-};
+  methods: {
+    alert(content, title = "Informacion") {
+      this.showDialog = true
+      this.dialog = { content, title }
+    },
+  },
+  mounted() {
+    // Override default alert to display Vuetify dialog.
+    // It is better to use vuex.
+    window.alert = this.alert
+  },
+}
 </script>
