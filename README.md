@@ -1,24 +1,25 @@
 # his-frontend
 
-## Project setup
-```
-npm install
+## Git Commits
+
+Sugerencia de nuevos commits:
+
+- **add**: Una nueva característica.
+- change: Cambio en alguna característica.
+- **fix**: Arregla un bug que afecta al usuario.
+- **perf**: Cambios que mejoran el rendimiento del sitio.
+- **build**: Cambios en el sistema de build, tareas de despliegue o instalación.
+- **ci**: Cambios en la integración continua.
+- **docs**: Cambios en la documentación.
+- **refactor**: Refactorización del código como cambios de nombre de variables o funciones.
+- **style**: Cambios de formato, tabulaciones, espacios o puntos y coma, etc; no afectan al usuario.
+- **test**: Añade tests o refactoriza uno existente.
+
+Ejemplo:
+
+```bash
+add: barra de busqueda
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
