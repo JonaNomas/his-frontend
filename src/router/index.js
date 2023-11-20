@@ -11,12 +11,59 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/agendamientoHoras',
+    name: 'agendamientoHoras',
+    component: () => import(/* webpackChunkName: "about" */ '../views/AgendamientoHorasVista.vue')
+  },
+  {
+    path: '/usuario',
+    name: 'usuario',
+    component: () => import(/* webpackChunkName: "about" */ '../views/UsuarioVista.vue')
+  },
+  {
+    path: '/buscarPaciente',
+    name: 'buscarPaciente',
+    component: () => import(/* webpackChunkName: "about" */ '../views/BuscarPacienteVista.vue')
+  },
+  {
+    path: '/nuevoPaciente',
+    name: 'nuevoPaciente',
+    component: () => import(/* webpackChunkName: "about" */ '../views/IngresarNuevoPaciente.vue')
+  },
+  {
+    path: '/atencionUrgencias',
+    name: 'atencionUrgencias',
+    component: () => import(/* webpackChunkName: "about" */ '../views/AtencionUrgenciaVista.vue')
+  },
+  {
+    path: '/hospitalizacion',
+    name: 'hospitalizacion',
+    component: () => import(/* webpackChunkName: "about" */ '../views/HospitalizacionVista.vue')
+  },
+  {
+    path: '/cirugia',
+    name: 'cirugia',
+    component: () => import(/* webpackChunkName: "about" */ '../views/CirugiasVista.vue')
+  },
+  {
+    path: '/atencionesMedicas',
+    name: 'atencionesMedicas',
+    component: () => import(/* webpackChunkName: "about" */ '../views/AtencionesMedicas.vue')
+  },
+  {
+    path: '/imagenologia',
+    name: 'imagenologia',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ImagenologiaVista.vue')
+  },
+  {
+    path: '/laboratorio',
+    name: 'laboratorio',
+    component: () => import(/* webpackChunkName: "about" */ '../views/LaboratorioVista.vue')
+  },
+  {
+    path: '/bancoSangre',
+    name: 'bancoSangre',
+    component: () => import(/* webpackChunkName: "about" */ '../views/BancoSangreVista.vue')
   }
 ]
 
