@@ -5,25 +5,18 @@
 
         <v-form class="mb-5">
           <v-row>
-            <v-col cols="12" sm="12" md="6">
-              <v-select
-                :items="especialidades"
-                label="Especialidad"
-                outlined
-                dense
-                hide-details
-                @change="traerEspecialistas($event.value)"
-                >
+            <v-col cols="12" sm="12" md="4">
+              <v-select :items="especialidades" label="Especialidad" outlined dense hide-details
+                @change="traerEspecialistas($event.value)">
               </v-select>
             </v-col>
-            <v-col>
-              <v-select
-                :items="especialistas"
-                label="Especialista"
-                outlined
-                dense
-                hide-details
-                >
+            <v-col cols="12" sm="12" md="4">
+              <v-select :items="especialistas" label="Especialista" outlined dense hide-details>
+              </v-select>
+            </v-col>
+            <v-col cols="12" sm="12" md="4">
+              <v-select :items="selectEstadoHora" v-model="selectEstadoHoraModel" label="Estado Hora" outlined dense
+                hide-details>
               </v-select>
             </v-col>
           </v-row>
@@ -66,8 +59,9 @@
                 </v-btn>
               </template>
               <v-list>
-                <v-list-item v-for="(dia, index ) in weekdays" :key="index" @click="vistaSemana = dia.texto; weekday = dia.valor">
-                  <v-list-item-title>{{dia.texto}}</v-list-item-title>
+                <v-list-item v-for="(dia, index ) in weekdays" :key="index"
+                  @click="vistaSemana = dia.texto; weekday = dia.valor">
+                  <v-list-item-title>{{ dia.texto }}</v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-menu>
@@ -98,49 +92,28 @@
 
         <v-sheet height="600">
 
-          <v-calendar ref="calendar"
-            v-model="focus"
-            color="primary"
-            :events="events"
-            :event-color="getEventColor"
-            :type="type"
-            :weekdays="weekday"
-            @click:event="showEvent"
-            @click:more="viewDay"
-            @click:date="viewDay"
-            >
+          <v-calendar ref="calendar" v-model="focus" color="primary" :events="events" :event-color="getEventColor"
+            :type="type" :weekdays="weekday" @click:event="showEvent" @click:more="viewDay" @click:date="viewDay">
           </v-calendar>
 
-          <v-menu v-model="selectedOpen" :close-on-content-click="false" :activator="selectedElement" offset-x>
-            <v-card color="grey lighten-4" min-width="350px" flat>
+          <v-dialog max-width="600" v-model="selectedElement">
+            <v-card>
               <v-toolbar :color="selectedEvent.color" dark>
-                <v-btn icon>
-                  <v-icon>mdi-pencil</v-icon>
-                </v-btn>
-                <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>mdi-heart</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>mdi-dots-vertical</v-icon>
-                </v-btn>
-              </v-toolbar>
+                <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title></v-toolbar>
               <v-card-text>
-                <span v-html="selectedEvent.details"></span>
+                <div class="pa-12">{{ selectedEvent }}</div>
               </v-card-text>
-              <v-card-actions>
-                <v-btn text color="secondary" @click="selectedOpen = false">
-                  Cancelar
-                </v-btn>
+              <v-card-actions class="justify-end">
+                <v-btn text @click="selectedElement = false">Close</v-btn>
               </v-card-actions>
             </v-card>
-          </v-menu>
+          </v-dialog>
 
         </v-sheet>
 
       </v-col>
     </v-row>
+
   </div>
 </template>
 <script>
@@ -148,6 +121,7 @@ export default {
   name: 'CalendarioHoras',
   data () {
     return {
+      dialog: true,
       focus: '',
       type: 'month',
       weekday: [1, 2, 3, 4, 5],
@@ -171,7 +145,11 @@ export default {
       events: [],
       colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
       especialidades: [],
-      especialistas: []
+      especialistas: [],
+      selectEstadoHora: [
+        'Todas', 'Disponible', 'Reservada', 'Confirmada', 'Cancelada'
+      ],
+      selectEstadoHoraModel: 'Todas'
     }
   },
   mounted () {
@@ -218,19 +196,43 @@ export default {
         start: new Date('2023-11-13T19:00:00'),
         end: new Date('2023-11-13T19:15:00'),
         color: 'blue',
-        timed: true
+        timed: true,
+        profesionalSalud: {
+          nombre: 'Juan Perez',
+          especialidad: 'Dermatologo',
+          rut: '12.345.678-9'
+        },
+        responsable: {
+          nombre: 'Juan Perez',
+          rut: '12.345.678-9'
+        },
+        fechaCreacion: new Date('2023-11-13T19:00:00'),
+        duracion: 15,
+        estado: 'Disponible'
       },
       {
         name: 'test',
         start: new Date('2023-11-13T19:16:00'),
         end: new Date('2023-11-13T19:30:00'),
         timed: true,
-        color: 'grey lighten-1'
+        profesionalSalud: {
+          nombre: 'Juan Perez',
+          especialidad: 'Dermatologo',
+          rut: '12.345.678-9'
+        },
+        responsable: {
+          nombre: 'Juan Perez',
+          rut: '12.345.678-9'
+        },
+        fechaCreacion: new Date('2023-11-13T19:00:00'),
+        duracion: 15,
+        estado: 'Disponible'
       }]
     },
     showEvent ({ nativeEvent, event }) {
       const open = () => {
         this.selectedEvent = event
+        console.log(this.selectedEvent)
         this.selectedElement = nativeEvent.target
         requestAnimationFrame(() => requestAnimationFrame(() => { this.selectedOpen = true }))
       }
