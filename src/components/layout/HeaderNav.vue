@@ -6,7 +6,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn text :to="{ name: 'usuario' }">
+    <v-btn text :to="{ name: 'ingresar' }">
       <v-icon left>mdi-account</v-icon> Ingresar
     </v-btn>
     <v-menu offset-y>

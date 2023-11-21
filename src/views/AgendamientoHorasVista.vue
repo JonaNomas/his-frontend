@@ -1,8 +1,8 @@
 
 <template>
   <div>
-    <h1>Agendamiento Horas Medicas</h1>
-    <CalendarioHoras />
+    <h1 class="mb-3">Agendamiento Horas Medicas</h1>
+    <CalendarioHoras v-if="true" />
   </div>
 </template>
 <script>
