@@ -27,7 +27,7 @@ add: barra de busqueda
 
 #### Formato JSON para una hora
 
-```json
+```javascript
 {
 	name: 'Dermatologo',
 	start: new Date('2023-11-13T19:00:00'),
@@ -51,7 +51,7 @@ add: barra de busqueda
 
 Estructurara de datos que se deben recibir del backend
 
-```json
+```javascript
 {
 	name:String,
 	start:DateTime,
