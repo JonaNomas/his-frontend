@@ -1,20 +1,21 @@
 <template>
-  <v-navigation-drawer app v-model="drawer" permanent>
-    <v-list-item>
+  <v-navigation-drawer app v-model="$store.state.layout.drawer.visible" v-if="$store.state.estaLoggeado" :mini-variant="$store.state.layout.drawer.mini"
+    permanent>
+    <!-- <v-list-item>
       <v-list-item-content>
         <v-list-item-title class="text-h6">
-          Application
+          Titulo
         </v-list-item-title>
         <v-list-item-subtitle>
-          subtext
+          {{layout}}
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 
-    <v-divider></v-divider>
+    <v-divider></v-divider> -->
 
     <v-list dense nav v-for="ruta in rutas" :key="ruta.tituloConjunto">
-      <v-subheader>{{ ruta.tituloConjunto }}</v-subheader>
+      <v-subheader v-show="!$store.state.layout.drawer.mini">{{ ruta.tituloConjunto }}</v-subheader>
       <v-list-item v-for="link in ruta.links" :key="link.titulo" link :to="{ name: link.ruta }" exact>
         <v-list-item-icon>
           <v-icon>{{ link.icono }}</v-icon>
@@ -26,7 +27,7 @@
       </v-list-item>
       <v-divider></v-divider>
 
-      <v-list-group :value="false" prepend-icon="mdi-account-circle">
+      <!-- <v-list-group :value="false" prepend-icon="mdi-account-circle">
         <template v-slot:activator>
           <v-list-item-title>Users</v-list-item-title>
         </template>
@@ -37,18 +38,35 @@
           </v-list-item-icon>
           <v-list-item-title>Hola Mundo</v-list-item-title>
         </v-list-item>
-      </v-list-group>
+      </v-list-group> -->
 
     </v-list>
+    <v-row>
+      <v-col>
+        <v-list dense nav>
+          <v-list-item link @click="$store.commit('invertirLayoutDrawerMini')">
+            <v-list-item-icon>
+              <v-icon>{{ $store.state.layout.drawer.mini ? 'mdi-arrow-collapse-right' :
+                'mdi-arrow-collapse-left' }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $store.state.layout.drawer.mini ? 'Expandir' : 'Contraer' }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-col>
+    </v-row>
 
   </v-navigation-drawer>
 </template>
 
 <script>
+
 export default {
   name: 'DrawerMenu',
   data () {
     return {
+      drawer: true,
       rutas: [
         {
           tituloConjunto: 'General',
@@ -76,21 +94,7 @@ export default {
             { titulo: 'Banco de Sangre', icono: 'mdi-blood-bag', ruta: 'bancoSangre' }
           ]
         }
-      ],
-      right: true
-    }
-  },
-  props: {
-    value: Boolean
-  },
-  computed: {
-    drawer: {
-      get () {
-        return this.value
-      },
-      set (value) {
-        if (!value) this.$emit('close', true)
-      }
+      ]
     }
   }
 }
