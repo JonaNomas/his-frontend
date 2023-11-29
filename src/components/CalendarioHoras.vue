@@ -285,7 +285,7 @@ export default {
         name: 'Dermatologo',
         start: new Date('2023-11-13T19:00:00'),
         end: new Date('2023-11-13T19:15:00'),
-        color: 'blue',
+        color: 'teal darken-1',
         timed: true,
         profesionalSalud: {
           nombre: 'Juan Perez',
@@ -305,7 +305,7 @@ export default {
         start: new Date('2023-11-13T19:15:00'),
         end: new Date('2023-11-13T19:30:00'),
         timed: true,
-        color: 'grey darken-1',
+        color: 'red darken-1',
         profesionalSalud: {
           nombre: 'Juan Perez',
           especialidad: 'Dermatologo',
