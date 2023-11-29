@@ -1,15 +1,19 @@
 <template>
   <v-app-bar app color="primary" dark class="under-line" elevation="0">
     <div class="d-flex align-center">
-      <v-toolbar-title>HisNeitor</v-toolbar-title>
+      <v-img
+        src="@/assets/medsoft2_x128.png"
+        max-width="40"
+        class="mr-3"></v-img>
+      <v-toolbar-title class="font-weight-light titulo-aplicacion">MedSoft</v-toolbar-title>
     </div>
 
     <v-spacer></v-spacer>
 
-    <v-btn text :to="{ name: 'ingresar' }">
+    <v-btn text :to="{ name: 'ingresar' }" v-if="!$store.state.estaLoggeado">
       <v-icon left>mdi-account</v-icon> Ingresar
     </v-btn>
-    <v-menu offset-y>
+    <v-menu offset-y v-if="$store.state.estaLoggeado">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           v-bind="attrs"
@@ -50,7 +54,7 @@ export default {
 </script>
 
 <style scoped>
-.under-line {
-  border-bottom: 1px solid rgba(0,0,0,.12) !important;
+.titulo-aplicacion{
+  letter-spacing: 0.2rem;
 }
 </style>
