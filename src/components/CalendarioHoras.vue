@@ -4,25 +4,30 @@
       <v-col>
 
         <v-form class="mb-5">
-          <v-row>
+          <v-row dense>
             <v-col cols="12" sm="12" md="4">
-              <v-select :items="especialidades" label="Especialidad" outlined dense hide-details
+              <h1 class="mb-3">Agendamiento Horas Medicas</h1>
+            </v-col>
+            <v-col cols="12" sm="12" md="4">
+              <v-btn block color="secondary" @click="crearNuevaHoraDialog = true"><v-icon left>mdi-plus</v-icon>Agregar
+                Nueva Hora Disponible</v-btn>
+            </v-col>
+            <v-col cols="12" sm="12" md="4">
+              <v-btn block color="secondary" @click="cargarHoras">Cargar</v-btn>
+            </v-col>
+            <v-col cols="12" sm="12" md="4">
+              <v-autocomplete :items="especialidades" label="Especialidad" outlined dense hide-details
                 @change="traerEspecialistas($event.value)">
-              </v-select>
+              </v-autocomplete>
             </v-col>
             <v-col cols="12" sm="12" md="4">
-              <v-select :items="especialistas" label="Especialista" outlined dense hide-details>
-              </v-select>
+              <v-autocomplete :items="especialistas" label="Especialista" outlined dense hide-details>
+              </v-autocomplete>
             </v-col>
             <v-col cols="12" sm="12" md="4">
-              <v-select :items="selectEstadoHora" v-model="selectEstadoHoraModel" label="Estado Hora" outlined dense
+              <v-autocomplete :items="selectEstadoHora" v-model="selectEstadoHoraModel" label="Estado Hora" outlined dense
                 hide-details>
-              </v-select>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <v-btn block color="success" @click="cargarHoras">Cargar</v-btn>
+              </v-autocomplete>
             </v-col>
           </v-row>
         </v-form>
@@ -96,6 +101,7 @@
             :type="type" :weekdays="weekday" @click:event="showEvent" @click:more="viewDay" @click:date="viewDay">
           </v-calendar>
 
+          <!-- Asignar Hora -->
           <v-dialog max-width="600" v-model="selectedElement">
             <v-card>
               <v-toolbar :color="selectedEvent.color" dark>
@@ -105,6 +111,85 @@
               </v-card-text>
               <v-card-actions class="justify-end">
                 <v-btn text @click="selectedElement = false">Close</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
+          <!-- Crear Hora Nueva -->
+          <v-dialog max-width="600" v-model="crearNuevaHoraDialog" persistent>
+            <v-card>
+              <v-toolbar color="primary" dark>
+
+                <v-toolbar-title><v-icon left x-large>mdi-calendar-plus</v-icon> Agregar nueva hora</v-toolbar-title>
+              </v-toolbar>
+              <v-card-text>
+                <v-container class="mt-5">
+                  <v-row>
+                    <v-col>
+                      <v-autocomplete :items="especialidades" label="Especialidad" outlined dense hide-details
+                        @change="traerEspecialistas($event.value)">
+                      </v-autocomplete>
+                    </v-col>
+                  </v-row>
+
+                  <v-row>
+                    <v-col>
+                      <v-autocomplete :items="especialistas" label="Especialista" outlined dense hide-details>
+                      </v-autocomplete>
+                    </v-col>
+                  </v-row>
+
+                  <v-row>
+                    <v-col>
+                      <v-dialog ref="dialogoSeleccionarFecha" v-model="modalSeleccionarFecha" :return-value.sync="date" persistent width="290px">
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field v-model="date" label="Fecha" hide-details prepend-icon="mdi-calendar"  readonly v-bind="attrs"
+                            v-on="on"></v-text-field>
+                        </template>
+                        <v-date-picker v-model="date" scrollable>
+                          <v-spacer></v-spacer>
+                          <v-btn text color="primary" @click="modalSeleccionarFecha = false">
+                            Cancelar
+                          </v-btn>
+                          <v-btn text color="primary" @click="$refs.dialogoSeleccionarFecha.save(date)">
+                            Asignar
+                          </v-btn>
+                        </v-date-picker>
+                      </v-dialog>
+                    </v-col>
+                  </v-row>
+
+                  <v-row>
+                    <v-col>
+                      <v-dialog ref="dialogoSeleccionarHora" v-model="modalSeleccionarHora" :return-value.sync="time" persistent width="290px">
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field v-model="time" label="Hora" hide-details prepend-icon="mdi-clock-time-four-outline" readonly
+                            v-bind="attrs" v-on="on"></v-text-field>
+                        </template>
+                        <v-time-picker v-if="modalSeleccionarHora" v-model="time" full-width>
+                          <v-spacer></v-spacer>
+                          <v-btn text color="primary" @click="modalSeleccionarHora = false">
+                            Cancelar
+                          </v-btn>
+                          <v-btn text color="primary" @click="$refs.dialogoSeleccionarHora.save(time)">
+                            Asignar
+                          </v-btn>
+                        </v-time-picker>
+                      </v-dialog>
+                    </v-col>
+                  </v-row>
+
+                  <v-row>
+                    <v-col>
+                      <v-slider v-model="duracionHoraMedicaSlider" class="mt-5" label="Duración de la hora medica" min="5" max="60"
+                        thumb-label="always"></v-slider>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+              <v-card-actions class="justify-end">
+                <v-btn text @click="crearNuevaHoraDialog = false">Cerrar</v-btn>
+                <v-btn text @click="crearNuevaHoraDialog = false" color="success">Crear</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -121,9 +206,10 @@ export default {
   name: 'CalendarioHoras',
   data () {
     return {
+      crearNuevaHoraDialog: false,
       dialog: true,
       focus: '',
-      type: 'month',
+      type: 'week',
       weekday: [1, 2, 3, 4, 5],
       typeToLabel: {
         month: 'Mes',
@@ -149,7 +235,11 @@ export default {
       selectEstadoHora: [
         'Todas', 'Disponible', 'Reservada', 'Confirmada', 'Cancelada'
       ],
-      selectEstadoHoraModel: 'Todas'
+      selectEstadoHoraModel: 'Todas',
+      // Asignar nueva hora
+      modalSeleccionarHora: false,
+      modalSeleccionarFecha: false,
+      duracionHoraMedicaSlider: 10
     }
   },
   mounted () {
@@ -211,10 +301,11 @@ export default {
         estado: 'Disponible'
       },
       {
-        name: 'test',
-        start: new Date('2023-11-13T19:16:00'),
+        name: 'Urologo',
+        start: new Date('2023-11-13T19:15:00'),
         end: new Date('2023-11-13T19:30:00'),
         timed: true,
+        color: 'grey darken-1',
         profesionalSalud: {
           nombre: 'Juan Perez',
           especialidad: 'Dermatologo',
