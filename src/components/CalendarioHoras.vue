@@ -202,6 +202,10 @@
   </div>
 </template>
 <script>
+/**
+ * TODO: MODIFICAR HORA Y CANCELAR HORA, ELIMINAR BLOQUE
+ */
+
 export default {
   name: 'CalendarioHoras',
   data () {
@@ -233,7 +237,7 @@ export default {
       especialidades: [],
       especialistas: [],
       selectEstadoHora: [
-        'Todas', 'Disponible', 'Reservada', 'Confirmada', 'Cancelada'
+        'Todas', 'Disponible', 'Reservada'
       ],
       selectEstadoHoraModel: 'Todas',
       // Asignar nueva hora
