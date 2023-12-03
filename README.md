@@ -1,5 +1,7 @@
 # his-frontend
 
+[TOC]
+
 ## Git Commits
 
 Sugerencia de nuevos commits:
@@ -69,3 +71,102 @@ Estructurara de datos que se deben recibir del backend
  estado:String
 }
 ```
+### Inicio de Sesión
+
+#### Solicitud a API
+
+URL
+
+```url
+https://api.medsoft.cl/api/Usuario/Login
+```
+
+Metodo
+
+```bash
+POST
+```
+
+Data
+
+```json
+{
+  "rut":String,
+  "password":String
+}
+```
+
+#### Formato respuesta solicitud API
+
+1.- En caso de que las credenciales propocionadas sean **correctas**
+
+```json
+{
+	login: true,
+	token: '-- TOKEN --'
+}
+```
+
+2.- En caso de que las credenciales proporcionales sean **incorrectas**
+
+```json
+{
+	login: false,
+	token: ''
+}
+```
+
+##### Payload del TOKEN minimos
+
+```json
+{
+	nombre: '',
+	apellidoPaterno: '',
+	apellidoMaterno: '',
+	run: '',
+	email: '',
+	uid: '',
+	permisos: []
+}
+```
+
+JWT
+
+```json
+{
+  "nombre": "",
+  "apellidoPaterno": "",
+  "apellidoMaterno": "",
+  "run": "",
+  "email": "",
+  "uid": "",
+  "permisos": [],
+  "jti": "60a4d124-3ed8-4bcc-89e5-dea92e896fd0",
+  "exp": 1701627176,
+  "iss": "*",
+  "aud": "*"
+}
+//
+{
+  "nombre": "Victor",
+  "apellidoPaterno": "Guzman",
+  "apellidoMaterno": "Contreras",
+  "run": "19033183-0",
+  "email": "vguzmanc@medsoft.cl",
+  "uid": "60a4d124-3ed8-4bcc-89e5-dea92e896fd0",
+  "permisos": [0],
+  "jti": "60a4d124-3ed8-4bcc-89e5-dea92e896fd0",
+  "exp": 1701627176,
+  "iss": "*",
+  "aud": "*"
+}
+```
+
+```text
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21icmUiOiJWaWN0b3IiLCJhcGVsbGlkb1BhdGVybm8iOiJHdXptYW4iLCJhcGVsbGlkb01hdGVybm8iOiJDb250cmVyYXMiLCJydW4iOiIxOTAzMzE4My0wIiwiZW1haWwiOiJ2Z3V6bWFuY0BtZWRzb2Z0LmNsIiwidWlkIjoiNjBhNGQxMjQtM2VkOC00YmNjLTg5ZTUtZGVhOTJlODk2ZmQwIiwicGVybWlzb3MiOlswXSwianRpIjoiNjBhNGQxMjQtM2VkOC00YmNjLTg5ZTUtZGVhOTJlODk2ZmQwIiwiZXhwIjoxNzAxNjI3MTc2LCJpc3MiOiIqIiwiYXVkIjoiKiJ9.m1PEqYw-eVhshNpwQ9aIe13kb5751sqlcuXt8_tfDzQ
+```
+
+
+
+
+
