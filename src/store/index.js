@@ -5,15 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    estaLoggeado: true,
+    estaLoggeado: false,
     usuario: {
       nombre: '',
       apellidoPaterno: '',
       apellidoMaterno: '',
       run: '',
       email: '',
-      foto: '',
-      uid: ''
+      uid: '',
+      permisos: []
     },
     layout: {
       drawer: {
@@ -27,6 +27,18 @@ export default new Vuex.Store({
   mutations: {
     invertirLayoutDrawerMini (state) {
       state.layout.drawer.mini = !state.layout.drawer.mini
+    },
+    setUsuario (state, usuario) {
+      state.usuario.nombre = usuario.nombre
+      state.usuario.apellidoPaterno = usuario.apellidoPaterno
+      state.usuario.apellidoMaterno = usuario.apellidoMaterno
+      state.usuario.run = usuario.run
+      state.usuario.email = usuario.email
+      state.usuario.uid = usuario.uid
+      state.usuario.permisos = usuario.permisos
+    },
+    setEstaLoggeado (state, estaLoggeado) {
+      state.estaLoggeado = estaLoggeado
     }
   },
   actions: {

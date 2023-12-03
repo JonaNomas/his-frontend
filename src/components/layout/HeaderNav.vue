@@ -21,7 +21,7 @@
           text
           class="ml-2"
         >
-        <v-icon left>mdi-account</v-icon> J. Perez S.
+        <v-icon left>mdi-account</v-icon> {{ nombreUsuario }}
         </v-btn>
       </template>
       <v-list dense>
@@ -48,6 +48,14 @@ export default {
         { titulo: 'About', icono: 'mdi-help-box', ruta: 'about' },
         { titulo: 'Cerrar Sesión', icono: 'mdi-exit-to-app', ruta: 'home' }
       ]
+    }
+  },
+  computed: {
+    nombreUsuario () {
+      const nombreNavBar = this.$store.state.usuario.nombre[0]
+      const apellidoPaternoNavBar = this.$store.state.usuario.apellidoPaterno
+      const apellidoMaternoNavBar = this.$store.state.usuario.apellidoMaterno[0]
+      return nombreNavBar + '. ' + apellidoPaternoNavBar + ' ' + apellidoMaternoNavBar + '.'
     }
   }
 }
