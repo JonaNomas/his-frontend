@@ -32,7 +32,7 @@
           <v-list-item-title>Users</v-list-item-title>
         </template>
 
-        <v-list-item link class="pl-7">
+        <v-list-item link :class="$store.state.layout.drawer.mini ? '':'pl-7'">
           <v-list-item-icon>
             <v-icon>mdi-account</v-icon>
           </v-list-item-icon>
