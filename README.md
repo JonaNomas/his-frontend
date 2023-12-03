@@ -31,23 +31,23 @@ add: barra de busqueda
 
 ```javascript
 {
- name: 'Dermatologo',
- start: new Date('2023-11-13T19:00:00'),
- end: new Date('2023-11-13T19:15:00'),
- color: 'blue',
+ name: "Dermatologo",
+ start: new Date("2023-11-13T19:00:00"),
+ end: new Date("2023-11-13T19:15:00"),
+ color: "blue",
  timed: true,
  profesionalSalud: {
-  nombre: 'Juan Perez',
-  especialidad: 'Dermatologo',
-  rut: '12.345.678-9'
+  nombre: "Juan Perez",
+  especialidad: "Dermatologo",
+  rut: "12.345.678-9"
     },
  responsable: {
-  nombre: 'Juan Perez',
-  rut: '12.345.678-9'
+  nombre: "Juan Perez",
+  rut: "12.345.678-9"
  },
- fechaCreacion: new Date('2023-11-13T19:00:00'),
+ fechaCreacion: new Date("2023-11-13T19:00:00"),
  duracion: 15,
- estado: 'Disponible'
+ estado: "Disponible"
 }
 ```
 
@@ -71,6 +71,7 @@ Estructurara de datos que se deben recibir del backend
  estado:String
 }
 ```
+
 ### Inicio de Sesión
 
 #### Solicitud a API
@@ -89,7 +90,7 @@ POST
 
 Data
 
-```json
+```javascript
 {
   "rut":String,
   "password":String
@@ -100,39 +101,39 @@ Data
 
 1.- En caso de que las credenciales propocionadas sean **correctas**
 
-```json
+```javascript
 {
-	login: true,
-	token: '-- TOKEN --'
+ "login": true,
+ "token": "-- TOKEN --"
 }
 ```
 
 2.- En caso de que las credenciales proporcionales sean **incorrectas**
 
-```json
+```javascript
 {
-	login: false,
-	token: ''
+ "login": false,
+ "token": ""
 }
 ```
 
 ##### Payload del TOKEN minimos
 
-```json
+```javascript
 {
-	nombre: '',
-	apellidoPaterno: '',
-	apellidoMaterno: '',
-	run: '',
-	email: '',
-	uid: '',
-	permisos: []
+ "nombre": "",
+ "apellidoPaterno": "",
+ "apellidoMaterno": "",
+ "run": "",
+ "email": "",
+ "uid": "",
+ "permisos": []
 }
 ```
 
 JWT
 
-```json
+```javascript
 {
   "nombre": "",
   "apellidoPaterno": "",
@@ -165,8 +166,3 @@ JWT
 ```text
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21icmUiOiJWaWN0b3IiLCJhcGVsbGlkb1BhdGVybm8iOiJHdXptYW4iLCJhcGVsbGlkb01hdGVybm8iOiJDb250cmVyYXMiLCJydW4iOiIxOTAzMzE4My0wIiwiZW1haWwiOiJ2Z3V6bWFuY0BtZWRzb2Z0LmNsIiwidWlkIjoiNjBhNGQxMjQtM2VkOC00YmNjLTg5ZTUtZGVhOTJlODk2ZmQwIiwicGVybWlzb3MiOlswXSwianRpIjoiNjBhNGQxMjQtM2VkOC00YmNjLTg5ZTUtZGVhOTJlODk2ZmQwIiwiZXhwIjoxNzAxNjI3MTc2LCJpc3MiOiIqIiwiYXVkIjoiKiJ9.m1PEqYw-eVhshNpwQ9aIe13kb5751sqlcuXt8_tfDzQ
 ```
-
-
-
-
-
