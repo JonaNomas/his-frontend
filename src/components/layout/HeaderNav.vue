@@ -45,7 +45,6 @@ export default {
       items: [
         { titulo: 'Inicio', icono: 'mdi-home', ruta: 'home' },
         { titulo: 'Agendamiento Horas', icono: 'mdi-calendar-month', ruta: 'agendamientoHoras' },
-        { titulo: 'About', icono: 'mdi-help-box', ruta: 'about' },
         { titulo: 'Cerrar Sesión', icono: 'mdi-exit-to-app', ruta: 'home' }
       ]
     }
