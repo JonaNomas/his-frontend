@@ -109,7 +109,9 @@
               <v-card-text>
                 <div class="pa-12">{{ selectedEvent }}</div>
               </v-card-text>
-              <v-card-actions class="justify-end">
+              <v-card-actions>
+                <v-btn text @click="selectedElement = false" color="error">Eliminar Bloque</v-btn>
+                <v-spacer></v-spacer>
                 <v-btn text @click="selectedElement = false">Close</v-btn>
               </v-card-actions>
             </v-card>
