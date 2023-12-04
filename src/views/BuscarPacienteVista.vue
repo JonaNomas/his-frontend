@@ -6,7 +6,7 @@
       <v-col class="d-flex justify-center">
         <v-card max-width="500" width="500" elevation="3">
           <v-card-text>
-            <v-form ref="form" v-model="valid" lazy-validation>
+            <v-form ref="form" v-model="formularioBuscarModel" @submit.prevent="buscarPacientePorRut" lazy-validation>
               <v-row>
                 <v-col cols="10">
                   <v-text-field label="RUN" v-model="buscarRun" prepend-icon="mdi-account"></v-text-field>
@@ -22,19 +22,29 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <TablaDatosIdentificacionPaciente />
   </div>
 </template>
 
 <script>
+import TablaDatosIdentificacionPaciente from '@/components/TablaDatosIdentificacionPaciente.vue'
+
 export default {
   name: 'BuscarPacienteVista',
   data () {
     return {
+      formularioBuscarModel: true,
       buscarRun: ''
     }
   },
+  methods: {
+    buscarPacientePorRut () {
+      console.log('buscarPacientePorRut', this.buscarRun)
+    }
+  },
   components: {
-    //
+    TablaDatosIdentificacionPaciente
   }
 }
 </script>
