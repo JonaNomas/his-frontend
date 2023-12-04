@@ -40,13 +40,14 @@ export default {
   },
   methods: {
     async iniciarSesion () {
-      const data = await inicioSesionUsuario(this.run, this.password)
-      console.log(data)
       if (this.run === '' || this.password === '') {
         this.alertaErrorModel = true
         this.mensajeError = 'Debe completar todos los campos.'
         return
       }
+
+      const data = await inicioSesionUsuario(this.run, this.password)
+      console.log(data)
 
       if (data.login) {
         const usuario = decodificarJWT(data.token)
