@@ -1,6 +1,18 @@
 <template>
-  <v-navigation-drawer app v-model="$store.state.layout.drawer.visible" v-if="$store.state.estaLoggeado" :mini-variant="$store.state.layout.drawer.mini"
-    permanent>
+  <v-navigation-drawer app v-model="$store.state.layout.drawer.visible" v-if="$store.state.estaLoggeado"
+    :mini-variant="$store.state.layout.drawer.mini" permanent>
+    <v-list dense nav>
+      <v-list-item to="/" exact>
+        <v-list-item-icon>
+          <v-icon>mdi-home</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>Inicio</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+    <v-divider></v-divider>
 
     <v-list dense nav v-for="ruta in rutas2" :key="ruta.tituloConjunto">
       <!-- <v-subheader v-show="!$store.state.layout.drawer.mini">{{ ruta.tituloConjunto }}</v-subheader>
@@ -17,10 +29,11 @@
 
       <v-list-group :value="false" :prepend-icon="ruta.icono">
         <template v-slot:activator>
-          <v-list-item-title>{{ruta.nombreConjunto}}</v-list-item-title>
+          <v-list-item-title>{{ ruta.nombreConjunto }}</v-list-item-title>
         </template>
 
-        <v-list-item link v-for="link in ruta.links" :key="link.titulo" :class="$store.state.layout.drawer.mini ? '':'pl-7'" :to="{ name: link.ruta }" exact>
+        <v-list-item link v-for="link in ruta.links" :key="link.titulo"
+          :class="$store.state.layout.drawer.mini ? '' : 'pl-7'" :to="{ path: link.ruta }" exact>
           <v-list-item-icon>
             <v-icon>{{ link.icono }}</v-icon>
           </v-list-item-icon>
@@ -97,22 +110,22 @@ export default {
           nombreConjunto: 'Atención Urgencia',
           icono: 'mdi-heart-pulse',
           links: [
-            { titulo: 'Ingreso', icono: 'mdi-account-plus-outline', ruta: 'atencionUrgencias' },
-            { titulo: 'Triage', icono: 'mdi-account-plus-outline', ruta: 'atencionUrgencias' },
-            { titulo: 'Atención', icono: 'mdi-account-plus-outline', ruta: 'atencionUrgencias' },
-            { titulo: 'Alta', icono: 'mdi-account-plus-outline', ruta: 'atencionUrgencias' }
+            { titulo: 'Ingreso', icono: 'mdi-account-plus', ruta: '/atencionUrgencias/ingreso' },
+            { titulo: 'Triage', icono: 'mdi-numeric', ruta: '/atencionUrgencias/triage' },
+            { titulo: 'Atención', icono: 'mdi-doctor', ruta: '/atencionUrgencias/atencion' },
+            { titulo: 'Alta', icono: 'mdi-account-minus', ruta: '/atencionUrgencias/alta' }
           ]
         },
         {
           nombreConjunto: 'Hospitalización',
           icono: 'mdi-hospital-building',
           links: [
-            { titulo: 'Ingreso', icono: 'mdi-hospital-building', ruta: 'hospitalizacion' },
-            { titulo: 'Atención Enfermeria', icono: 'mdi-hospital-building', ruta: 'hospitalizacion' },
-            { titulo: 'Atención Medica', icono: 'mdi-hospital-building', ruta: 'hospitalizacion' },
-            { titulo: 'Alta', icono: 'mdi-hospital-building', ruta: 'hospitalizacion' },
-            { titulo: 'Gestión Camas', icono: 'mdi-hospital-building', ruta: 'hospitalizacion' },
-            { titulo: 'Agendamiento', icono: 'mdi-hospital-building', ruta: 'hospitalizacion' }
+            { titulo: 'Ingreso', icono: 'mdi-account-plus', ruta: '/hospitalizacion/ingreso' },
+            { titulo: 'Atención Enfermeria', icono: 'mdi-pill', ruta: '/hospitalizacion/atencionEnfermeria' },
+            { titulo: 'Atención Medica', icono: 'mdi-doctor', ruta: '/hospitalizacion/atencionMedica' },
+            { titulo: 'Alta', icono: 'mdi-account-minus', ruta: '/hospitalizacion/alta' },
+            { titulo: 'Gestión Camas', icono: 'mdi-bed', ruta: '/hospitalizacion/gestionCamas' },
+            { titulo: 'Agendamiento', icono: 'mdi-calendar-multiselect', ruta: '/hospitalizacion/agendamiento' }
 
           ]
         },
@@ -120,20 +133,20 @@ export default {
           nombreConjunto: 'Cirugía',
           icono: 'mdi-box-cutter',
           links: [
-            { titulo: 'Ingreso', icono: 'mdi-box-cutter', ruta: 'cirugia' },
-            { titulo: 'Agendamiento', icono: 'mdi-box-cutter', ruta: 'cirugia' },
-            { titulo: 'Gestion Pabellones', icono: 'mdi-box-cutter', ruta: 'cirugia' },
-            { titulo: 'Registro Cirugía', icono: 'mdi-box-cutter', ruta: 'cirugia' },
-            { titulo: 'Alta', icono: 'mdi-box-cutter', ruta: 'cirugia' }
+            { titulo: 'Ingreso', icono: 'mdi-account-plus', ruta: '/cirugia/ingreso' },
+            { titulo: 'Agendamiento', icono: 'mdi-calendar-multiselect', ruta: '/cirugia/agendamiento' },
+            { titulo: 'Gestion Pabellones', icono: 'mdi-bed', ruta: '/cirugia/gestionPabellones' },
+            { titulo: 'Registro Cirugía', icono: 'mdi-file-document', ruta: '/cirugia/registro' },
+            { titulo: 'Alta', icono: 'mdi-account-minus', ruta: '/cirugia/alta' }
           ]
         },
         {
           nombreConjunto: 'Atenciones Medicas',
           icono: 'mdi-stethoscope',
           links: [
-            { titulo: 'Agendamiento Horas', icono: 'mdi-stethoscope', ruta: 'agendamientoHoras' },
-            { titulo: 'Citados por Día', icono: 'mdi-stethoscope', ruta: 'agendamientoHoras' },
-            { titulo: 'Atención Medica', icono: 'mdi-stethoscope', ruta: 'agendamientoHoras' }
+            { titulo: 'Agendamiento Horas', icono: 'mdi-calendar-multiselect', ruta: '/atencionesMedicas/agendamiento' },
+            { titulo: 'Citados por Día', icono: 'mdi-account-group', ruta: '/atencionesMedicas/citados' },
+            { titulo: 'Atención Medica', icono: 'mdi-stethoscope', ruta: '/atencionesMedicas/atencion' }
           ]
         },
         {

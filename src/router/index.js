@@ -3,20 +3,16 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import store from '../store/index.js'
 
-Vue.use(VueRouter)
+import historiasClinicasRoutes from './historiasClinicas.routes.js'
+import atecionUrgenciaRoutes from './atecionUrgencia.routes.js'
+import hospitalizacionRoutes from './hospitalizacion.routes.js'
+import cirugiaRoutes from './cirugia.routes.js'
+import atencionesMedicasRoutes from './atencionesMedicas.routes.js'
+import imagenologiaRoutes from './imagenologia.routes.js'
+import laboratorioRoutes from './laboratorio.routes.js'
+import bancoSangreRoutes from './bancoSangre.routes.js'
 
-// const PERMISOS = {
-//   ADMINISTRADOR: 0,
-//   MEDICO: 1,
-//   ENFERMERA: 2,
-//   TECNOLOGO: 3,
-//   MATRONA: 4,
-//   KINESIOLOGO: 5,
-//   TENS: 6,
-//   ADMINISTRATIVO: 7,
-//   CLINICO: 8,
-//   NUTRICIONISTA: 9
-// }
+Vue.use(VueRouter)
 
 const routes = [
   {
@@ -27,16 +23,6 @@ const routes = [
       requiereAutentificacion: true,
       permisosRequeridos: [],
       tituloPagina: 'MedSoft - Inicio'
-    }
-  },
-  {
-    path: '/agendamientoHoras',
-    name: 'agendamientoHoras',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AgendamientoHorasVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Agendamiento de horas'
     }
   },
   {
@@ -59,96 +45,14 @@ const routes = [
       tituloPagina: 'MedSoft - Cuenta de usuario'
     }
   },
-  {
-    path: '/buscarPaciente',
-    name: 'buscarPaciente',
-    component: () => import(/* webpackChunkName: "about" */ '../views/BuscarPacienteVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Buscar paciente'
-    }
-  },
-  {
-    path: '/nuevoPaciente',
-    name: 'nuevoPaciente',
-    component: () => import(/* webpackChunkName: "about" */ '../views/IngresarNuevoPaciente.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Ingresar Nuevo Paciente'
-    }
-  },
-  {
-    path: '/atencionUrgencias',
-    name: 'atencionUrgencias',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AtencionUrgenciaVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Atención Urgencia'
-    }
-  },
-  {
-    path: '/hospitalizacion',
-    name: 'hospitalizacion',
-    component: () => import(/* webpackChunkName: "about" */ '../views/HospitalizacionVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Hospitalización'
-    }
-  },
-  {
-    path: '/cirugia',
-    name: 'cirugia',
-    component: () => import(/* webpackChunkName: "about" */ '../views/CirugiasVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Cirugia'
-    }
-  },
-  {
-    path: '/atencionesMedicas',
-    name: 'atencionesMedicas',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AtencionesMedicas.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Atenciones Medicas'
-    }
-  },
-  {
-    path: '/imagenologia',
-    name: 'imagenologia',
-    component: () => import(/* webpackChunkName: "about" */ '../views/ImagenologiaVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Imagenologia'
-    }
-  },
-  {
-    path: '/laboratorio',
-    name: 'laboratorio',
-    component: () => import(/* webpackChunkName: "about" */ '../views/LaboratorioVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Laboratorio'
-    }
-  },
-  {
-    path: '/bancoSangre',
-    name: 'bancoSangre',
-    component: () => import(/* webpackChunkName: "about" */ '../views/BancoSangreVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Banco de Sangre'
-    }
-  }
+  ...historiasClinicasRoutes,
+  ...atecionUrgenciaRoutes,
+  ...hospitalizacionRoutes,
+  ...cirugiaRoutes,
+  ...atencionesMedicasRoutes,
+  ...imagenologiaRoutes,
+  ...laboratorioRoutes,
+  ...bancoSangreRoutes
 ]
 
 const router = new VueRouter({
@@ -159,10 +63,21 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(route => route.meta.requiereAutentificacion)) {
+    // Si no esta registrado, redirigir a la pagina de ingresar
     if (!store.state.estaLoggeado) {
       next({ path: '/ingresar' })
       document.title = to.meta.tituloPagina
     } else {
+      if (to.matched.some(route => route.meta.permisosRequeridos.length > 0)) {
+        // Si no tiene permisos, redirigir a la pagina de inicio
+        if (!store.state.permisos.some(permiso => to.meta.permisosRequeridos.includes(permiso))) {
+          next({ path: '/' })
+          document.title = to.meta.tituloPagina
+        } else {
+          next()
+          document.title = to.meta.tituloPagina
+        }
+      }
       next()
       document.title = to.meta.tituloPagina
     }
