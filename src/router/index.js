@@ -7,8 +7,15 @@ Vue.use(VueRouter)
 
 // const PERMISOS = {
 //   ADMINISTRADOR: 0,
-//   PERSONAL_ADMINISTRATIVO: 1,
-//   PERSONAL_CLINICO: 2
+//   MEDICO: 1,
+//   ENFERMERA: 2,
+//   TECNOLOGO: 3,
+//   MATRONA: 4,
+//   KINESIOLOGO: 5,
+//   TENS: 6,
+//   ADMINISTRATIVO: 7,
+//   CLINICO: 8,
+//   NUTRICIONISTA: 9
 // }
 
 const routes = [
