@@ -1,15 +1,5 @@
 export default [
   {
-    path: '/hospitalizacion',
-    name: 'hospitalizacion',
-    component: () => import(/* webpackChunkName: "hospitalizacion" */ '../views/HospitalizacionVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Hospitalización'
-    }
-  },
-  {
     path: '/hospitalizacion/ingreso',
     name: 'ingresoHospitalizacion',
     component: () => import(/* webpackChunkName: "hospitalizacion" */ '../views/hospitalizacion/IngresoHospitalizacionVista.vue'),

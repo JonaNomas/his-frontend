@@ -2,7 +2,7 @@ export default [
   {
     path: '/bancoSangre',
     name: 'bancoSangre',
-    component: () => import(/* webpackChunkName: "about" */ '../views/BancoSangreVista.vue'),
+    component: () => import(/* webpackChunkName: "about" */ '../views/HomeView.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],

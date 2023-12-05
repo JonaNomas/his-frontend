@@ -1,15 +1,5 @@
 export default [
   {
-    path: '/cirugia',
-    name: 'cirugia',
-    component: () => import(/* webpackChunkName: "about" */ '../views/CirugiasVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Cirugia'
-    }
-  },
-  {
     path: '/cirugia/ingreso',
     name: 'ingresoCirugia',
     component: () => import(/* webpackChunkName: "about" */ '../views/cirugia/IngresoCirugiaVista.vue'),

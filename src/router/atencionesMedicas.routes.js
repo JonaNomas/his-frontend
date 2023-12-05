@@ -1,15 +1,5 @@
 export default [
   {
-    path: '/agendamientoHoras',
-    name: 'agendamientoHoras',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AgendamientoHorasVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Agendamiento de horas'
-    }
-  },
-  {
     path: '/atencionesMedicas/atencion',
     name: 'atencionesMedicas',
     component: () => import(/* webpackChunkName: "about" */ '../views/atencionesMedicas/AtencionMedicaVista.vue'),
