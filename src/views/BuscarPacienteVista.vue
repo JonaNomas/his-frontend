@@ -24,11 +24,18 @@
     </v-row>
 
     <TablaDatosIdentificacionPaciente />
+
+    <div>
+      <TablaAtencionesUrgenciaHC />
+      <TablaHospitalizacionesHC />
+    </div>
   </div>
 </template>
 
 <script>
-import TablaDatosIdentificacionPaciente from '@/components/TablaDatosIdentificacionPaciente.vue'
+import TablaAtencionesUrgenciaHC from '@/components/historiasClinicas/TablaAtencionesUrgenciaHC.vue'
+import TablaDatosIdentificacionPaciente from '@/components/historiasClinicas/TablaDatosIdentificacionPaciente.vue'
+import TablaHospitalizacionesHC from '@/components/historiasClinicas/TablaHospitalizacionesHC.vue'
 
 export default {
   name: 'BuscarPacienteVista',
@@ -44,7 +51,9 @@ export default {
     }
   },
   components: {
-    TablaDatosIdentificacionPaciente
+    TablaDatosIdentificacionPaciente,
+    TablaAtencionesUrgenciaHC,
+    TablaHospitalizacionesHC
   }
 }
 </script>
