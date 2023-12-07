@@ -107,6 +107,32 @@
               <v-toolbar :color="selectedEvent.color" dark>
                 <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title></v-toolbar>
               <v-card-text>
+
+                <h2 class="my-5">Profesional</h2>
+                <v-row>
+                  <v-col>
+                    <v-text-field hide-details :value="selectedEvent?.profesionalSalud?.nombre" label="Profesional"
+                      readonly></v-text-field>
+                  </v-col>
+                  <v-col>
+                    <v-text-field hide-details :value="selectedEvent?.profesionalSalud?.rut" label="RUN"
+                      readonly></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col>
+                    <v-text-field hide-details :value="selectedEvent?.profesionalSalud?.especialidad" label="Especialidad"
+                      readonly></v-text-field>
+                  </v-col>
+                </v-row>
+
+                <h2>Detalles Hora</h2>
+                <v-row>
+                  <v-col>
+                    <v-text-field hide-details :value="formatDate(selectedEvent?.start)" label="Dia" readonly></v-text-field>
+                  </v-col>
+                </v-row>
+
                 <div class="pa-12">{{ selectedEvent }}</div>
               </v-card-text>
               <v-card-actions>
@@ -143,10 +169,11 @@
 
                   <v-row>
                     <v-col>
-                      <v-dialog ref="dialogoSeleccionarFecha" v-model="modalSeleccionarFecha" :return-value.sync="date" persistent width="290px">
+                      <v-dialog ref="dialogoSeleccionarFecha" v-model="modalSeleccionarFecha" :return-value.sync="date"
+                        persistent width="290px">
                         <template v-slot:activator="{ on, attrs }">
-                          <v-text-field v-model="date" label="Fecha" hide-details prepend-icon="mdi-calendar"  readonly v-bind="attrs"
-                            v-on="on"></v-text-field>
+                          <v-text-field v-model="date" label="Fecha" hide-details prepend-icon="mdi-calendar" readonly
+                            v-bind="attrs" v-on="on"></v-text-field>
                         </template>
                         <v-date-picker v-model="date" scrollable>
                           <v-spacer></v-spacer>
@@ -163,10 +190,11 @@
 
                   <v-row>
                     <v-col>
-                      <v-dialog ref="dialogoSeleccionarHora" v-model="modalSeleccionarHora" :return-value.sync="time" persistent width="290px">
+                      <v-dialog ref="dialogoSeleccionarHora" v-model="modalSeleccionarHora" :return-value.sync="time"
+                        persistent width="290px">
                         <template v-slot:activator="{ on, attrs }">
-                          <v-text-field v-model="time" label="Hora" hide-details prepend-icon="mdi-clock-time-four-outline" readonly
-                            v-bind="attrs" v-on="on"></v-text-field>
+                          <v-text-field v-model="time" label="Hora" hide-details
+                            prepend-icon="mdi-clock-time-four-outline" readonly v-bind="attrs" v-on="on"></v-text-field>
                         </template>
                         <v-time-picker v-if="modalSeleccionarHora" v-model="time" full-width>
                           <v-spacer></v-spacer>
@@ -183,8 +211,8 @@
 
                   <v-row>
                     <v-col>
-                      <v-slider v-model="duracionHoraMedicaSlider" class="mt-5" label="Duración de la hora medica" min="5" max="60"
-                        thumb-label="always"></v-slider>
+                      <v-slider v-model="duracionHoraMedicaSlider" class="mt-5" label="Duración de la hora medica" min="5"
+                        max="60" thumb-label="always"></v-slider>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -207,6 +235,7 @@
 /**
  * TODO: MODIFICAR HORA Y CANCELAR HORA, ELIMINAR BLOQUE
  */
+import axios from 'axios'
 
 export default {
   name: 'CalendarioHoras',
@@ -287,44 +316,52 @@ export default {
     },
     cargarHoras () {
       console.log('Cargar Horas')
-      this.events = [{
-        name: 'Dermatologo',
-        start: new Date('2023-11-13T19:00:00'),
-        end: new Date('2023-11-13T19:15:00'),
-        color: 'teal darken-1',
-        timed: true,
-        profesionalSalud: {
-          nombre: 'Juan Perez',
-          especialidad: 'Dermatologo',
-          rut: '12.345.678-9'
-        },
-        responsable: {
-          nombre: 'Juan Perez',
-          rut: '12.345.678-9'
-        },
-        fechaCreacion: new Date('2023-11-13T19:00:00'),
-        duracion: 15,
-        estado: 'Disponible'
-      },
-      {
-        name: 'Urologo',
-        start: new Date('2023-11-13T19:15:00'),
-        end: new Date('2023-11-13T19:30:00'),
-        timed: true,
-        color: 'red darken-1',
-        profesionalSalud: {
-          nombre: 'Juan Perez',
-          especialidad: 'Dermatologo',
-          rut: '12.345.678-9'
-        },
-        responsable: {
-          nombre: 'Juan Perez',
-          rut: '12.345.678-9'
-        },
-        fechaCreacion: new Date('2023-11-13T19:00:00'),
-        duracion: 15,
-        estado: 'Disponible'
-      }]
+      // this.events = [{
+      //   name: 'Dermatologo',
+      //   start: new Date('2023-11-13T19:00:00'),
+      //   end: new Date('2023-11-13T19:15:00'),
+      //   color: 'teal darken-1',
+      //   timed: true,
+      //   profesionalSalud: {
+      //     nombre: 'Juan Perez',
+      //     especialidad: 'Dermatologo',
+      //     rut: '12.345.678-9'
+      //   },
+      //   responsable: {
+      //     nombre: 'Juan Perez',
+      //     rut: '12.345.678-9'
+      //   },
+      //   fechaCreacion: new Date('2023-11-13T19:00:00'),
+      //   duracion: 15,
+      //   estado: 'Disponible'
+      // },
+      // {
+      //   name: 'Urologo',
+      //   start: new Date('2023-11-13T19:15:00'),
+      //   end: new Date('2023-11-13T19:30:00'),
+      //   timed: true,
+      //   color: 'red darken-1',
+      //   profesionalSalud: {
+      //     nombre: 'Juan Perez',
+      //     especialidad: 'Dermatologo',
+      //     rut: '12.345.678-9'
+      //   },
+      //   responsable: {
+      //     nombre: 'Juan Perez',
+      //     rut: '12.345.678-9'
+      //   },
+      //   fechaCreacion: new Date('2023-11-13T19:00:00'),
+      //   duracion: 15,
+      //   estado: 'Disponible'
+      // }]
+      axios.post('https://api.medsoft.cl/api/Agenda/obtenerAgenda')
+        .then(response => (
+          this.events = response.data.map((x) => {
+            console.log(x)
+            x.color = 'blue'
+            return x
+          })
+        ))
     },
     showEvent ({ nativeEvent, event }) {
       const open = () => {
@@ -342,6 +379,14 @@ export default {
       }
 
       nativeEvent.stopPropagation()
+    },
+    formatDate (dateString) {
+      const date = new Date(dateString)
+      const day = String(date.getDate()).padStart(2, '0')
+      const month = String(date.getMonth() + 1).padStart(2, '0')
+      const year = date.getFullYear()
+
+      return `${day}-${month}-${year}`
     }
   }
 }
