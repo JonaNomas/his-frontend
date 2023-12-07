@@ -54,6 +54,7 @@ export default {
         console.log(usuario)
         this.$store.commit('setUsuario', usuario)
         this.$store.commit('setEstaLoggeado', true)
+        sessionStorage.setItem('token', data.token)
         this.$router.push({ path: '/' })
       } else {
         this.alertaErrorModel = true
