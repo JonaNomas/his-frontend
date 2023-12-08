@@ -38,11 +38,11 @@
 
     <v-row>
       <v-col>
-        <v-menu v-model="menuFechaNacimiento" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y
-          min-width="auto">
+        <v-menu v-model="menuFechaNacimiento" :close-on-content-click="false" :nudge-right="40"
+          transition="scale-transition" offset-y min-width="auto">
           <template v-slot:activator="{ on, attrs }">
-            <v-text-field dense v-model="fechaNacimiento" label="Fecha Nacimiento" outlined hide-details prepend-inner-icon="mdi-calendar" readonly
-              v-bind="attrs" v-on="on"></v-text-field>
+            <v-text-field dense v-model="fechaNacimiento" label="Fecha Nacimiento" outlined hide-details
+              prepend-inner-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"></v-text-field>
           </template>
           <v-date-picker v-model="fechaNacimiento" @input="menuFechaNacimiento = false"></v-date-picker>
         </v-menu>
@@ -118,7 +118,14 @@
       </v-col>
     </v-row>
 
-    <v-row class="mt-5">
+    <v-alert v-model="alertaErrorModel" outlined dismissible type="error" class="mt-5 text-center">
+      {{ mensajeError }}
+    </v-alert>
+    <v-alert v-model="alertaSuccessModel" outlined dismissible type="success" class="mt-5 text-center">
+      {{ mensajeSuccess }}
+    </v-alert>
+
+    <v-row class="mt-3">
       <v-col>
         <v-btn block :loading="enviandoFormulario" :disabled="enviandoFormulario" @click="agregarNuevoPaciente"
           color="success"><v-icon left>mdi-account-plus-outline</v-icon>Crear nuevo paciente</v-btn>
@@ -129,6 +136,7 @@
 
 <script>
 import ingresarNuevoPaciente from '@/services/ingresarNuevoPaciente'
+import obtenerUsuarioPorRut from '@/services/obtenerUsuarioPorRut'
 
 export default {
   name: 'IngresarNuevoPaciente',
@@ -139,7 +147,7 @@ export default {
       segundoNombre: 'Roberto',
       apellidoPaterno: 'Farias',
       apellidoMaterno: 'Lopez',
-      fechaNacimiento: '',
+      fechaNacimiento: new Date().toISOString().substr(0, 10),
       telefono: '92143287',
       direccion: 'Av Bulnes 0256',
       region: 'Magallanes y de la Antártica Chilena',
@@ -158,6 +166,11 @@ export default {
       enviandoFormulario: false,
       // Fecha
       menuFechaNacimiento: false,
+      // Alerta Error
+      alertaErrorModel: false,
+      mensajeError: '',
+      alertaSuccessModel: false,
+      mensajeSuccess: '',
       // Datos select
       selectSexos: [
         'Masculino',
@@ -229,8 +242,17 @@ export default {
     }
   },
   methods: {
-    agregarNuevoPaciente () {
+    async agregarNuevoPaciente () {
       this.enviandoFormulario = true
+      this.alertaErrorModel = false
+      this.alertaSuccessModel = false
+      const usuarioEncontrado = await obtenerUsuarioPorRut(this.rut)
+      if (usuarioEncontrado.data !== '') {
+        this.enviandoFormulario = false
+        this.alertaErrorModel = true
+        this.mensajeError = 'El paciente ya se encuentra registrado en el sistema.'
+        return
+      }
       const nuevoPaciente = {
         rut: this.rut,
         nombrePrimer: this.primerNombre,
@@ -253,14 +275,43 @@ export default {
         estadoSalud: 0,
         fechaDefuncion: null
       }
-      console.log(nuevoPaciente)
       ingresarNuevoPaciente(nuevoPaciente).then((response) => {
         this.enviandoFormulario = false
-        console.log(response)
-      }).catch((error) => {
+        if (response.status === 200) {
+          this.alertaSuccessModel = true
+          this.mensajeSuccess = 'Paciente ingresado correctamente.'
+          this.limpiarCampos()
+        } else {
+          this.alertaErrorModel = true
+          this.mensajeError = 'Error al ingresar paciente.'
+        }
+      }).catch(() => {
         this.enviandoFormulario = false
-        console.log(error)
+        this.alertaErrorModel = true
+        this.mensajeError = 'Error al ingresar paciente.'
       })
+    },
+    limpiarCampos () {
+      this.rut = ''
+      this.primerNombre = ''
+      this.segundoNombre = ''
+      this.apellidoPaterno = ''
+      this.apellidoMaterno = ''
+      this.fechaNacimiento = new Date().toISOString().substr(0, 10)
+      this.telefono = ''
+      this.direccion = ''
+      this.region = ''
+      this.comuna = ''
+      this.estadoCivil = ''
+      this.nombreSocial = ''
+      this.prevision = ''
+      this.grupoSanguineo = ''
+      this.donadorOrganos = ''
+      this.nombreContactoEmergencia = ''
+      this.parentescoContactoEmergencia = ''
+      this.telefonoContactoEmergencia = ''
+      this.sexo = ''
+      this.correo = ''
     }
   }
 }
