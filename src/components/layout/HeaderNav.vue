@@ -32,6 +32,10 @@
         >
           <v-list-item-title><v-icon left>{{ item.icono }}</v-icon>{{ item.titulo }}</v-list-item-title>
         </v-list-item>
+
+        <v-list-item link>
+          <v-list-item-title @click="$store.commit('cerrarSesion')"><v-icon left>mdi-exit-to-app</v-icon>Cerrar Sesión</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-menu>
   </v-app-bar>
@@ -43,9 +47,7 @@ export default {
   data () {
     return {
       items: [
-        { titulo: 'Inicio', icono: 'mdi-home', ruta: 'home' },
-        { titulo: 'Agendamiento Horas', icono: 'mdi-calendar-month', ruta: 'agendamientoHoras' },
-        { titulo: 'Cerrar Sesión', icono: 'mdi-exit-to-app', ruta: 'home' }
+        { titulo: 'Inicio', icono: 'mdi-home', ruta: 'home' }
       ]
     }
   },

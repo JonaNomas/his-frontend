@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from '@/router'
 
 Vue.use(Vuex)
 
@@ -39,6 +40,19 @@ export default new Vuex.Store({
     },
     setEstaLoggeado (state, estaLoggeado) {
       state.estaLoggeado = estaLoggeado
+    },
+    cerrarSesion (state) {
+      state.usuario.nombre = ''
+      state.usuario.apellidoPaterno = ''
+      state.usuario.apellidoMaterno = ''
+      state.usuario.run = ''
+      state.usuario.email = ''
+      state.usuario.uid = ''
+      state.usuario.permisos = []
+      state.estaLoggeado = false
+
+      router.push({ path: '/ingresar' })
+      sessionStorage.removeItem('token')
     }
   },
   actions: {
