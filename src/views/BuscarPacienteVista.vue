@@ -19,6 +19,9 @@
                 </v-col>
               </v-row>
             </v-form>
+            <v-alert v-model="alertaErrorModel" outlined dismissible type="error" class="mt-5 text-center">
+              {{ mensajeError }}
+            </v-alert>
           </v-card-text>
         </v-card>
       </v-col>
@@ -45,6 +48,8 @@ export default {
   name: 'BuscarPacienteVista',
   data () {
     return {
+      alertaErrorModel: false,
+      mensajeError: '',
       mostrarTablaDatosIdentificacionPaciente: false,
       mostrarTablasDeExamenes: false,
       formularioBuscarModel: true,
@@ -58,7 +63,14 @@ export default {
     buscarPacientePorRut () {
       this.btnBuscarCargando = true
       this.btnBuscarDisabled = true
-      console.log('buscarPacientePorRut', this.buscarRun)
+      this.alertaErrorModel = false
+      if (this.buscarRun === '') {
+        this.mensajeError = 'Debe ingresar un RUN.'
+        this.alertaErrorModel = true
+        this.btnBuscarCargando = false
+        this.btnBuscarDisabled = false
+        return
+      }
       obtenerUsuarioPorRut(this.buscarRun)
         .then((response) => {
           console.log(response)
@@ -69,12 +81,15 @@ export default {
             this.pacienteEncontrado = response.data
             this.mostrarTablaDatosIdentificacionPaciente = true
           } else {
-            console.log('no encontrado')
+            this.mensajeError = 'No se encuentra un paciente con el RUN ingresado.'
+            this.alertaErrorModel = true
             this.mostrarTablaDatosIdentificacionPaciente = false
           }
         })
         .catch((error) => {
           console.log(error)
+          this.mensajeError = 'Error inesperado con el servidor.'
+          this.alertaErrorModel = true
           this.btnBuscarCargando = false
           this.btnBuscarDisabled = false
         })
