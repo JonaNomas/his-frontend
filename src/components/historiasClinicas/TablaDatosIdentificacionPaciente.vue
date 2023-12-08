@@ -10,52 +10,52 @@
                 <tr>
                   <td class="negrita">Rut</td>
                   <td class="negrita">:</td>
-                  <td>19033183-0</td>
+                  <td>{{ pacienteEncontrado?.run ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">ID Paciente</td>
                   <td class="negrita">:</td>
-                  <td>19033183-0</td>
+                  <td>{{ pacienteEncontrado?.idPaciente ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Primer Nombre</td>
                   <td class="negrita">:</td>
-                  <td>Victor</td>
+                  <td>{{ pacienteEncontrado?.nombrePrimer ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Segundo Nombre</td>
                   <td class="negrita">:</td>
-                  <td>Alexis</td>
+                  <td>{{ pacienteEncontrado.nombreSegundo ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Apellido Paterno</td>
                   <td class="negrita">:</td>
-                  <td>Guzman</td>
+                  <td>{{ pacienteEncontrado?.apellidoPaterno ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Apellido Materno</td>
                   <td class="negrita">:</td>
-                  <td>Contreras</td>
+                  <td>{{ pacienteEncontrado?.apellidoMaterno ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Fecha Nacimiento</td>
                   <td class="negrita">:</td>
-                  <td>06-02-2023</td>
+                  <td>{{ fechaDDMMAAAA(pacienteEncontrado?.fechaNacimiento) ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Sexo</td>
                   <td class="negrita">:</td>
-                  <td>Masculino</td>
+                  <td>{{ pacienteEncontrado?.sexo ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Nombre Social</td>
                   <td class="negrita">:</td>
-                  <td>El</td>
+                  <td>{{ pacienteEncontrado?.nombreSocial ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Estado Civil</td>
                   <td class="negrita">:</td>
-                  <td>Soltero</td>
+                  <td>{{ pacienteEncontrado?.estadoCivil ?? 'No Registra' }}</td>
                 </tr>
               </tbody>
             </template>
@@ -74,17 +74,17 @@
                 <tr>
                   <td class="negrita">Grupo Sanguineo</td>
                   <td class="negrita">:</td>
-                  <td>A+</td>
+                  <td>{{ pacienteEncontrado?.grupoSanguineo ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Donador</td>
                   <td class="negrita">:</td>
-                  <td>No</td>
+                  <td>{{ pacienteEncontrado?.donador ? 'Si': 'No' }}</td>
                 </tr>
                 <tr>
-                  <td class="negrita">Prevision</td>
+                  <td class="negrita">Previsión</td>
                   <td class="negrita">:</td>
-                  <td>Fonasa A</td>
+                  <td>{{ pacienteEncontrado?.prevision ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Estado Salud</td>
@@ -92,7 +92,7 @@
                   <td>Vivo</td>
                 </tr>
                 <tr>
-                  <td class="negrita">Fecha Defuncion</td>
+                  <td class="negrita">Fecha Defunción</td>
                   <td class="negrita">:</td>
                   <td>Vivo</td>
                 </tr>
@@ -113,17 +113,17 @@
                 <tr>
                   <td class="negrita">Telefono</td>
                   <td class="negrita">:</td>
-                  <td>992143287</td>
+                  <td>{{ pacienteEncontrado?.telefono ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Direccion</td>
                   <td class="negrita">:</td>
-                  <td>Pasaje Los Magnolios #0688</td>
+                  <td>{{ pacienteEncontrado.direccion }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Correo Electronico</td>
                   <td class="negrita">:</td>
-                  <td>vguzmanc@medsoft.cl</td>
+                  <td>{{ pacienteEncontrado.correo }}</td>
                 </tr>
               </tbody>
             </template>
@@ -142,17 +142,17 @@
                 <tr>
                   <td class="negrita">Nombre Contacto Emergencia</td>
                   <td class="negrita">:</td>
-                  <td>Brisa Cecilia Contreras Ramirez</td>
+                  <td>{{ pacienteEncontrado.contactoEmergencia ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Parentesco</td>
                   <td class="negrita">:</td>
-                  <td>Madre</td>
+                  <td>{{ pacienteEncontrado?.parentesco ?? 'No Registra' }}</td>
                 </tr>
                 <tr>
                   <td class="negrita">Telefono</td>
                   <td class="negrita">:</td>
-                  <td>552144547</td>
+                  <td>{{ pacienteEncontrado?.telefonoEmergencia ?? 'No registra' }}</td>
                 </tr>
               </tbody>
             </template>
@@ -164,14 +164,19 @@
 </template>
 
 <script>
+import fechaDDMMAAAA from '@/utils/fechaDDMMAAAA'
+
 export default {
   name: 'TablaDatosIdentificacionPaciente',
   data () {
     return {
-
       //
     }
-  }
+  },
+  methods: {
+    fechaDDMMAAAA
+  },
+  props: ['pacienteEncontrado']
 }
 </script>
 
