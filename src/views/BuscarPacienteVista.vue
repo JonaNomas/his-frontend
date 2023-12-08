@@ -12,7 +12,7 @@
                   <v-text-field label="RUN" v-model="buscarRun" prepend-icon="mdi-account"></v-text-field>
                 </v-col>
                 <v-col cols="2">
-                  <v-btn type="submit" class="mt-3" block color="success">
+                  <v-btn type="submit" class="mt-3" block color="success" :loading="btnBuscarCargando" :disabled="btnBuscarDisabled">
                     <v-icon>mdi-magnify</v-icon>
                   </v-btn>
                 </v-col>
@@ -36,18 +36,35 @@
 import TablaAtencionesUrgenciaHC from '@/components/historiasClinicas/TablaAtencionesUrgenciaHC.vue'
 import TablaDatosIdentificacionPaciente from '@/components/historiasClinicas/TablaDatosIdentificacionPaciente.vue'
 import TablaHospitalizacionesHC from '@/components/historiasClinicas/TablaHospitalizacionesHC.vue'
+import obtenerUsuarioPorRut from '@/services/obtenerUsuarioPorRut'
 
 export default {
   name: 'BuscarPacienteVista',
   data () {
     return {
       formularioBuscarModel: true,
-      buscarRun: ''
+      buscarRun: '',
+      btnBuscarCargando: false,
+      btnBuscarDisabled: false,
+      pacienteEncontrado: {}
     }
   },
   methods: {
     buscarPacientePorRut () {
+      this.btnBuscarCargando = true
+      this.btnBuscarDisabled = true
       console.log('buscarPacientePorRut', this.buscarRun)
+      obtenerUsuarioPorRut(this.buscarRun)
+        .then((response) => {
+          console.log(response)
+          this.btnBuscarCargando = false
+          this.btnBuscarDisabled = false
+        })
+        .catch((error) => {
+          console.log(error)
+          this.btnBuscarCargando = false
+          this.btnBuscarDisabled = false
+        })
     }
   },
   components: {
