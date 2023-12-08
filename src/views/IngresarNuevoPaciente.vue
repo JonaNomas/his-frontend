@@ -5,224 +5,159 @@
     <v-subheader>Datos Generales</v-subheader>
     <v-row>
       <v-col>
-        <v-text-field
-          dense
-          label="RUN"
-          prepend-inner-icon="mdi-barcode"
-          outlined
-          hide-details
-        ></v-text-field>
+        <v-text-field dense v-model="rut" label="RUN" prepend-inner-icon="mdi-barcode" outlined
+          hide-details></v-text-field>
       </v-col>
       <v-col>
-        <v-autocomplete
-          dense
-          label="Sexo"
-          prepend-inner-icon="mdi-account"
-          outlined
-          hide-details
-          :items="selectSexos"
-        ></v-autocomplete>
+        <v-autocomplete dense label="Sexo" v-model="sexo" prepend-inner-icon="mdi-account" outlined hide-details
+          :items="selectSexos"></v-autocomplete>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col>
-        <v-text-field
-          dense
-          label="Primer Nombre"
-          prepend-inner-icon="mdi-account-box"
-          outlined
-          hide-details
-        ></v-text-field>
+        <v-text-field dense label="Primer Nombre" v-model="primerNombre" prepend-inner-icon="mdi-account-box" outlined
+          hide-details></v-text-field>
       </v-col>
       <v-col>
-        <v-text-field
-          dense
-          label="Segundo Nombre"
-          prepend-inner-icon="mdi-account-box"
-          outlined
-          hide-details
-        ></v-text-field>
+        <v-text-field dense label="Segundo Nombre" v-model="segundoNombre" prepend-inner-icon="mdi-account-box" outlined
+          hide-details></v-text-field>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col>
-        <v-text-field
-          dense
-          label="Apellido Paterno"
-          prepend-inner-icon="mdi-account-box"
-          outlined
-          hide-details
-        ></v-text-field>
+        <v-text-field dense label="Apellido Paterno" v-model="apellidoPaterno" prepend-inner-icon="mdi-account-box"
+          outlined hide-details></v-text-field>
       </v-col>
       <v-col>
-        <v-text-field
-          dense
-          label="Apellido Materno"
-          prepend-inner-icon="mdi-account-box"
-          outlined
-          hide-details
-        ></v-text-field>
+        <v-text-field dense label="Apellido Materno" v-model="apellidoMaterno" prepend-inner-icon="mdi-account-box"
+          outlined hide-details></v-text-field>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col>
-        <v-text-field
-          dense
-          label="Fecha de Nacimiento"
-          prepend-inner-icon="mdi-calendar-month"
-          outlined
-          hide-details
-        ></v-text-field>
+        <v-menu v-model="menuFechaNacimiento" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y
+          min-width="auto">
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field dense v-model="fechaNacimiento" label="Fecha Nacimiento" outlined hide-details prepend-inner-icon="mdi-calendar" readonly
+              v-bind="attrs" v-on="on"></v-text-field>
+          </template>
+          <v-date-picker v-model="fechaNacimiento" @input="menuFechaNacimiento = false"></v-date-picker>
+        </v-menu>
       </v-col>
       <v-col>
-        <v-text-field
-          dense
-          label="Telefono"
-          prepend-inner-icon="mdi-phone"
-          outlined
-          hide-details
-        ></v-text-field>
+        <v-text-field dense label="Telefono" v-model="telefono" prepend-inner-icon="mdi-phone" outlined
+          hide-details></v-text-field>
       </v-col>
       <v-col>
-        <v-text-field
-          dense
-          label="Correo Electronico"
-          prepend-inner-icon="mdi-email"
-          outlined
-          hide-details
-        ></v-text-field>
+        <v-text-field dense v-model="correo" label="Correo Electronico" prepend-inner-icon="mdi-email" outlined
+          hide-details></v-text-field>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col>
-        <v-text-field
-          dense
-          label="Direccion"
-          prepend-inner-icon="mdi-map-marker"
-          outlined
-          hide-details
-        ></v-text-field>
+        <v-text-field dense label="Direccion" v-model="direccion" prepend-inner-icon="mdi-map-marker" outlined
+          hide-details></v-text-field>
       </v-col>
       <v-col>
-        <v-autocomplete
-          dense
-          label="Region"
-          prepend-inner-icon="mdi-map-marker"
-          outlined
-          hide-details
-          :items="selectRegiones"
-        ></v-autocomplete>
+        <v-autocomplete dense label="Region" v-model="region" prepend-inner-icon="mdi-map-marker" outlined hide-details
+          :items="selectRegiones"></v-autocomplete>
       </v-col>
       <v-col>
-        <v-text-field
-          dense
-          label="Comuna"
-          prepend-inner-icon="mdi-map-marker"
-          outlined
-          hide-details
-        ></v-text-field>
+        <v-text-field dense label="Comuna" v-model="comuna" prepend-inner-icon="mdi-map-marker" outlined
+          hide-details></v-text-field>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col>
-        <v-autocomplete
-          dense
-          label="Estado Civil"
-          prepend-inner-icon="mdi-ballot-outline"
-          outlined
-          hide-details
-          :items="selectEstadosCiviles"
-        ></v-autocomplete>
+        <v-autocomplete dense label="Estado Civil" v-model="estadoCivil" prepend-inner-icon="mdi-ballot-outline" outlined
+          hide-details :items="selectEstadosCiviles"></v-autocomplete>
+      </v-col>
+      <v-col>
+        <v-autocomplete dense label="Nombre Social" v-model="nombreSocial" prepend-inner-icon="mdi-bullhorn" outlined
+          hide-details :items="selectNombreSocial"></v-autocomplete>
       </v-col>
     </v-row>
 
     <v-subheader class="mt-5">Datos de Salud</v-subheader>
     <v-row>
       <v-col>
-        <v-autocomplete
-          dense
-          label="Prevision"
-          prepend-inner-icon="mdi-hospital-box"
-          outlined
-          hide-details
-          :items="selectPrevisiones"
-        ></v-autocomplete>
+        <v-autocomplete dense v-model="prevision" label="Prevision" prepend-inner-icon="mdi-hospital-box" outlined
+          hide-details :items="selectPrevisiones"></v-autocomplete>
       </v-col>
       <v-col>
-        <v-autocomplete
-          dense
-          label="Grupo Sanguineo"
-          prepend-inner-icon="mdi-blood-bag"
-          outlined
-          hide-details
-          :items="selectGruposSanguineos"
-        ></v-autocomplete>
+        <v-autocomplete dense v-model="grupoSanguineo" label="Grupo Sanguineo" prepend-inner-icon="mdi-blood-bag" outlined
+          hide-details :items="selectGruposSanguineos"></v-autocomplete>
       </v-col>
       <v-col>
-        <v-autocomplete
-          dense
-          label="Donador de Organos"
-          prepend-inner-icon="mdi-handshake"
-          outlined
-          hide-details
-          :items="selectDonadoresOrganos"
-        ></v-autocomplete>
+        <v-autocomplete dense v-model="donadorOrganos" label="Donador de Organos" prepend-inner-icon="mdi-handshake"
+          outlined hide-details :items="selectDonadoresOrganos"></v-autocomplete>
       </v-col>
     </v-row>
 
     <v-subheader class="mt-5">Contacto de Emergencia</v-subheader>
     <v-row>
       <v-col>
-        <v-text-field
-          dense
-          label="Nombre Contacto Emergencia"
-          prepend-inner-icon="mdi-account-supervisor-circle"
-          outlined
-          hide-details
-        ></v-text-field>
+        <v-text-field dense v-model="nombreContactoEmergencia" label="Nombre Contacto Emergencia"
+          prepend-inner-icon="mdi-account-supervisor-circle" outlined hide-details></v-text-field>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col>
-        <v-autocomplete
-          dense
-          label="Parentesco Contacto Emergencia"
-          prepend-inner-icon="mdi-account"
-          outlined
-          hide-details
-          :items="selectParentescos"
-        ></v-autocomplete>
+        <v-autocomplete dense v-model="parentescoContactoEmergencia" label="Parentesco Contacto Emergencia"
+          prepend-inner-icon="mdi-account" outlined hide-details :items="selectParentescos"></v-autocomplete>
       </v-col>
       <v-col>
-        <v-text-field
-          dense
-          label="Telefono Contacto Emergencia"
-          prepend-inner-icon="mdi-phone"
-          outlined
-          hide-details
-        ></v-text-field>
+        <v-text-field dense v-model="telefonoContactoEmergencia" label="Telefono Contacto Emergencia"
+          prepend-inner-icon="mdi-phone" outlined hide-details></v-text-field>
       </v-col>
     </v-row>
 
     <v-row class="mt-5">
       <v-col>
-        <v-btn block color="success"><v-icon left>mdi-account-plus-outline</v-icon>Crear nuevo paciente</v-btn>
+        <v-btn block :loading="enviandoFormulario" :disabled="enviandoFormulario" @click="agregarNuevoPaciente"
+          color="success"><v-icon left>mdi-account-plus-outline</v-icon>Crear nuevo paciente</v-btn>
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
+import ingresarNuevoPaciente from '@/services/ingresarNuevoPaciente'
+
 export default {
   name: 'IngresarNuevoPaciente',
   data () {
     return {
+      rut: '16542345-6',
+      primerNombre: 'Juan',
+      segundoNombre: 'Roberto',
+      apellidoPaterno: 'Farias',
+      apellidoMaterno: 'Lopez',
+      fechaNacimiento: '',
+      telefono: '92143287',
+      direccion: 'Av Bulnes 0256',
+      region: 'Magallanes y de la Antártica Chilena',
+      comuna: 'Punta Arenas',
+      estadoCivil: 'Soltero',
+      nombreSocial: 'El',
+      prevision: 'Fonasa',
+      grupoSanguineo: 'A+',
+      donadorOrganos: 'No',
+      nombreContactoEmergencia: 'Brisa Cecilia Contreras Ramirez',
+      parentescoContactoEmergencia: 'Madre',
+      telefonoContactoEmergencia: '93254789',
+      sexo: 'Masculino',
+      correo: 'vguzmanc@correo.cl',
+      // Cargando
+      enviandoFormulario: false,
+      // Fecha
+      menuFechaNacimiento: false,
       // Datos select
       selectSexos: [
         'Masculino',
@@ -285,8 +220,47 @@ export default {
         'Amigo',
         'Amiga',
         'Otro'
+      ],
+      selectNombreSocial: [
+        'El',
+        'Ella',
+        'Elle'
       ]
-
+    }
+  },
+  methods: {
+    agregarNuevoPaciente () {
+      this.enviandoFormulario = true
+      const nuevoPaciente = {
+        rut: this.rut,
+        nombrePrimer: this.primerNombre,
+        nombreSegundo: this.segundoNombre,
+        apellidoPaterno: this.apellidoPaterno,
+        apellidoMaterno: this.apellidoMaterno,
+        fechaNacimiento: this.fechaNacimiento,
+        telefono: this.telefono,
+        direccion: `${this.direccion}, ${this.comuna}, ${this.region}`,
+        correo: this.correo,
+        contactoEmergencia: this.nombreContactoEmergencia,
+        idParentesco: 2,
+        telefonoEmergencia: this.telefonoContactoEmergencia,
+        grupoSanguineo: this.grupoSanguineo,
+        donador: false,
+        prevision: this.prevision,
+        estadoCivil: this.estadoCivil,
+        sexo: 'M',
+        nombreSocial: this.nombreSocial,
+        estadoSalud: 0,
+        fechaDefuncion: null
+      }
+      console.log(nuevoPaciente)
+      ingresarNuevoPaciente(nuevoPaciente).then((response) => {
+        this.enviandoFormulario = false
+        console.log(response)
+      }).catch((error) => {
+        this.enviandoFormulario = false
+        console.log(error)
+      })
     }
   }
 }
