@@ -32,7 +32,7 @@ export default [
   {
     path: '/atencionUrgencias/atencion',
     name: 'atencionAtencionUrgencias',
-    component: () => import(/* webpackChunkName: "atencionUrgencia" */ '../views/atencionUrgencia/AtencionAtencionUrgenciaVIsta.vue'),
+    component: () => import(/* webpackChunkName: "atencionUrgencia" */ '../views/atencionUrgencia/AtencionAtencionUrgenciaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
