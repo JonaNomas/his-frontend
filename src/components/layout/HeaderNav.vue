@@ -1,5 +1,6 @@
 <template>
   <v-app-bar app color="primary" dark class="under-line" elevation="0">
+    <v-app-bar-nav-icon @click="$emit('toggle')" class="mx-1"></v-app-bar-nav-icon>
     <div class="d-flex align-center">
       <v-img
         src="@/assets/medsoft2_x128.png"
