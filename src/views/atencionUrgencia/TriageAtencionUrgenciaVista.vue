@@ -23,7 +23,7 @@
                   Perdida de Conocimiento - Cabezas
                 </v-col>
                 <v-col class="d-flex justify-end pr-5">
-                  <v-btn small color="error" to="/">Atender</v-btn>
+                  <v-btn small color="error" :to="`/atencionUrgencias/triage/${i}`">Atender</v-btn>
                 </v-col>
               </v-row>
             </v-expansion-panel-header>
@@ -112,7 +112,7 @@
             <v-expansion-panel-header>
               <v-row>
                 <v-col class="d-flex align-center">
-                  <v-chip dense class="mr-3 font-weight-black text-center d-flex justify-center" dark color="red">C1</v-chip>
+                  <v-chip dense class="mr-3 font-weight-black text-center d-flex justify-center" dark color="red">C{{ i }}</v-chip>
                   <v-icon left>mdi-account</v-icon>
                   Maximiliano Maximiliano Sepulveda Sepulveda
                 </v-col>

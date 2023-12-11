@@ -20,6 +20,16 @@ export default [
     }
   },
   {
+    path: '/atencionUrgencias/triage/:id',
+    name: 'insertarTriageAtencionUrgenciaVista',
+    component: () => import(/* webpackChunkName: "triageUrgencia" */ '../views/atencionUrgencia/InsertarTriageAtencionUrgenciaVista.vue'),
+    meta: {
+      requiereAutentificacion: true,
+      permisosRequeridos: [],
+      tituloPagina: 'MedSoft - Triage - Atención Urgencia'
+    }
+  },
+  {
     path: '/atencionUrgencias/atencion',
     name: 'atencionAtencionUrgencias',
     component: () => import(/* webpackChunkName: "atencionUrgencia" */ '../views/atencionUrgencia/AtencionAtencionUrgenciaVIsta.vue'),
