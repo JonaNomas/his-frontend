@@ -13,7 +13,8 @@
                 Nueva Hora Disponible</v-btn>
             </v-col>
             <v-col cols="12" sm="12" md="4">
-              <v-btn block color="secondary" @click="cargarHoras">Cargar</v-btn>
+              <v-btn :loading="seEstanCargandoLasHoras" :disabled="seEstanCargandoLasHoras" block color="secondary"
+                @click="cargarHoras">Cargar</v-btn>
             </v-col>
             <v-col cols="12" sm="12" md="4">
               <v-autocomplete :items="especialidades" label="Especialidad" outlined dense hide-details
@@ -108,7 +109,11 @@
                 <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title></v-toolbar>
               <v-card-text>
 
-                <h2 class="my-5">Profesional</h2>
+                <v-row class="mt-3">
+                  <v-col>
+                    <h3>Profesional</h3>
+                  </v-col>
+                </v-row>
                 <v-row>
                   <v-col>
                     <v-text-field hide-details :value="selectedEvent?.profesionalSalud?.nombre" label="Profesional"
@@ -121,24 +126,106 @@
                 </v-row>
                 <v-row>
                   <v-col>
-                    <v-text-field hide-details :value="selectedEvent?.profesionalSalud?.especialidad" label="Especialidad"
-                      readonly></v-text-field>
+                    <v-text-field hide-details :value="selectedEvent?.profesionalSalud?.especialidad + 'Urologo'"
+                      label="Especialidad" readonly></v-text-field>
                   </v-col>
                 </v-row>
 
-                <h2>Detalles Hora</h2>
                 <v-row>
                   <v-col>
-                    <v-text-field hide-details :value="formatDate(selectedEvent?.start)" label="Dia" readonly></v-text-field>
+                    <h3>Detalles Hora</h3>
                   </v-col>
                 </v-row>
 
-                <div class="pa-12">{{ selectedEvent }}</div>
+                <v-row>
+                  <v-col>
+                    <v-text-field hide-details :value="fechaDDMMAAAA(selectedEvent?.start)" label="Día"
+                      readonly></v-text-field>
+                  </v-col>
+                  <v-col>
+                    <v-text-field hide-details :value="obtenerHoraDesdeFecha(selectedEvent?.start)" label="Hora"
+                      readonly></v-text-field>
+                  </v-col>
+                  <v-col>
+                    <v-text-field hide-details :value="selectedEvent?.duracion" label="Duración" readonly></v-text-field>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col>
+                    <h3>Paciente Asignado</h3>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col cols="8">
+                    <v-text-field dense label="RUN" v-model="runPacienteParaTomarHora" prepend-inner-icon="mdi-account-box" outlined
+                      hide-details></v-text-field>
+                  </v-col>
+                  <v-col cols="2">
+                    <v-btn :loading="seEstaBuscandoPaciente" :disabled="seEstaBuscandoPaciente" dense color="success" @click="buscarPacienteParaTomarHoraPorRut"><v-icon>mdi-magnify</v-icon></v-btn>
+                  </v-col>
+                  <v-col cols="2">
+                    <v-btn dense color="error"><v-icon>mdi-close-thick</v-icon></v-btn>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col>
+                    <v-simple-table dense>
+                      <template v-slot:default>
+                        <tbody>
+                          <tr>
+                            <td class="negrita">Run</td>
+                            <td class="negrita">:</td>
+                            <td>{{ datosPacienteParaTomarHora?.run ?? '' }}</td>
+                          </tr>
+                          <tr>
+                            <td class="negrita">ID Paciente</td>
+                            <td class="negrita">:</td>
+                            <td>{{ datosPacienteParaTomarHora?.idPaciente ?? '' }}</td>
+                          </tr>
+                          <tr>
+                            <td class="negrita">Apellidos</td>
+                            <td class="negrita">:</td>
+                            <td>{{ datosPacienteParaTomarHora?.apellidoPaterno ? (datosPacienteParaTomarHora.apellidoPaterno + " " + datosPacienteParaTomarHora.apellidoMaterno) : '' }}</td>
+                          </tr>
+                          <tr>
+                            <td class="negrita">Nombres</td>
+                            <td class="negrita">:</td>
+                            <td>{{ datosPacienteParaTomarHora?.nombrePrimer ? (datosPacienteParaTomarHora.nombrePrimer + " " + datosPacienteParaTomarHora.nombreSegundo) : '' }}</td>
+                          </tr>
+                          <tr>
+                            <td class="negrita">Previsión</td>
+                            <td class="negrita">:</td>
+                            <td>{{ datosPacienteParaTomarHora?.prevision ?? '' }}</td>
+                          </tr>
+                        </tbody>
+                      </template>
+                    </v-simple-table>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col>
+                    <v-btn dense block color="success"><v-icon left>mdi-account-plus</v-icon>Asignar Hora</v-btn>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col>
+                    <v-btn block small color="secondary"><v-icon left>mdi-email</v-icon>Comprobante por Email</v-btn>
+                  </v-col>
+                  <v-col>
+                    <v-btn block small color="secondary"><v-icon left>mdi-printer</v-icon>Imprimir Comprobante</v-btn>
+                  </v-col>
+                </v-row>
+
               </v-card-text>
               <v-card-actions>
                 <v-btn text @click="selectedElement = false" color="error">Eliminar Bloque</v-btn>
                 <v-spacer></v-spacer>
-                <v-btn text @click="selectedElement = false">Close</v-btn>
+                <v-btn text @click="selectedElement = false">Cerrar</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -236,6 +323,9 @@
  * TODO: MODIFICAR HORA Y CANCELAR HORA, ELIMINAR BLOQUE
  */
 import axios from 'axios'
+import fechaDDMMAAAA from '@/utils/fechaDDMMAAAA'
+import obtenerHoraDesdeFecha from '@/utils/obtenerHoraDesdeFecha'
+import obtenerUsuarioPorRut from '@/services/obtenerUsuarioPorRut'
 
 export default {
   name: 'CalendarioHoras',
@@ -271,10 +361,16 @@ export default {
         'Todas', 'Disponible', 'Reservada'
       ],
       selectEstadoHoraModel: 'Todas',
-      // Asignar nueva hora
+      // Crear nueva hora
       modalSeleccionarHora: false,
       modalSeleccionarFecha: false,
-      duracionHoraMedicaSlider: 10
+      duracionHoraMedicaSlider: 10,
+      // Asignar Nueva Hora
+      runPacienteParaTomarHora: '',
+      datosPacienteParaTomarHora: {},
+      seEstaBuscandoPaciente: false,
+      // Estados de carga
+      seEstanCargandoLasHoras: false
     }
   },
   mounted () {
@@ -315,6 +411,7 @@ export default {
       ]
     },
     cargarHoras () {
+      this.seEstanCargandoLasHoras = true
       console.log('Cargar Horas')
       // this.events = [{
       //   name: 'Dermatologo',
@@ -359,9 +456,13 @@ export default {
           this.events = response.data.map((x) => {
             console.log(x)
             x.color = 'blue'
+            this.seEstanCargandoLasHoras = false
             return x
           })
-        ))
+        )).catch(error => {
+          console.log(error)
+          this.seEstanCargandoLasHoras = false
+        })
     },
     showEvent ({ nativeEvent, event }) {
       const open = () => {
@@ -380,14 +481,17 @@ export default {
 
       nativeEvent.stopPropagation()
     },
-    formatDate (dateString) {
-      const date = new Date(dateString)
-      const day = String(date.getDate()).padStart(2, '0')
-      const month = String(date.getMonth() + 1).padStart(2, '0')
-      const year = date.getFullYear()
-
-      return `${day}-${month}-${year}`
-    }
+    async buscarPacienteParaTomarHoraPorRut () {
+      if (this.runPacienteParaTomarHora === '') {
+        return
+      }
+      this.seEstaBuscandoPaciente = true
+      const datosObtenidosDeUsuario = await obtenerUsuarioPorRut(this.runPacienteParaTomarHora)
+      this.datosPacienteParaTomarHora = datosObtenidosDeUsuario.data
+      this.seEstaBuscandoPaciente = false
+    },
+    fechaDDMMAAAA,
+    obtenerHoraDesdeFecha
   }
 }
 </script>
