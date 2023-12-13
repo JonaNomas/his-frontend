@@ -11,10 +11,20 @@
           <v-list-item-title>Inicio</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+
+      <v-list-item to="/atencionesMedicas/agendamiento" exact>
+        <v-list-item-icon>
+          <v-icon>mdi-calendar-multiselect</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>Agendamiento Horas</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
     <v-divider></v-divider>
 
-    <v-list dense nav v-for="ruta in rutas2" :key="ruta.tituloConjunto">
+    <v-list dense nav v-for="ruta in rutas" :key="ruta.tituloConjunto">
       <!-- <v-subheader v-show="!$store.state.layout.drawer.mini">{{ ruta.tituloConjunto }}</v-subheader>
       <v-list-item v-for="link in ruta.links" :key="link.titulo" link :to="{ name: link.ruta }" exact>
         <v-list-item-icon>
@@ -71,34 +81,6 @@ export default {
       drawer: true,
       rutas: [
         {
-          tituloConjunto: 'General',
-          links: [
-            { titulo: 'Inicio', icono: 'mdi-home', ruta: 'home' },
-            { titulo: 'Buscar Paciente', icono: 'mdi-text-box-search-outline', ruta: 'buscarPaciente' },
-            { titulo: 'Ingresar Nuevo Paciente', icono: 'mdi-account-plus-outline', ruta: 'nuevoPaciente' }
-          ]
-        },
-        {
-          tituloConjunto: 'Generar Atención',
-          links: [
-            { titulo: 'Atencion Urgencia', icono: 'mdi-heart-pulse', ruta: 'atencionUrgencias' },
-            { titulo: 'Hospitalizacion', icono: 'mdi-hospital-building', ruta: 'hospitalizacion' },
-            { titulo: 'Cirugia', icono: 'mdi-box-cutter', ruta: 'cirugia' },
-            { titulo: 'Atenciones Medicas', icono: 'mdi-stethoscope', ruta: 'atencionesMedicas' },
-            { titulo: 'Agendamiento Horas', icono: 'mdi-calendar-multiselect', ruta: 'agendamientoHoras' }
-          ]
-        },
-        {
-          tituloConjunto: 'Cargar Examen',
-          links: [
-            { titulo: 'Imagenologia', icono: 'mdi-radiology-box', ruta: 'imagenologia' },
-            { titulo: 'Laboratorio', icono: 'mdi-test-tube', ruta: 'laboratorio' },
-            { titulo: 'Banco de Sangre', icono: 'mdi-blood-bag', ruta: 'bancoSangre' }
-          ]
-        }
-      ],
-      rutas2: [
-        {
           nombreConjunto: 'Historia Clinica',
           icono: 'mdi-account-group',
           links: [
@@ -124,8 +106,7 @@ export default {
             { titulo: 'Atención Enfermeria', icono: 'mdi-pill', ruta: '/hospitalizacion/atencionEnfermeria' },
             { titulo: 'Atención Medica', icono: 'mdi-doctor', ruta: '/hospitalizacion/atencionMedica' },
             { titulo: 'Alta', icono: 'mdi-account-minus', ruta: '/hospitalizacion/alta' },
-            { titulo: 'Gestión Camas', icono: 'mdi-bed', ruta: '/hospitalizacion/gestionCamas' },
-            { titulo: 'Agendamiento', icono: 'mdi-calendar-multiselect', ruta: '/hospitalizacion/agendamiento' }
+            { titulo: 'Gestión Camas', icono: 'mdi-bed', ruta: '/hospitalizacion/gestionCamas' }
 
           ]
         },
@@ -134,7 +115,6 @@ export default {
           icono: 'mdi-box-cutter',
           links: [
             { titulo: 'Ingreso', icono: 'mdi-account-plus', ruta: '/cirugia/ingreso' },
-            { titulo: 'Agendamiento', icono: 'mdi-calendar-multiselect', ruta: '/cirugia/agendamiento' },
             { titulo: 'Gestion Pabellones', icono: 'mdi-bed', ruta: '/cirugia/gestionPabellones' },
             { titulo: 'Registro Cirugía', icono: 'mdi-file-document', ruta: '/cirugia/registro' },
             { titulo: 'Alta', icono: 'mdi-account-minus', ruta: '/cirugia/alta' }
@@ -144,7 +124,6 @@ export default {
           nombreConjunto: 'Atenciones Medicas',
           icono: 'mdi-stethoscope',
           links: [
-            { titulo: 'Agendamiento Horas', icono: 'mdi-calendar-multiselect', ruta: '/atencionesMedicas/agendamiento' },
             { titulo: 'Citados por Día', icono: 'mdi-account-group', ruta: '/atencionesMedicas/citados' },
             { titulo: 'Atención Medica', icono: 'mdi-stethoscope', ruta: '/atencionesMedicas/atencion' }
           ]
@@ -153,7 +132,6 @@ export default {
           nombreConjunto: 'Imagenología',
           icono: 'mdi-radiology-box',
           links: [
-            { titulo: 'Agendamiento', icono: 'mdi-radiology-box', ruta: 'imagenologia' },
             { titulo: 'Cargar Examen', icono: 'mdi-radiology-box', ruta: '/imagenologia/cargarExamen' },
             { titulo: 'Listar Citados', icono: 'mdi-radiology-box', ruta: 'imagenologia' },
             { titulo: 'Mantenedor', icono: 'mdi-radiology-box', ruta: 'imagenologia' }
@@ -163,7 +141,6 @@ export default {
           nombreConjunto: 'Laboratorio',
           icono: 'mdi-test-tube',
           links: [
-            { titulo: 'Agendamiento', icono: 'mdi-test-tube', ruta: 'laboratorio' },
             { titulo: 'Mantenedor', icono: 'mdi-test-tube', ruta: 'laboratorio' },
             { titulo: 'Listar Citados', icono: 'mdi-test-tube', ruta: 'laboratorio' },
             { titulo: 'Ingresar Examen', icono: 'mdi-test-tube', ruta: 'laboratorio' }
@@ -173,7 +150,6 @@ export default {
           nombreConjunto: 'Banco de Sangre',
           icono: 'mdi-blood-bag',
           links: [
-            { titulo: 'Agendamiento', icono: 'mdi-blood-bag', ruta: 'bancoSangre' },
             { titulo: 'Ingreso', icono: 'mdi-blood-bag', ruta: 'bancoSangre' },
             { titulo: 'Listar Citados', icono: 'mdi-blood-bag', ruta: 'bancoSangre' },
             { titulo: 'Registrar Donación', icono: 'mdi-blood-bag', ruta: 'bancoSangre' }
