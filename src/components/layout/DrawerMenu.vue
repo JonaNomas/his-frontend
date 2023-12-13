@@ -152,7 +152,7 @@ export default {
           links: [
             { titulo: 'Ingreso', icono: 'mdi-blood-bag', ruta: 'bancoSangre' },
             { titulo: 'Listar Citados', icono: 'mdi-blood-bag', ruta: 'bancoSangre' },
-            { titulo: 'Registrar Donación', icono: 'mdi-blood-bag', ruta: 'bancoSangre' }
+            { titulo: 'Registrar Donación', icono: 'mdi-blood-bag', ruta: '/bancoSangre/donacion' }
           ]
         }
       ]
