@@ -7,7 +7,7 @@ export default () => {
     baseURL: API_URL,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + sessionStorage.getItem('token')
+      Authorization: sessionStorage.getItem('token')
     }
   })
 }
