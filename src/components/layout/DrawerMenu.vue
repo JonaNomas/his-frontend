@@ -143,7 +143,7 @@ export default {
           links: [
             { titulo: 'Mantenedor', icono: 'mdi-test-tube', ruta: 'laboratorio' },
             { titulo: 'Listar Citados', icono: 'mdi-test-tube', ruta: 'laboratorio' },
-            { titulo: 'Ingresar Examen', icono: 'mdi-test-tube', ruta: 'laboratorio' }
+            { titulo: 'Cargar Examen', icono: 'mdi-test-tube', ruta: '/laboratorio/cargarExamen' }
           ]
         },
         {
