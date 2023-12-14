@@ -24,7 +24,7 @@
                 </v-col>
               </v-row>
             </v-form>
-            <v-alert v-model="alertaErrorModel" outlined dismissible type="error" class="mt-5 text-center">
+            <v-alert text v-model="alertaErrorModel" outlined dismissible type="error" class="mt-5">
               {{ mensajeError }}
             </v-alert>
           </v-card-text>

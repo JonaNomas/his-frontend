@@ -118,10 +118,10 @@
       </v-col>
     </v-row>
 
-    <v-alert v-model="alertaErrorModel" outlined dismissible type="error" class="mt-5 text-center">
+    <v-alert text v-model="alertaErrorModel" outlined dismissible type="error" class="mt-5">
       {{ mensajeError }}
     </v-alert>
-    <v-alert v-model="alertaSuccessModel" outlined dismissible type="success" class="mt-5 text-center">
+    <v-alert text v-model="alertaSuccessModel" outlined dismissible type="success" class="mt-5">
       {{ mensajeSuccess }}
     </v-alert>
 

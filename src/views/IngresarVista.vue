@@ -14,7 +14,7 @@
               <v-btn type="submit" class="mt-3" block color="success">Ingresar</v-btn>
             </v-form>
 
-            <v-alert v-model="alertaErrorModel" outlined dismissible type="error" class="mt-5 text-center">
+            <v-alert text v-model="alertaErrorModel" outlined dismissible type="error" class="mt-5">
               {{ mensajeError }}
             </v-alert>
           </v-card-text>
