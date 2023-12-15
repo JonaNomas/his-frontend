@@ -48,7 +48,7 @@
         </v-menu>
       </v-col>
       <v-col>
-        <v-text-field dense label="Telefono" v-model="telefono" prepend-inner-icon="mdi-phone" outlined
+        <v-text-field type="number" dense label="Telefono" v-model="telefono" prepend-inner-icon="mdi-phone" outlined
           hide-details></v-text-field>
       </v-col>
       <v-col>
@@ -113,7 +113,7 @@
           prepend-inner-icon="mdi-account" outlined hide-details :items="selectParentescos"></v-autocomplete>
       </v-col>
       <v-col>
-        <v-text-field dense v-model="telefonoContactoEmergencia" label="Telefono Contacto Emergencia"
+        <v-text-field type="number" dense v-model="telefonoContactoEmergencia" label="Telefono Contacto Emergencia"
           prepend-inner-icon="mdi-phone" outlined hide-details></v-text-field>
       </v-col>
     </v-row>
