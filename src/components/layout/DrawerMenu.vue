@@ -121,7 +121,7 @@ export default {
           ]
         },
         {
-          nombreConjunto: 'Policlinico',
+          nombreConjunto: 'Policlínico',
           icono: 'mdi-stethoscope',
           links: [
             { titulo: 'Citados por Día', icono: 'mdi-account-group', ruta: '/atencionesMedicas/citados' },
