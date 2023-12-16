@@ -111,7 +111,6 @@ export default {
       this.seEncontroPaciente = false
       obtenerPacientePorRut(this.buscarRun)
         .then(({ data }) => {
-          console.log(data)
           if (data === '') {
             this.mensajeError = 'No se encontró un paciente con el RUN ingresado.'
             this.alertaErrorModel = true
@@ -123,8 +122,7 @@ export default {
           this.pacienteEncontrado = data
           this.btnBuscarCargando = false
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
           this.btnBuscarCargando = false
           this.seEncontroPaciente = false
         })

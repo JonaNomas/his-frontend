@@ -28,10 +28,8 @@ export default {
     // TODO: Falta ver si el token es valido
     if (!this.$store.state.estaLoggeado) {
       const token = sessionStorage.getItem('token')
-      console.log(token)
       if (token) {
         const usuario = decodificarJWT(token)
-        console.log(usuario)
         this.$store.commit('setUsuario', usuario)
         this.$store.commit('setEstaLoggeado', true)
       } else {

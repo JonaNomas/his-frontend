@@ -180,20 +180,19 @@ export default {
   },
   methods: {
     guardarTriage () {
-      const triage = {
-        inputPas: this.inputPas,
-        inputPad: this.inputPad,
-        pulso: this.pulso,
-        temperaturaAxilar: this.temperaturaAxilar,
-        temperaturaRectal: this.temperaturaRectal,
-        saturacionO2: this.saturacionO2,
-        frecuenciaRespiratoria: this.frecuenciaRespiratoria,
-        dolorEva: this.dolorEva,
-        omvGlassgow: this.omvGlassgow,
-        hemoglucotest: this.hemoglucotest,
-        selectCategorizacionTriage: this.selectCategorizacionTriage
-      }
-      console.log('Guardar Triage: ', triage)
+      // const triage = {
+      //   inputPas: this.inputPas,
+      //   inputPad: this.inputPad,
+      //   pulso: this.pulso,
+      //   temperaturaAxilar: this.temperaturaAxilar,
+      //   temperaturaRectal: this.temperaturaRectal,
+      //   saturacionO2: this.saturacionO2,
+      //   frecuenciaRespiratoria: this.frecuenciaRespiratoria,
+      //   dolorEva: this.dolorEva,
+      //   omvGlassgow: this.omvGlassgow,
+      //   hemoglucotest: this.hemoglucotest,
+      //   selectCategorizacionTriage: this.selectCategorizacionTriage
+      // }
     }
   }
 }

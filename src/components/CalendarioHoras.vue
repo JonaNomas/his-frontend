@@ -405,14 +405,12 @@ export default {
     traerEspecialistas (especialidadSeleccionada) {
       // TODO: traer especialistas desde la base de datos
 
-      console.log(especialidadSeleccionada)
       this.especialistas = [
         'Juan Perez', 'Pedro Gonzalez', 'Maria Lopez', 'Josefa Martinez', 'Luisa Rodriguez', 'Jorge Hernandez', 'Miguel Sanchez', 'Carlos Gonzalez', 'Fernando Perez', 'Ricardo Lopez', 'Javier Martinez', 'Raul Rodriguez', 'Roberto Hernandez', 'Francisco Sanchez', 'Eduardo Gonzalez', 'Ramon Perez', 'Daniel Lopez', 'Alejandro Martinez', 'Rafael Rodriguez', 'Jose Hernandez', 'Arturo Sanchez', 'Manuel Gonzalez', 'Joaquin Perez', 'Sergio Lopez', 'Oscar Martinez', 'Guillermo Rodriguez', 'Julio Hernandez', 'Ignacio Sanchez', 'Hector Gonzalez', 'Alfonso Perez', 'Mauricio Lopez', 'Victor Martinez', 'Alberto Rodriguez', 'Mario Hernandez', 'Enrique Sanchez', 'Gustavo Gonzalez', 'Adrian Perez', 'Pablo Lopez', 'Emilio Martinez', 'Salvador Rodriguez', 'Agustin Hernandez', 'Jeronimo Sanchez', 'Cristian Gonzalez', 'Elias Perez', 'Benjamin Lopez', 'Eugenio Martinez', 'Cesar Rodriguez', 'Federico Hernandez', 'Rodrigo Sanchez'
       ]
     },
     cargarHoras () {
       this.seEstanCargandoLasHoras = true
-      console.log('Cargar Horas')
       // this.events = [{
       //   name: 'Dermatologo',
       //   start: new Date('2023-11-13T19:00:00'),
@@ -454,20 +452,17 @@ export default {
       axios.post('https://api.medsoft.cl/api/Agenda/obtenerAgenda')
         .then(response => (
           this.events = response.data.map((x) => {
-            console.log(x)
             x.color = 'blue'
             this.seEstanCargandoLasHoras = false
             return x
           })
-        )).catch(error => {
-          console.log(error)
+        )).catch(() => {
           this.seEstanCargandoLasHoras = false
         })
     },
     showEvent ({ nativeEvent, event }) {
       const open = () => {
         this.selectedEvent = event
-        console.log(this.selectedEvent)
         this.selectedElement = nativeEvent.target
         requestAnimationFrame(() => requestAnimationFrame(() => { this.selectedOpen = true }))
       }

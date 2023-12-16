@@ -73,11 +73,9 @@ export default {
       }
       obtenerPacientePorRut(this.buscarRun)
         .then((response) => {
-          console.log(response)
           this.btnBuscarCargando = false
           this.btnBuscarDisabled = false
           if (response.data !== '') {
-            console.log('encontrado')
             this.pacienteEncontrado = response.data
             this.mostrarTablaDatosIdentificacionPaciente = true
           } else {
@@ -86,8 +84,7 @@ export default {
             this.mostrarTablaDatosIdentificacionPaciente = false
           }
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
           this.mensajeError = 'Error inesperado con el servidor.'
           this.alertaErrorModel = true
           this.btnBuscarCargando = false

@@ -140,7 +140,6 @@ export default {
       if (usuarioEncontrado.data !== '') {
         this.pacienteEncontrado = usuarioEncontrado.data
         this.seEncontroPaciente = true
-        console.log(this.pacienteEncontrado)
       } else {
         this.seEncontroPaciente = false
         this.mensajeError = 'No se encontró un paciente con el RUN ingresado.'
@@ -174,7 +173,6 @@ export default {
     },
     ingresarPacienteUrgencia () {
       this.btnIngresandoPacienteCargando = true
-      console.log('Ingresar Paciente Urgencia')
       this.btnIngresandoPacienteCargando = false
     }
   },

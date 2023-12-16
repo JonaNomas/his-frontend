@@ -47,11 +47,9 @@ export default {
       }
 
       const data = await inicioSesionUsuario(this.run, this.password)
-      console.log(data)
 
       if (data.login) {
         const usuario = decodificarJWT(data.token)
-        console.log(usuario)
         this.$store.commit('setUsuario', usuario)
         this.$store.commit('setEstaLoggeado', true)
         sessionStorage.setItem('token', data.token)
