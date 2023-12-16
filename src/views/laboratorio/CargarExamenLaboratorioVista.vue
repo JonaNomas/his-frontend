@@ -58,9 +58,9 @@
         </v-col>
       </v-row>
 
-      <v-row>
+      <v-row ref="contenedorVista">
         <v-col>
-          <v-autocomplete dense label="Examen" v-model="selectExamenDisponible" prepend-inner-icon="mdi-account" outlined
+          <v-autocomplete ref="inputExamenLista" dense label="Examen" v-model="selectExamenDisponible" prepend-inner-icon="mdi-account" outlined
             hide-details :items="examenesDisponibles" item-text="nombre" item-value="id"></v-autocomplete>
         </v-col>
         <v-col>
@@ -68,7 +68,7 @@
             outlined hide-details></v-text-field>
         </v-col>
         <v-col>
-          <v-btn color="secondary" block><v-icon>mdi-plus</v-icon></v-btn>
+          <v-btn color="secondary" :disabled="selectExamenDisponible === '' || resultadoExamenSeleccionado===''" block @click="agregarNuevoExamen"><v-icon>mdi-plus</v-icon></v-btn>
         </v-col>
       </v-row>
 
@@ -100,9 +100,9 @@ export default {
       seEncontroPaciente: true, /**/
       // Autocomplete
       examenesDisponibles: [
-        { id: 1, nombre: 'Uremia' },
-        { id: 2, nombre: 'Orina Completa' },
-        { id: 3, nombre: 'Glucosa en Sangre' }
+        { id: 1, codigo: '022132', nombre: 'Uremia' },
+        { id: 2, codigo: '022132', nombre: 'Orina Completa' },
+        { id: 3, codigo: '022132', nombre: 'Glucosa en Sangre' }
       ],
       // Campos
       selectExamenDisponible: '',
@@ -110,7 +110,7 @@ export default {
       // Examenes
       examenes: [],
       // Tabla
-      dialog: false,
+      dialogEditar: false,
       dialogDelete: false,
       headersTabla: [
         { text: 'Codigo', value: 'codigo', align: 'center', sortable: false },
@@ -119,9 +119,7 @@ export default {
         { text: 'Acciones', value: 'actions', sortable: false, align: 'center' }
       ],
       examenesAgregados: [
-        { id: '0', codigo: '022132', nombre: 'Uremia', resultado: '10' },
-        { id: '1', codigo: '022132', nombre: 'Orina Completa', resultado: '20' },
-        { id: '2', codigo: '022132', nombre: 'Glucosa en Sangre', resultado: '30' }
+        { id: '0', codigo: '022132', nombre: 'Uremia', resultado: '10' }
       ]
     }
   },
@@ -147,6 +145,32 @@ export default {
           this.btnBuscarCargando = false
           this.seEncontroPaciente = false
         })
+    },
+    agregarNuevoExamen () {
+      if (this.selectExamenDisponible === '' || this.resultadoExamenSeleccionado === '') {
+        this.mensajeError = 'Debe seleccionar un examen y agregar un resultado.'
+        this.alertaErrorModel = true
+        return
+      }
+
+      if (this.examenesAgregados.find(objeto => objeto.id === this.selectExamenDisponible)) {
+        this.mensajeError = 'El examen seleccionado ya se encuentra agregado.'
+        this.alertaErrorModel = true
+        return
+      }
+
+      const objetoEncontrado = this.examenesDisponibles.find(objeto => objeto.id === this.selectExamenDisponible)
+
+      this.examenesAgregados.push({
+        id: objetoEncontrado.id,
+        codigo: objetoEncontrado.codigo,
+        nombre: objetoEncontrado.nombre,
+        resultado: this.resultadoExamenSeleccionado
+      })
+      this.selectExamenDisponible = ''
+      this.resultadoExamenSeleccionado = ''
+
+      this.$refs.inputExamenLista.focus()
     }
   },
   components: {
