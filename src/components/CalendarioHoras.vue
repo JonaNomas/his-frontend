@@ -17,7 +17,7 @@
                 @click="cargarHoras">Cargar</v-btn>
             </v-col>
             <v-col cols="12" sm="12" md="4">
-              <v-autocomplete :items="especialidades" label="Especialidad" outlined dense hide-details
+              <v-autocomplete :items="especialidades" label="Especialidad" item-text="nombre" item-value="id" outlined dense hide-details
                 @change="traerEspecialistas($event.value)">
               </v-autocomplete>
             </v-col>
@@ -159,11 +159,12 @@
 
                 <v-row>
                   <v-col cols="8">
-                    <v-text-field dense label="RUN" v-model="runPacienteParaTomarHora" prepend-inner-icon="mdi-account-box" outlined
-                      hide-details></v-text-field>
+                    <v-text-field dense label="RUN" v-model="runPacienteParaTomarHora"
+                      prepend-inner-icon="mdi-account-box" outlined hide-details></v-text-field>
                   </v-col>
                   <v-col cols="2">
-                    <v-btn :loading="seEstaBuscandoPaciente" :disabled="seEstaBuscandoPaciente" dense color="success" @click="buscarPacienteParaTomarHoraPorRut"><v-icon>mdi-magnify</v-icon></v-btn>
+                    <v-btn :loading="seEstaBuscandoPaciente" :disabled="seEstaBuscandoPaciente" dense color="success"
+                      @click="buscarPacienteParaTomarHoraPorRut"><v-icon>mdi-magnify</v-icon></v-btn>
                   </v-col>
                   <v-col cols="2">
                     <v-btn dense color="error"><v-icon>mdi-close-thick</v-icon></v-btn>
@@ -188,7 +189,9 @@
                           <tr>
                             <td class="negrita">Apellidos</td>
                             <td class="negrita">:</td>
-                            <td>{{ datosPacienteParaTomarHora?.apellidoPaterno ? (datosPacienteParaTomarHora.apellidoPaterno + " " + datosPacienteParaTomarHora.apellidoMaterno) : '' }}</td>
+                            <td>{{ datosPacienteParaTomarHora?.apellidoPaterno ?
+                              (datosPacienteParaTomarHora.apellidoPaterno + " " +
+                                datosPacienteParaTomarHora.apellidoMaterno) : '' }}</td>
                           </tr>
                           <tr>
                             <td class="negrita">Nombres</td>
@@ -241,8 +244,8 @@
                 <v-container class="mt-5">
                   <v-row>
                     <v-col>
-                      <v-autocomplete :items="especialidades" label="Especialidad" outlined dense hide-details
-                        @change="traerEspecialistas($event.value)">
+                      <v-autocomplete :items="especialidades" item-text="nombre" item-value="id" label="Especialidad"
+                        outlined dense hide-details @change="traerEspecialistas($event.value)">
                       </v-autocomplete>
                     </v-col>
                   </v-row>
@@ -326,6 +329,7 @@ import axios from 'axios'
 import fechaDDMMAAAA from '@/utils/fechaDDMMAAAA'
 import obtenerHoraDesdeFecha from '@/utils/obtenerHoraDesdeFecha'
 import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
+import obtenerEspecialidades from '@/services/especialidad/obtenerEspecialidades'
 
 export default {
   name: 'CalendarioHoras',
@@ -395,12 +399,11 @@ export default {
     next () {
       this.$refs.calendar.next()
     },
-    traerEspecialidades () {
+    async traerEspecialidades () {
       // TODO: traer especialidades desde la base de datos
+      this.especialidades = await obtenerEspecialidades()
 
-      this.especialidades = [
-        'Dermatologo', 'Oftalmologo', 'Traumatologo', 'Ginecologo', 'Pediatra', 'Cardiologo', 'Neurologo', 'Psiquiatra', 'Otorrinolaringologo', 'Urologo', 'Endocrinologo', 'Gastroenterologo', 'Nefrologo', 'Reumatologo', 'Hematologo', 'Infectologo', 'Broncopulmonar', 'Medico General', 'Medico Familiar', 'Medico Internista', 'Medico Cirujano', 'Medico Anestesiologo', 'Medico Intensivista', 'Medico Geriatra', 'Medico Veterinario'
-      ]
+      console.log(this.especialidades)
     },
     traerEspecialistas (especialidadSeleccionada) {
       // TODO: traer especialistas desde la base de datos
