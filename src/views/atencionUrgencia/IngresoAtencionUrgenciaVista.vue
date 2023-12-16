@@ -99,7 +99,7 @@
 
       <v-row>
         <v-col>
-          <v-btn dense block color="accent" @click="ingresarPacienteUrgencia" :loading="btnIngresandoPacienteCargando"><v-icon left>mdi-account-plus</v-icon>Ingresar Pciente para ateción de urgencia</v-btn>
+          <v-btn dense block color="accent" @click="ingresarPacienteUrgencia" :loading="btnIngresandoPacienteCargando"><v-icon left>mdi-account-plus</v-icon>Ingresar Paciente para Atención de Urgencia</v-btn>
         </v-col>
       </v-row>
     </div>
