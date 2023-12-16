@@ -325,7 +325,7 @@
 import axios from 'axios'
 import fechaDDMMAAAA from '@/utils/fechaDDMMAAAA'
 import obtenerHoraDesdeFecha from '@/utils/obtenerHoraDesdeFecha'
-import obtenerUsuarioPorRut from '@/services/obtenerUsuarioPorRut'
+import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
 
 export default {
   name: 'CalendarioHoras',
@@ -486,7 +486,7 @@ export default {
         return
       }
       this.seEstaBuscandoPaciente = true
-      const datosObtenidosDeUsuario = await obtenerUsuarioPorRut(this.runPacienteParaTomarHora)
+      const datosObtenidosDeUsuario = await obtenerPacientePorRut(this.runPacienteParaTomarHora)
       this.datosPacienteParaTomarHora = datosObtenidosDeUsuario.data
       this.seEstaBuscandoPaciente = false
     },
