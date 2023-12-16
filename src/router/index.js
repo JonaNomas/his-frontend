@@ -4,7 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import store from '../store/index.js'
 
 import pacienteRoutes from './paciente.routes'
-import atecionUrgenciaRoutes from './atecionUrgencia.routes.js'
+import urgenciasRoutes from './urgencias.routes.js'
 import hospitalizacionRoutes from './hospitalizacion.routes.js'
 import cirugiaRoutes from './cirugia.routes.js'
 import atencionesMedicasRoutes from './atencionesMedicas.routes.js'
@@ -46,7 +46,7 @@ const routes = [
     }
   },
   ...pacienteRoutes,
-  ...atecionUrgenciaRoutes,
+  ...urgenciasRoutes,
   ...hospitalizacionRoutes,
   ...cirugiaRoutes,
   ...atencionesMedicasRoutes,
