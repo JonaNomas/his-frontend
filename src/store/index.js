@@ -30,7 +30,6 @@ export default new Vuex.Store({
       state.layout.drawer.mini = !state.layout.drawer.mini
     },
     invertirLayoutDrawerVisible (state) {
-      console.log(state.layout.drawer.visible)
       state.layout.drawer.visible = !state.layout.drawer.visible
     },
     setUsuario (state, usuario) {
