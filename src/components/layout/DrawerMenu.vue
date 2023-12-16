@@ -111,7 +111,7 @@ export default {
           ]
         },
         {
-          nombreConjunto: 'Cirugía',
+          nombreConjunto: 'Centro Quirúrgico',
           icono: 'mdi-box-cutter',
           links: [
             { titulo: 'Ingreso', icono: 'mdi-account-plus', ruta: '/cirugia/ingreso' },
@@ -121,7 +121,7 @@ export default {
           ]
         },
         {
-          nombreConjunto: 'Atenciones Medicas',
+          nombreConjunto: 'Policlinico',
           icono: 'mdi-stethoscope',
           links: [
             { titulo: 'Citados por Día', icono: 'mdi-account-group', ruta: '/atencionesMedicas/citados' },
@@ -141,9 +141,9 @@ export default {
           nombreConjunto: 'Laboratorio',
           icono: 'mdi-test-tube',
           links: [
-            { titulo: 'Mantenedor', icono: 'mdi-test-tube', ruta: 'laboratorio' },
+            { titulo: 'Cargar Examen', icono: 'mdi-test-tube', ruta: '/laboratorio/cargarExamen' },
             { titulo: 'Listar Citados', icono: 'mdi-test-tube', ruta: 'laboratorio' },
-            { titulo: 'Cargar Examen', icono: 'mdi-test-tube', ruta: '/laboratorio/cargarExamen' }
+            { titulo: 'Mantenedor', icono: 'mdi-test-tube', ruta: 'laboratorio' }
           ]
         },
         {
@@ -151,8 +151,8 @@ export default {
           icono: 'mdi-blood-bag',
           links: [
             { titulo: 'Ingreso', icono: 'mdi-blood-bag', ruta: 'bancoSangre' },
-            { titulo: 'Listar Citados', icono: 'mdi-blood-bag', ruta: 'bancoSangre' },
-            { titulo: 'Registrar Donación', icono: 'mdi-blood-bag', ruta: '/bancoSangre/donacion' }
+            { titulo: 'Registrar Donación', icono: 'mdi-blood-bag', ruta: '/bancoSangre/donacion' },
+            { titulo: 'Listar Citados', icono: 'mdi-blood-bag', ruta: 'bancoSangre' }
           ]
         }
       ]
