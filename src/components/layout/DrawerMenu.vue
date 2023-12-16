@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app v-model="$store.state.layout.drawer.visible" v-if="$store.state.estaLoggeado"
+  <v-navigation-drawer app v-model="$store.state.layout.drawer.visible" v-if="$store.state.estaLoggeado && $store.state.layout.drawer.visible"
     :mini-variant="$store.state.layout.drawer.mini" permanent>
     <v-list dense nav>
       <v-list-item to="/" exact>

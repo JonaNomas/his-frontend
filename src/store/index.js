@@ -29,6 +29,10 @@ export default new Vuex.Store({
     invertirLayoutDrawerMini (state) {
       state.layout.drawer.mini = !state.layout.drawer.mini
     },
+    invertirLayoutDrawerVisible (state) {
+      console.log(state.layout.drawer.visible)
+      state.layout.drawer.visible = !state.layout.drawer.visible
+    },
     setUsuario (state, usuario) {
       state.usuario.nombre = usuario.nombre
       state.usuario.apellidoPaterno = usuario.apellidoPaterno
