@@ -330,6 +330,7 @@ import fechaDDMMAAAA from '@/utils/fechaDDMMAAAA'
 import obtenerHoraDesdeFecha from '@/utils/obtenerHoraDesdeFecha'
 import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
 import obtenerEspecialidades from '@/services/especialidad/obtenerEspecialidades'
+import obtenerAgenda from '@/services/calendario/obtenerAgenda'
 
 export default {
   name: 'CalendarioHoras',
@@ -412,7 +413,7 @@ export default {
         'Juan Perez', 'Pedro Gonzalez', 'Maria Lopez', 'Josefa Martinez', 'Luisa Rodriguez', 'Jorge Hernandez', 'Miguel Sanchez', 'Carlos Gonzalez', 'Fernando Perez', 'Ricardo Lopez', 'Javier Martinez', 'Raul Rodriguez', 'Roberto Hernandez', 'Francisco Sanchez', 'Eduardo Gonzalez', 'Ramon Perez', 'Daniel Lopez', 'Alejandro Martinez', 'Rafael Rodriguez', 'Jose Hernandez', 'Arturo Sanchez', 'Manuel Gonzalez', 'Joaquin Perez', 'Sergio Lopez', 'Oscar Martinez', 'Guillermo Rodriguez', 'Julio Hernandez', 'Ignacio Sanchez', 'Hector Gonzalez', 'Alfonso Perez', 'Mauricio Lopez', 'Victor Martinez', 'Alberto Rodriguez', 'Mario Hernandez', 'Enrique Sanchez', 'Gustavo Gonzalez', 'Adrian Perez', 'Pablo Lopez', 'Emilio Martinez', 'Salvador Rodriguez', 'Agustin Hernandez', 'Jeronimo Sanchez', 'Cristian Gonzalez', 'Elias Perez', 'Benjamin Lopez', 'Eugenio Martinez', 'Cesar Rodriguez', 'Federico Hernandez', 'Rodrigo Sanchez'
       ]
     },
-    cargarHoras () {
+    async cargarHoras () {
       this.seEstanCargandoLasHoras = true
       // this.events = [{
       //   name: 'Dermatologo',
@@ -452,6 +453,9 @@ export default {
       //   duracion: 15,
       //   estado: 'Disponible'
       // }]
+
+      const agendaEncontrada = await obtenerAgenda()
+      console.log(agendaEncontrada[5])
       axios.post('https://api.medsoft.cl/api/Agenda/obtenerAgenda')
         .then(response => (
           this.events = response.data.map((x) => {
