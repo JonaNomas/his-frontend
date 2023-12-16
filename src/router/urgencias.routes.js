@@ -40,6 +40,16 @@ export default [
     }
   },
   {
+    path: '/urgencias/atencion/:id',
+    name: 'atencionIdUrgencias',
+    component: () => import(/* webpackChunkName: "urgencias" */ '../views/atencionUrgencia/AtencionIdUrgenciaVista.vue'),
+    meta: {
+      requiereAutentificacion: true,
+      permisosRequeridos: [],
+      tituloPagina: 'MedSoft - Atención Urgencia'
+    }
+  },
+  {
     path: '/urgencias/alta',
     name: 'altaUrgencias',
     component: () => import(/* webpackChunkName: "urgencias" */ '../views/atencionUrgencia/AltaAtencionUrgenciaVista.vue'),

@@ -45,7 +45,7 @@
                 Card Text
               </v-card-text>
               <v-card-actions>
-                <v-btn color="red" text block>
+                <v-btn color="red" :to="`/urgencias/atencion/${i}`" text block>
                   Ver Atención
                 </v-btn>
               </v-card-actions>
