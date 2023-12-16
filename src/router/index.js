@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import store from '../store/index.js'
 
-import historiasClinicasRoutes from './historiasClinicas.routes.js'
+import pacienteRoutes from './paciente.routes'
 import atecionUrgenciaRoutes from './atecionUrgencia.routes.js'
 import hospitalizacionRoutes from './hospitalizacion.routes.js'
 import cirugiaRoutes from './cirugia.routes.js'
@@ -45,7 +45,7 @@ const routes = [
       tituloPagina: 'MedSoft - Cuenta de usuario'
     }
   },
-  ...historiasClinicasRoutes,
+  ...pacienteRoutes,
   ...atecionUrgenciaRoutes,
   ...hospitalizacionRoutes,
   ...cirugiaRoutes,
