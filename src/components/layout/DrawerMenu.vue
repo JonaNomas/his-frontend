@@ -84,18 +84,18 @@ export default {
           nombreConjunto: 'Historia Clinica',
           icono: 'mdi-account-group',
           links: [
-            { titulo: 'Buscar Paciente', icono: 'mdi-text-box-search-outline', ruta: '/buscarPaciente' },
-            { titulo: 'Nuevo Paciente', icono: 'mdi-account-plus-outline', ruta: '/nuevoPaciente' }
+            { titulo: 'Buscar Paciente', icono: 'mdi-text-box-search-outline', ruta: '/paciente/buscar' },
+            { titulo: 'Nuevo Paciente', icono: 'mdi-account-plus-outline', ruta: '/paciente/nuevo' }
           ]
         },
         {
           nombreConjunto: 'Atención Urgencia',
           icono: 'mdi-heart-pulse',
           links: [
-            { titulo: 'Ingreso', icono: 'mdi-account-plus', ruta: '/atencionUrgencias/ingreso' },
-            { titulo: 'Triage', icono: 'mdi-numeric', ruta: '/atencionUrgencias/triage' },
-            { titulo: 'Atención', icono: 'mdi-doctor', ruta: '/atencionUrgencias/atencion' },
-            { titulo: 'Alta', icono: 'mdi-account-minus', ruta: '/atencionUrgencias/alta' }
+            { titulo: 'Ingreso', icono: 'mdi-account-plus', ruta: '/urgencias/ingreso' },
+            { titulo: 'Triage', icono: 'mdi-numeric', ruta: '/urgencias/triage' },
+            { titulo: 'Atención', icono: 'mdi-doctor', ruta: '/urgencias/atencion' },
+            { titulo: 'Alta', icono: 'mdi-account-minus', ruta: '/urgencias/alta' }
           ]
         },
         {

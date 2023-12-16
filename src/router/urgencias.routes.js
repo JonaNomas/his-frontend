@@ -1,7 +1,7 @@
 export default [
   {
-    path: '/atencionUrgencias/ingreso',
-    name: 'ingresoAtencionUrgencias',
+    path: '/urgencias/ingreso',
+    name: 'ingresoUrgencias',
     component: () => import(/* webpackChunkName: "urgencias" */ '../views/atencionUrgencia/IngresoAtencionUrgenciaVista.vue'),
     meta: {
       requiereAutentificacion: true,
@@ -10,8 +10,8 @@ export default [
     }
   },
   {
-    path: '/atencionUrgencias/triage',
-    name: 'triageAtencionUrgencias',
+    path: '/urgencias/triage',
+    name: 'triageUrgencias',
     component: () => import(/* webpackChunkName: "urgencias" */ '../views/atencionUrgencia/TriageAtencionUrgenciaVista.vue'),
     meta: {
       requiereAutentificacion: true,
@@ -20,7 +20,7 @@ export default [
     }
   },
   {
-    path: '/atencionUrgencias/triage/:id',
+    path: '/urgencias/triage/:id',
     name: 'insertarTriageAtencionUrgenciaVista',
     component: () => import(/* webpackChunkName: "urgencias" */ '../views/atencionUrgencia/InsertarTriageAtencionUrgenciaVista.vue'),
     meta: {
@@ -30,8 +30,8 @@ export default [
     }
   },
   {
-    path: '/atencionUrgencias/atencion',
-    name: 'atencionAtencionUrgencias',
+    path: '/urgencias/atencion',
+    name: 'atencionUrgencias',
     component: () => import(/* webpackChunkName: "urgencias" */ '../views/atencionUrgencia/AtencionAtencionUrgenciaVista.vue'),
     meta: {
       requiereAutentificacion: true,
@@ -40,8 +40,8 @@ export default [
     }
   },
   {
-    path: '/atencionUrgencias/alta',
-    name: 'altaAtencionUrgencias',
+    path: '/urgencias/alta',
+    name: 'altaUrgencias',
     component: () => import(/* webpackChunkName: "urgencias" */ '../views/atencionUrgencia/AltaAtencionUrgenciaVista.vue'),
     meta: {
       requiereAutentificacion: true,
