@@ -482,7 +482,7 @@ export default {
       }
       this.seEstaBuscandoPaciente = true
       const datosObtenidosDeUsuario = await obtenerPacientePorRut(this.runPacienteParaTomarHora)
-      this.datosPacienteParaTomarHora = datosObtenidosDeUsuario.data
+      this.datosPacienteParaTomarHora = datosObtenidosDeUsuario
       this.seEstaBuscandoPaciente = false
     },
     fechaDDMMAAAA,

@@ -75,8 +75,8 @@ export default {
         .then((response) => {
           this.btnBuscarCargando = false
           this.btnBuscarDisabled = false
-          if (response.data !== '') {
-            this.pacienteEncontrado = response.data
+          if (response !== '') {
+            this.pacienteEncontrado = response
             this.mostrarTablaDatosIdentificacionPaciente = true
           } else {
             this.mensajeError = 'No se encuentra un paciente con el RUN ingresado.'

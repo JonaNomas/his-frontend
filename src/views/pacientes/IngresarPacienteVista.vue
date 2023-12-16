@@ -247,7 +247,7 @@ export default {
       this.alertaErrorModel = false
       this.alertaSuccessModel = false
       const usuarioEncontrado = await obtenerPacientePorRut(this.rut)
-      if (usuarioEncontrado.data !== '') {
+      if (usuarioEncontrado !== '') {
         this.enviandoFormulario = false
         this.alertaErrorModel = true
         this.mensajeError = 'El paciente ya se encuentra registrado en el sistema.'

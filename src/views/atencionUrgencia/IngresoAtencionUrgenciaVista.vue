@@ -137,8 +137,8 @@ export default {
       this.btnBuscarCargando = true
       this.alertaErrorModel = false
       const usuarioEncontrado = await obtenerPacientePorRut(this.buscarRun)
-      if (usuarioEncontrado.data !== '') {
-        this.pacienteEncontrado = usuarioEncontrado.data
+      if (usuarioEncontrado !== '') {
+        this.pacienteEncontrado = usuarioEncontrado
         this.seEncontroPaciente = true
       } else {
         this.seEncontroPaciente = false
