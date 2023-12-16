@@ -2,7 +2,7 @@ export default [
   {
     path: '/cirugia/ingreso',
     name: 'ingresoCirugia',
-    component: () => import(/* webpackChunkName: "about" */ '../views/cirugia/IngresoCirugiaVista.vue'),
+    component: () => import(/* webpackChunkName: "cirugia" */ '../views/cirugia/IngresoCirugiaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
@@ -12,7 +12,7 @@ export default [
   {
     path: '/cirugia/agendamiento',
     name: 'agendamientoCirugia',
-    component: () => import(/* webpackChunkName: "about" */ '../views/cirugia/AgendamientoCirugiaVista.vue'),
+    component: () => import(/* webpackChunkName: "cirugia" */ '../views/cirugia/AgendamientoCirugiaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
@@ -22,7 +22,7 @@ export default [
   {
     path: '/cirugia/gestionPabellones',
     name: 'gestionPabellonesCirugia',
-    component: () => import(/* webpackChunkName: "about" */ '../views/cirugia/GestionPabellonesCirugiaVista.vue'),
+    component: () => import(/* webpackChunkName: "cirugia" */ '../views/cirugia/GestionPabellonesCirugiaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
@@ -32,7 +32,7 @@ export default [
   {
     path: '/cirugia/registro',
     name: 'registroCirugia',
-    component: () => import(/* webpackChunkName: "about" */ '../views/cirugia/RegistroCirugiaVista.vue'),
+    component: () => import(/* webpackChunkName: "cirugia" */ '../views/cirugia/RegistroCirugiaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
@@ -42,7 +42,7 @@ export default [
   {
     path: '/cirugia/alta',
     name: 'altaCirugia',
-    component: () => import(/* webpackChunkName: "about" */ '../views/cirugia/AltaCirugiaVista.vue'),
+    component: () => import(/* webpackChunkName: "cirugia" */ '../views/cirugia/AltaCirugiaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],

@@ -2,7 +2,7 @@ export default [
   {
     path: '/atencionUrgencias/ingreso',
     name: 'ingresoAtencionUrgencias',
-    component: () => import(/* webpackChunkName: "ingresoUrgencia" */ '../views/atencionUrgencia/IngresoAtencionUrgenciaVista.vue'),
+    component: () => import(/* webpackChunkName: "urgencias" */ '../views/atencionUrgencia/IngresoAtencionUrgenciaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
@@ -12,7 +12,7 @@ export default [
   {
     path: '/atencionUrgencias/triage',
     name: 'triageAtencionUrgencias',
-    component: () => import(/* webpackChunkName: "triageUrgencia" */ '../views/atencionUrgencia/TriageAtencionUrgenciaVista.vue'),
+    component: () => import(/* webpackChunkName: "urgencias" */ '../views/atencionUrgencia/TriageAtencionUrgenciaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
@@ -22,7 +22,7 @@ export default [
   {
     path: '/atencionUrgencias/triage/:id',
     name: 'insertarTriageAtencionUrgenciaVista',
-    component: () => import(/* webpackChunkName: "triageUrgencia" */ '../views/atencionUrgencia/InsertarTriageAtencionUrgenciaVista.vue'),
+    component: () => import(/* webpackChunkName: "urgencias" */ '../views/atencionUrgencia/InsertarTriageAtencionUrgenciaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
@@ -32,7 +32,7 @@ export default [
   {
     path: '/atencionUrgencias/atencion',
     name: 'atencionAtencionUrgencias',
-    component: () => import(/* webpackChunkName: "atencionUrgencia" */ '../views/atencionUrgencia/AtencionAtencionUrgenciaVista.vue'),
+    component: () => import(/* webpackChunkName: "urgencias" */ '../views/atencionUrgencia/AtencionAtencionUrgenciaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
@@ -42,7 +42,7 @@ export default [
   {
     path: '/atencionUrgencias/alta',
     name: 'altaAtencionUrgencias',
-    component: () => import(/* webpackChunkName: "altaUrgencia" */ '../views/atencionUrgencia/AltaAtencionUrgenciaVista.vue'),
+    component: () => import(/* webpackChunkName: "urgencias" */ '../views/atencionUrgencia/AltaAtencionUrgenciaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],

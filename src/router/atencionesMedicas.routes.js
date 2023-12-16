@@ -2,7 +2,7 @@ export default [
   {
     path: '/atencionesMedicas/atencion',
     name: 'atencionesMedicas',
-    component: () => import(/* webpackChunkName: "about" */ '../views/atencionesMedicas/AtencionMedicaVista.vue'),
+    component: () => import(/* webpackChunkName: "policlinico" */ '../views/atencionesMedicas/AtencionMedicaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
@@ -12,7 +12,7 @@ export default [
   {
     path: '/atencionesMedicas/agendamiento',
     name: 'agendamientoAtencionesMedicas',
-    component: () => import(/* webpackChunkName: "about" */ '../views/atencionesMedicas/AgendamientoAtencionMedicaVista.vue'),
+    component: () => import(/* webpackChunkName: "policlinico" */ '../views/atencionesMedicas/AgendamientoAtencionMedicaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
@@ -22,7 +22,7 @@ export default [
   {
     path: '/atencionesMedicas/citados',
     name: 'citadosAtencionesMedicas',
-    component: () => import(/* webpackChunkName: "about" */ '../views/atencionesMedicas/ListadoCitadosAtencionMedicaVista.vue'),
+    component: () => import(/* webpackChunkName: "policlinico" */ '../views/atencionesMedicas/ListadoCitadosAtencionMedicaVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
