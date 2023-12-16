@@ -135,8 +135,8 @@
 </template>
 
 <script>
-import ingresarNuevoPaciente from '@/services/paciente/ingresarNuevoPaciente'
-import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
+import ingresarNuevoPaciente from '@/services/ingresarNuevoPaciente'
+import obtenerUsuarioPorRut from '@/services/obtenerUsuarioPorRut'
 
 export default {
   name: 'IngresarNuevoPaciente',
@@ -246,7 +246,7 @@ export default {
       this.enviandoFormulario = true
       this.alertaErrorModel = false
       this.alertaSuccessModel = false
-      const usuarioEncontrado = await obtenerPacientePorRut(this.rut)
+      const usuarioEncontrado = await obtenerUsuarioPorRut(this.rut)
       if (usuarioEncontrado.data !== '') {
         this.enviandoFormulario = false
         this.alertaErrorModel = true
@@ -316,3 +316,4 @@ export default {
   }
 }
 </script>
+@/services/paciente/ingresarNuevoPaciente

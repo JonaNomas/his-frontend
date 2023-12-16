@@ -42,7 +42,7 @@
 import TablaAtencionesUrgenciaHC from '@/components/historiasClinicas/TablaAtencionesUrgenciaHC.vue'
 import TablaDatosIdentificacionPaciente from '@/components/historiasClinicas/TablaDatosIdentificacionPaciente.vue'
 import TablaHospitalizacionesHC from '@/components/historiasClinicas/TablaHospitalizacionesHC.vue'
-import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
+import obtenerUsuarioPorRut from '@/services/obtenerUsuarioPorRut'
 
 export default {
   name: 'BuscarPacienteVista',
@@ -71,7 +71,7 @@ export default {
         this.btnBuscarDisabled = false
         return
       }
-      obtenerPacientePorRut(this.buscarRun)
+      obtenerUsuarioPorRut(this.buscarRun)
         .then((response) => {
           console.log(response)
           this.btnBuscarCargando = false

@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import obtenerUsuarioPorRut from '@/services/obtenerUsuarioPorRut'
+import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
 import fechaDDMMAAAA from '@/utils/fechaDDMMAAAA'
 
 export default {
@@ -136,7 +136,7 @@ export default {
     async buscarPacientePorRut () {
       this.btnBuscarCargando = true
       this.alertaErrorModel = false
-      const usuarioEncontrado = await obtenerUsuarioPorRut(this.buscarRun)
+      const usuarioEncontrado = await obtenerPacientePorRut(this.buscarRun)
       if (usuarioEncontrado.data !== '') {
         this.pacienteEncontrado = usuarioEncontrado.data
         this.seEncontroPaciente = true

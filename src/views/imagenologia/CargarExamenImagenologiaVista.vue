@@ -71,7 +71,7 @@
   </div>
 </template>
 <script>
-import obtenerUsuarioPorRut from '@/services/obtenerUsuarioPorRut'
+import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
 import TablaDatosSimplePaciente from '@/components/TablaDatosSimplePaciente.vue'
 
 export default {
@@ -109,7 +109,7 @@ export default {
       this.btnBuscarCargando = true
       this.alertaErrorModel = false
       this.seEncontroPaciente = false
-      obtenerUsuarioPorRut(this.buscarRun)
+      obtenerPacientePorRut(this.buscarRun)
         .then(({ data }) => {
           console.log(data)
           if (data === '') {
