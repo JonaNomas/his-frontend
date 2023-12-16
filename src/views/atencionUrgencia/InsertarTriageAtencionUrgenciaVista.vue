@@ -6,7 +6,7 @@
         <p class="font-weight-light">ID Atención: {{ $route.params.id }}</p>
       </v-col>
       <v-col cols="3" sm="4" md="2">
-        <v-btn block color="secondary" :to="`/atencionUrgencias/triage/`"><v-icon
+        <v-btn block color="secondary" :to="`/urgencias/triage/`"><v-icon
             left>mdi-arrow-left</v-icon>Volver</v-btn>
       </v-col>
     </v-row>

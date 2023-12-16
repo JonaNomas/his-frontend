@@ -23,7 +23,7 @@
                   Perdida de Conocimiento - Cabezas
                 </v-col>
                 <v-col class="d-flex justify-end pr-5">
-                  <v-btn small color="error" :to="`/atencionUrgencias/triage/${i}`">Atender</v-btn>
+                  <v-btn small color="error" :to="`/urgencias/triage/${i}`">Atender</v-btn>
                 </v-col>
               </v-row>
             </v-expansion-panel-header>
