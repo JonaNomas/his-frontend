@@ -21,6 +21,16 @@
           <v-list-item-title>Agendamiento Horas</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+
+      <v-list-item to="/atencionesMedicas/agendamiento" exact>
+        <v-list-item-icon>
+          <v-icon>mdi-view-list</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>Listar Citados</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
     <v-divider></v-divider>
 
@@ -124,7 +134,6 @@ export default {
           nombreConjunto: 'Policlínico',
           icono: 'mdi-stethoscope',
           links: [
-            { titulo: 'Citados por Día', icono: 'mdi-account-group', ruta: '/atencionesMedicas/citados' },
             { titulo: 'Atención Medica', icono: 'mdi-stethoscope', ruta: '/atencionesMedicas/atencion' }
           ]
         },
@@ -133,7 +142,6 @@ export default {
           icono: 'mdi-radiology-box',
           links: [
             { titulo: 'Cargar Examen', icono: 'mdi-radiology-box', ruta: '/imagenologia/cargarExamen' },
-            { titulo: 'Listar Citados', icono: 'mdi-radiology-box', ruta: 'imagenologia' },
             { titulo: 'Mantenedor', icono: 'mdi-radiology-box', ruta: 'imagenologia' }
           ]
         },
@@ -142,7 +150,6 @@ export default {
           icono: 'mdi-test-tube',
           links: [
             { titulo: 'Cargar Examen', icono: 'mdi-test-tube', ruta: '/laboratorio/cargarExamen' },
-            { titulo: 'Listar Citados', icono: 'mdi-test-tube', ruta: 'laboratorio' },
             { titulo: 'Mantenedor', icono: 'mdi-test-tube', ruta: 'laboratorio' }
           ]
         },
@@ -151,8 +158,7 @@ export default {
           icono: 'mdi-blood-bag',
           links: [
             { titulo: 'Ingreso', icono: 'mdi-blood-bag', ruta: 'bancoSangre' },
-            { titulo: 'Registrar Donación', icono: 'mdi-blood-bag', ruta: '/bancoSangre/donacion' },
-            { titulo: 'Listar Citados', icono: 'mdi-blood-bag', ruta: 'bancoSangre' }
+            { titulo: 'Registrar Donación', icono: 'mdi-blood-bag', ruta: '/bancoSangre/donacion' }
           ]
         }
       ]
