@@ -87,7 +87,7 @@ export default {
       // Datos
       buscarRun: '',
       pacienteEncontrado: {},
-      seEncontroPaciente: true, /**/
+      seEncontroPaciente: false,
       // Autocomplete
       tiposDeExamen: [
         { id: 1, nombre: 'Radiografia' },
