@@ -45,19 +45,6 @@
         </v-col>
       </v-row>
 
-      <v-row>
-        <v-col>
-          <v-data-table :headers="headersTabla" :items="examenesAgregados" class="elevation-1">
-            <template #[`item.actions`]="{item}">
-              <div>
-                <v-icon color="secondary" @click="windows.alert(item)">mdi-pencil-box</v-icon>
-                <v-icon color="error" @click="windows.alert(item)">mdi-delete</v-icon>
-              </div>
-            </template>
-          </v-data-table>
-        </v-col>
-      </v-row>
-
       <v-row ref="contenedorVista">
         <v-col>
           <v-autocomplete ref="inputExamenLista" dense label="Examen" v-model="selectExamenDisponible" prepend-inner-icon="mdi-account" outlined
@@ -69,6 +56,19 @@
         </v-col>
         <v-col>
           <v-btn color="secondary" :disabled="selectExamenDisponible === '' || resultadoExamenSeleccionado===''" block @click="agregarNuevoExamen"><v-icon>mdi-plus</v-icon></v-btn>
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col>
+          <v-data-table :headers="headersTabla" :items="examenesAgregados" class="elevation-1">
+            <template #[`item.actions`]="{item}">
+              <div>
+                <v-icon color="secondary" @click="windows.alert(item)">mdi-pencil-box</v-icon>
+                <v-icon color="error" @click="windows.alert(item)">mdi-delete</v-icon>
+              </div>
+            </template>
+          </v-data-table>
         </v-col>
       </v-row>
 
@@ -97,7 +97,7 @@ export default {
       // Datos
       buscarRun: '',
       pacienteEncontrado: {},
-      seEncontroPaciente: true, /**/
+      seEncontroPaciente: false,
       // Autocomplete
       examenesDisponibles: [
         { id: 1, codigo: '022132', nombre: 'Uremia' },
