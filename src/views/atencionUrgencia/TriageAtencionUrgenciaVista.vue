@@ -108,11 +108,11 @@
     <v-row>
       <v-col>
         <v-expansion-panels>
-          <v-expansion-panel v-for="(item, i) in 3" :key="i">
+          <v-expansion-panel v-for="(item, i) in 5" :key="i">
             <v-expansion-panel-header>
               <v-row>
                 <v-col class="d-flex align-center">
-                  <v-chip dense class="mr-3 font-weight-black text-center d-flex justify-center" dark color="red">C{{ i }}</v-chip>
+                  <TriageCategorizacionEtiqueta :categoria="i+1" class="mr-2"/>
                   <v-icon left>mdi-account</v-icon>
                   Maximiliano Maximiliano Sepulveda Sepulveda
                 </v-col>
@@ -202,11 +202,14 @@
 </template>
 
 <script>
+import TriageCategorizacionEtiqueta from '@/components/urgencias/TriageCategorizacionEtiqueta.vue'
+
 export default {
   name: 'TriageAtencionUrgenciaVista',
   data () {
     return {}
   },
-  methods: {}
+  methods: {},
+  components: { TriageCategorizacionEtiqueta }
 }
 </script>
