@@ -122,7 +122,7 @@
                   Perdida de Conocimiento - Cabezas
                 </v-col>
                 <v-col class="d-flex justify-end pr-5">
-                  <v-btn small color="success" to="/">Editar</v-btn>
+                  <v-btn small color="success" :to="`/urgencias/triage/${i}`">Editar</v-btn>
                 </v-col>
               </v-row>
             </v-expansion-panel-header>
@@ -192,6 +192,16 @@
                   ducimus perferendis expedita totam. Ad, mollitia, unde omnis eius recusandae beatae ratione corrupti
                   assumenda accusamus odit impedit maiores esse culpa corporis numquam!</v-col>
               </v-row>
+              <v-row>
+                <v-col>
+                  <h3 class="d-flex align-center"><v-icon left>mdi-triangle</v-icon>Triage</h3>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <TablaReducidaTriageValores />
+                </v-col>
+              </v-row>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -203,6 +213,7 @@
 
 <script>
 import TriageCategorizacionEtiqueta from '@/components/urgencias/TriageCategorizacionEtiqueta.vue'
+import TablaReducidaTriageValores from '@/components/urgencias/TablaReducidaTriageValores.vue'
 
 export default {
   name: 'TriageAtencionUrgenciaVista',
@@ -210,6 +221,6 @@ export default {
     return {}
   },
   methods: {},
-  components: { TriageCategorizacionEtiqueta }
+  components: { TriageCategorizacionEtiqueta, TablaReducidaTriageValores }
 }
 </script>
