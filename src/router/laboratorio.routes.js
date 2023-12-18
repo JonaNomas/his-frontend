@@ -20,8 +20,18 @@ export default [
     }
   },
   {
+    path: '/laboratorio/buscar',
+    name: 'buscarLaboratorio',
+    component: () => import(/* webpackChunkName: "laboratorio" */ '../views/laboratorio/BuscarExamenesLaboratorioVista.vue'),
+    meta: {
+      requiereAutentificacion: true,
+      permisosRequeridos: [],
+      tituloPagina: 'MedSoft - Buscar - Laboratorio'
+    }
+  },
+  {
     path: '/laboratorio/mantenedor',
-    name: 'mantenedorLaboratorio',
+    name: 'buscarLaboratorio',
     component: () => import(/* webpackChunkName: "laboratorio" */ '../views/laboratorio/MantenedorExamenesLaboratorioVista.vue'),
     meta: {
       requiereAutentificacion: true,

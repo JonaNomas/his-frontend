@@ -149,6 +149,7 @@ export default {
           nombreConjunto: 'Laboratorio',
           icono: 'mdi-test-tube',
           links: [
+            { titulo: 'Buscar Exámenes', icono: 'mdi-test-tube', ruta: '/laboratorio/buscar' },
             { titulo: 'Cargar Examen', icono: 'mdi-test-tube', ruta: '/laboratorio/cargarExamen' },
             { titulo: 'Mantenedor', icono: 'mdi-test-tube', ruta: '/laboratorio/mantenedor' }
           ]
