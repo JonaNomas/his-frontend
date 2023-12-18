@@ -4,14 +4,14 @@
       <v-col class="d-flex justify-center mt-15">
         <v-card max-width="500" width="500" elevation="5">
           <v-toolbar color="primary" dark dense>
-            <v-toolbar-title><v-icon left>mdi-account</v-icon> Login</v-toolbar-title>
+            <v-toolbar-title><v-icon left>mdi-account</v-icon> Iniciar Sesión</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
             <v-form ref="form" v-model="valid" @submit.prevent="iniciarSesion" lazy-validation>
               <v-text-field v-model="run" label="RUN" prepend-icon="mdi-account"></v-text-field>
               <v-text-field v-model="password" label="Contraseña" prepend-icon="mdi-key-variant"
                 type="password"></v-text-field>
-              <v-btn type="submit" class="mt-3" block color="success">Ingresar</v-btn>
+              <v-btn type="submit" class="mt-3" block color="success" :loading="estaCargando" :disabled="estaCargando">Ingresar</v-btn>
             </v-form>
 
             <v-alert text v-model="alertaErrorModel" outlined dismissible type="error" class="mt-5">
@@ -31,6 +31,7 @@ import decodificarJWT from '@/utils/decodificarJWT.js'
 export default {
   data () {
     return {
+      estaCargando: false,
       valid: false,
       run: '',
       password: '',
@@ -45,7 +46,7 @@ export default {
         this.mensajeError = 'Debe completar todos los campos.'
         return
       }
-
+      this.estaCargando = true
       const data = await inicioSesionUsuario(this.run, this.password)
 
       if (data.login) {
@@ -59,6 +60,7 @@ export default {
         this.mensajeError = 'Las credenciales proporcionadas no son válidas.'
         this.password = ''
       }
+      this.estaCargando = false
     }
   },
   beforeCreate () {

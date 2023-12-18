@@ -1,27 +1,34 @@
-// import api from '@/services/api.js'
+/**
+ * Realiza el inicio de sesión de un usuario a través de la API.
+ *
+ * @param {string} rut - El RUT del usuario.
+ * @param {string} password - La contraseña del usuario.
+ * @returns {Promise<{}>} Una promesa que se resuelve con los datos de la respuesta de la API.
+ * @throws {Error} Se lanza un error si el RUT o la contraseña no están especificados.
+ */
+import api from '@/services/api.js'
 
-export default function (rut, password) {
-  // FIXME: Descomentar las lineas cuando la API sea Funcional
-  // const credenciales = {
-  //   usuario: rut,
-  //   password: password
-  // }
-
-  // return api().post('/api/Usuario/Login', credenciales).data
-
-  if (rut === '19033183-0' && password === '123') {
-    const TESTDATA = {
-      login: true,
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21icmUiOiJWaWN0b3IiLCJhcGVsbGlkb1BhdGVybm8iOiJHdXptYW4iLCJhcGVsbGlkb01hdGVybm8iOiJDb250cmVyYXMiLCJydW4iOiIxOTAzMzE4My0wIiwiZW1haWwiOiJ2Z3V6bWFuY0BtZWRzb2Z0LmNsIiwidWlkIjoiNjBhNGQxMjQtM2VkOC00YmNjLTg5ZTUtZGVhOTJlODk2ZmQwIiwicGVybWlzb3MiOlswXSwianRpIjoiNjBhNGQxMjQtM2VkOC00YmNjLTg5ZTUtZGVhOTJlODk2ZmQwIiwiZXhwIjoxNzAxNjI3MTc2LCJpc3MiOiIqIiwiYXVkIjoiKiJ9.m1PEqYw-eVhshNpwQ9aIe13kb5751sqlcuXt8_tfDzQ'
+export default async function (rut, password) {
+  try {
+    // Validar parámetros
+    if (!rut) {
+      throw new Error('El RUT del usuario no está especificado.')
+    }
+    if (!password) {
+      throw new Error('La contraseña del usuario no está especificada.')
     }
 
-    return TESTDATA
-  } else {
-    const TESTDATA = {
-      login: false,
-      token: ''
-    }
+    // Llamada a la API
+    const response = await api().post('/api/Usuario/Login', {
+      rut,
+      password
+    })
 
-    return TESTDATA
+    // Devolver datos de la respuesta
+    return response.data
+  } catch (error) {
+    // Manejar errores de forma adecuada
+    console.error('Error:', error.message)
+    throw error
   }
 }

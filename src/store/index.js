@@ -33,10 +33,10 @@ export default new Vuex.Store({
       state.layout.drawer.visible = !state.layout.drawer.visible
     },
     setUsuario (state, usuario) {
-      state.usuario.nombre = usuario.nombre
-      state.usuario.apellidoPaterno = usuario.apellidoPaterno
-      state.usuario.apellidoMaterno = usuario.apellidoMaterno
-      state.usuario.run = usuario.run
+      state.usuario.nombre = usuario.nombre.split(' ')[0]
+      state.usuario.apellidoPaterno = usuario.nombre.split(' ')[1]
+      state.usuario.apellidoMaterno = usuario.nombre.split(' ')[2]
+      state.usuario.run = usuario.rut
       state.usuario.email = usuario.email
       state.usuario.uid = usuario.uid
       state.usuario.permisos = usuario.permisos
