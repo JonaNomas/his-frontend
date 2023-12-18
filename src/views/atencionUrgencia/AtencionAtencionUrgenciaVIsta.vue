@@ -215,6 +215,7 @@ export default {
     },
     asignarBox () {
       this.boxs[this.selectAsignarABoxDisponible - 1] = { idBox: 1, nombre: 'Box 1', horaInicio: new Date(), rut: '22222222-0', nombrePaciente: 'Victor Alexis Guzman Contreras', categoria: '4', idAtencionUrgencia: 23122 }
+      this.dialogoPacientesEnEspera = false
     }
   },
   created () {
