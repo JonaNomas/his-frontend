@@ -78,9 +78,7 @@
                   </v-row>
                 </v-card-text>
                 <v-card-actions>
-                  <v-btn color="accent" :to="`/urgencias/atencion/${item.idAtencionUrgencia}`" text block>
-                    Ver Atención
-                  </v-btn>
+                  <br>
                 </v-card-actions>
               </div>
             </v-card>
@@ -126,7 +124,7 @@
 
               <v-row>
                 <v-col>
-                  <v-btn color="accent" block>Asignar a Box</v-btn>
+                  <v-btn color="accent" block @click="asignarBox">Asignar a Box</v-btn>
                 </v-col>
               </v-row>
             </v-col>
@@ -191,19 +189,15 @@ export default {
     listarBoxDisponible () {
       this.boxDisponibles = [
         { id: 1, nombre: 'Box 1' },
-        { id: 2, nombre: 'Box 2' },
-        { id: 3, nombre: 'Box 3' },
-        { id: 4, nombre: 'Box 4' },
-        { id: 5, nombre: 'Box 5' },
-        { id: 6, nombre: 'Box 6' },
-        { id: 7, nombre: 'Box 7' },
-        { id: 8, nombre: 'Box 8' }
+        { id: 8, nombre: 'Box 8' },
+        { id: 9, nombre: 'Box 9' },
+        { id: 10, nombre: 'Box 10' }
       ]
     },
     cargarBoxs () {
       // Peticion A API
       this.boxs = [
-        { idBox: 1, nombre: 'Box 1', horaInicio: new Date('2023-12-17T18:04:18.666Z'), rut: '19033183-0', nombrePaciente: 'Victor Alexis Guzman Contreras', categoria: '2', idAtencionUrgencia: 2329 },
+        { idBox: 1, nombre: 'Box 1', horaInicio: null, nombrePaciente: '', categoria: '', idAtencionUrgencia: null },
         { idBox: 2, nombre: 'Box 2', horaInicio: new Date('2023-12-17T18:02:18.666Z'), rut: '12345678-0', nombrePaciente: 'Roberto Juan Perez Perez', categoria: '3', idAtencionUrgencia: 23265 },
         { idBox: 3, nombre: 'Box 3', horaInicio: new Date('2023-12-17T18:01:10.666Z'), rut: '11111111-0', nombrePaciente: 'Ervin Ervin Howell Howell', categoria: '4', idAtencionUrgencia: 232456 },
         { idBox: 4, nombre: 'Box 4', horaInicio: new Date('2023-12-16T18:04:18.666Z'), rut: '22222222-0', nombrePaciente: 'Victor Alexis Guzman Contreras', categoria: '4', idAtencionUrgencia: 23122 },
@@ -218,6 +212,9 @@ export default {
     calcularTiempoTranscurrido (fechaHora) {
       const fechaPublicacion = moment(fechaHora)
       return fechaPublicacion.fromNow()
+    },
+    asignarBox () {
+      this.boxs[this.selectAsignarABoxDisponible - 1] = { idBox: 1, nombre: 'Box 1', horaInicio: new Date(), rut: '22222222-0', nombrePaciente: 'Victor Alexis Guzman Contreras', categoria: '4', idAtencionUrgencia: 23122 }
     }
   },
   created () {
