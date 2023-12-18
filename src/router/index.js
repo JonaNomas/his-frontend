@@ -28,7 +28,7 @@ const routes = [
   {
     path: '/ingresar',
     name: 'ingresar',
-    component: () => import(/* webpackChunkName: "about" */ '../views/IngresarVista.vue'),
+    component: () => import(/* webpackChunkName: "general" */ '../views/IngresarVista.vue'),
     meta: {
       requiereAutentificacion: false,
       permisosRequeridos: [],
@@ -38,11 +38,21 @@ const routes = [
   {
     path: '/usuario',
     name: 'usuario',
-    component: () => import(/* webpackChunkName: "about" */ '../views/UsuarioVista.vue'),
+    component: () => import(/* webpackChunkName: "general" */ '../views/UsuarioVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
       tituloPagina: 'MedSoft - Cuenta de usuario'
+    }
+  },
+  {
+    path: '/listadoCitados',
+    name: 'listadoCitados',
+    component: () => import(/* webpackChunkName: "general" */ '../views/ListadoCitadosVista.vue'),
+    meta: {
+      requiereAutentificacion: true,
+      permisosRequeridos: [],
+      tituloPagina: 'MedSoft - Listado Pacientes Citados'
     }
   },
   ...pacienteRoutes,

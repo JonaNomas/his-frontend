@@ -22,7 +22,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item to="/atencionesMedicas/agendamiento" exact>
+      <v-list-item to="/listadoCitados" exact>
         <v-list-item-icon>
           <v-icon>mdi-view-list</v-icon>
         </v-list-item-icon>
