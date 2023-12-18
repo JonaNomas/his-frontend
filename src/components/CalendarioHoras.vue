@@ -16,9 +16,11 @@
               <v-btn :loading="seEstanCargandoLasHoras" :disabled="seEstanCargandoLasHoras" block color="secondary"
                 @click="cargarHoras">Cargar</v-btn>
             </v-col>
+          </v-row>
+          <v-row>
             <v-col cols="12" sm="12" md="4">
-              <v-autocomplete :items="especialidades" label="Especialidad" item-text="nombre" item-value="id" outlined dense hide-details
-                @change="traerEspecialistas($event.value)">
+              <v-autocomplete :items="especialidades" v-model="modelEspecialidad" label="Especialidad" item-text="nombre"
+                item-value="id" outlined dense hide-details @change="traerEspecialistas($event.value)">
               </v-autocomplete>
             </v-col>
             <v-col cols="12" sm="12" md="4">
@@ -26,8 +28,18 @@
               </v-autocomplete>
             </v-col>
             <v-col cols="12" sm="12" md="4">
-              <v-autocomplete :items="selectEstadoHora" v-model="selectEstadoHoraModel" label="Estado Hora" outlined dense
-                hide-details>
+              <v-text-field dense label="Rut Paciente" v-model="modelRutPacienteBuscar"
+                prepend-inner-icon="mdi-account" outlined hide-details></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-text-field dense label="Año" v-model="modelAnoParaBusqueda"
+                prepend-inner-icon="mdi-account" outlined hide-details></v-text-field>
+            </v-col>
+            <v-col>
+              <v-autocomplete :items="mesesParaBusqueda" v-model="modelMesParaBusqueda" label="Mes" item-text="nombre"
+                item-value="id" outlined dense hide-details>
               </v-autocomplete>
             </v-col>
           </v-row>
@@ -126,7 +138,7 @@
                 </v-row>
                 <v-row>
                   <v-col>
-                    <v-text-field hide-details :value="selectedEvent?.profesionalSalud?.especialidad + 'Urologo'"
+                    <v-text-field hide-details :value="selectedEvent?.profesionalSalud?.especialidad"
                       label="Especialidad" readonly></v-text-field>
                   </v-col>
                 </v-row>
@@ -325,7 +337,6 @@
 /**
  * TODO: MODIFICAR HORA Y CANCELAR HORA, ELIMINAR BLOQUE
  */
-import axios from 'axios'
 import fechaDDMMAAAA from '@/utils/fechaDDMMAAAA'
 import obtenerHoraDesdeFecha from '@/utils/obtenerHoraDesdeFecha'
 import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
@@ -336,10 +347,12 @@ export default {
   name: 'CalendarioHoras',
   data () {
     return {
+      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      time: null,
       crearNuevaHoraDialog: false,
       dialog: true,
       focus: '',
-      type: 'week',
+      type: 'month',
       weekday: [1, 2, 3, 4, 5],
       typeToLabel: {
         month: 'Mes',
@@ -359,11 +372,21 @@ export default {
       selectedElement: null,
       selectedOpen: false,
       events: [],
-      colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
       especialidades: [],
       especialistas: [],
-      selectEstadoHora: [
-        'Todas', 'Disponible', 'Reservada'
+      mesesParaBusqueda: [
+        { id: 1, nombre: 'Enero' },
+        { id: 2, nombre: 'Febrero' },
+        { id: 3, nombre: 'Marzo' },
+        { id: 4, nombre: 'Abril' },
+        { id: 5, nombre: 'Mayo' },
+        { id: 6, nombre: 'Junio' },
+        { id: 7, nombre: 'Julio' },
+        { id: 8, nombre: 'Agosto' },
+        { id: 9, nombre: 'Septiembre' },
+        { id: 10, nombre: 'Octubre' },
+        { id: 11, nombre: 'Noviembre' },
+        { id: 12, nombre: 'Diciembre' }
       ],
       selectEstadoHoraModel: 'Todas',
       // Crear nueva hora
@@ -375,7 +398,12 @@ export default {
       datosPacienteParaTomarHora: {},
       seEstaBuscandoPaciente: false,
       // Estados de carga
-      seEstanCargandoLasHoras: false
+      seEstanCargandoLasHoras: false,
+      // Buscador
+      modelEspecialidad: 0,
+      modelRutPacienteBuscar: '',
+      modelMesParaBusqueda: new Date().getMonth() + 1,
+      modelAnoParaBusqueda: new Date().getFullYear()
     }
   },
   mounted () {
@@ -401,10 +429,8 @@ export default {
       this.$refs.calendar.next()
     },
     async traerEspecialidades () {
-      // TODO: traer especialidades desde la base de datos
       this.especialidades = await obtenerEspecialidades()
-
-      console.log(this.especialidades)
+      this.especialidades.unshift({ id: 0, nombre: 'Todas' })
     },
     traerEspecialistas (especialidadSeleccionada) {
       // TODO: traer especialistas desde la base de datos
@@ -415,57 +441,24 @@ export default {
     },
     async cargarHoras () {
       this.seEstanCargandoLasHoras = true
-      // this.events = [{
-      //   name: 'Dermatologo',
-      //   start: new Date('2023-11-13T19:00:00'),
-      //   end: new Date('2023-11-13T19:15:00'),
-      //   color: 'teal darken-1',
-      //   timed: true,
-      //   profesionalSalud: {
-      //     nombre: 'Juan Perez',
-      //     especialidad: 'Dermatologo',
-      //     rut: '12.345.678-9'
-      //   },
-      //   responsable: {
-      //     nombre: 'Juan Perez',
-      //     rut: '12.345.678-9'
-      //   },
-      //   fechaCreacion: new Date('2023-11-13T19:00:00'),
-      //   duracion: 15,
-      //   estado: 'Disponible'
-      // },
-      // {
-      //   name: 'Urologo',
-      //   start: new Date('2023-11-13T19:15:00'),
-      //   end: new Date('2023-11-13T19:30:00'),
-      //   timed: true,
-      //   color: 'red darken-1',
-      //   profesionalSalud: {
-      //     nombre: 'Juan Perez',
-      //     especialidad: 'Dermatologo',
-      //     rut: '12.345.678-9'
-      //   },
-      //   responsable: {
-      //     nombre: 'Juan Perez',
-      //     rut: '12.345.678-9'
-      //   },
-      //   fechaCreacion: new Date('2023-11-13T19:00:00'),
-      //   duracion: 15,
-      //   estado: 'Disponible'
-      // }]
 
-      const agendaEncontrada = await obtenerAgenda()
-      console.log(agendaEncontrada[5])
-      axios.post('https://api.medsoft.cl/api/Agenda/obtenerAgenda')
-        .then(response => (
-          this.events = response.data.map((x) => {
-            x.color = 'blue'
-            this.seEstanCargandoLasHoras = false
-            return x
-          })
-        )).catch(() => {
-          this.seEstanCargandoLasHoras = false
-        })
+      const idEspecialidad = this.modelEspecialidad
+      const idProfesional = 0
+      const rutPaciente = this.modelRutPacienteBuscar
+      const ano = this.modelAnoParaBusqueda
+      const mes = this.modelMesParaBusqueda
+
+      const agendaEncontrada = await obtenerAgenda(idEspecialidad, idProfesional, rutPaciente, ano, mes)
+
+      console.table(agendaEncontrada)
+
+      agendaEncontrada.forEach(element => {
+        element.color = element.name === 'Disponible' ? 'success' : 'error'
+      })
+
+      this.events = agendaEncontrada
+
+      this.seEstanCargandoLasHoras = false
     },
     showEvent ({ nativeEvent, event }) {
       const open = () => {

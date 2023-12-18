@@ -58,13 +58,35 @@
 
       <v-row>
         <v-col>
+          <v-textarea outlined v-model="textareaMotivoExamen" label="Motivo Examen" hide-details></v-textarea>
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col>
           <v-textarea outlined v-model="textareaInforme" label="Informe" hide-details></v-textarea>
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <v-btn color="secondary" large block><v-icon left>mdi-content-save</v-icon>Guardar Informe</v-btn>
+          <v-textarea outlined v-model="textareaImpresionDiagnostica" label="Impresión Diagnostica"
+            hide-details></v-textarea>
+        </v-col>
+      </v-row>
+
+      <v-alert text v-model="alertaErrorModel2" outlined dismissible type="error" class="mt-5">
+        {{ mensajeError2 }}
+      </v-alert>
+
+      <v-alert text v-model="alertaSuccessModel" outlined dismissible type="success" class="mt-5">
+        {{ mensajeSuccess }}
+      </v-alert>
+
+      <v-row>
+        <v-col>
+          <v-btn color="secondary" :loading="btnGuardandoExamenCargando" :disabled="btnGuardandoExamenCargando" @click="guardarInforme" large block><v-icon left>mdi-content-save</v-icon>Guardar
+            Informe</v-btn>
         </v-col>
       </v-row>
     </div>
@@ -81,17 +103,25 @@ export default {
       // Manejo de error
       alertaErrorModel: false,
       mensajeError: '',
+
+      alertaErrorModel2: false,
+      mensajeError2: '',
+
+      alertaSuccessModel: false,
+      mensajeSuccess: '',
       // Formulario buscar por RUT
       formularioBuscarModel: true,
       btnBuscarCargando: false,
+      btnGuardandoExamenCargando: false,
       // Datos
       buscarRun: '',
       pacienteEncontrado: {},
       seEncontroPaciente: false,
       // Autocomplete
       tiposDeExamen: [
-        { id: 1, nombre: 'Radiografia' },
-        { id: 2, nombre: 'Tac' }
+        { id: 1, nombre: 'Mamografía' },
+        { id: 2, nombre: 'Radiografía' },
+        { id: 3, nombre: 'Tac' }
       ],
       examenesDisponibles: [
         { id: 1, nombre: 'Rx Torax' },
@@ -101,7 +131,9 @@ export default {
       // Campos
       selectTipoDeExamen: '',
       selectExamenDisponible: '',
-      textareaInforme: ''
+      textareaInforme: '',
+      textareaMotivoExamen: '',
+      textareaImpresionDiagnostica: ''
     }
   },
   methods: {
@@ -126,6 +158,23 @@ export default {
           this.btnBuscarCargando = false
           this.seEncontroPaciente = false
         })
+    },
+    guardarInforme () {
+      if (this.selectTipoDeExamen === '' || this.selectExamenDisponible === '' || this.textareaInforme === '' || this.textareaMotivoExamen === '' || this.textareaImpresionDiagnostica === '') {
+        this.mensajeError2 = 'Debe completar todos los campos.'
+        this.alertaErrorModel2 = true
+        return
+      }
+      this.btnGuardandoExamenCargando = true
+
+      setTimeout(() => {
+        this.btnGuardandoExamenCargando = false
+        this.alertaSuccessModel = true
+        this.mensajeSuccess = 'Se ha guardado el informe correctamente.'
+        this.textareaInforme = ''
+        this.textareaMotivoExamen = ''
+        this.textareaImpresionDiagnostica = ''
+      }, 1000)
     }
   },
   components: {
