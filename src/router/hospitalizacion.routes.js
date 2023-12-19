@@ -20,6 +20,16 @@ export default [
     }
   },
   {
+    path: '/hospitalizacion/atencionEnfermeria/hispitalizacion/:id',
+    name: 'atencionEnfermeriaHospitalizacionDias',
+    component: () => import(/* webpackChunkName: "hospitalizacion" */ '../views/hospitalizacion/VerHospitalizacionEnfermera.vue'),
+    meta: {
+      requiereAutentificacion: true,
+      permisosRequeridos: [],
+      tituloPagina: 'MedSoft - Paciente - Enfermería - Hospitalización'
+    }
+  },
+  {
     path: '/hospitalizacion/atencionMedica',
     name: 'atencionMedicaHospitalizacion',
     component: () => import(/* webpackChunkName: "hospitalizacion" */ '../views/hospitalizacion/EvaluacionMedicaHospitalizacionVista.vue'),
@@ -27,6 +37,16 @@ export default [
       requiereAutentificacion: true,
       permisosRequeridos: [],
       tituloPagina: 'MedSoft - Evaluación Medica - Hospitalización'
+    }
+  },
+  {
+    path: '/hospitalizacion/atencionMedica/hispitalizacion/:id',
+    name: 'atencionMedicaHospitalizacionDias',
+    component: () => import(/* webpackChunkName: "hospitalizacion" */ '../views/hospitalizacion/VerHospitalizacionMedico.vue'),
+    meta: {
+      requiereAutentificacion: true,
+      permisosRequeridos: [],
+      tituloPagina: 'MedSoft - Paciente - Medico - Hospitalización'
     }
   },
   {
@@ -47,17 +67,6 @@ export default [
       requiereAutentificacion: true,
       permisosRequeridos: [],
       tituloPagina: 'MedSoft - Gestión Camas - Hospitalización'
-    }
-  },
-
-  {
-    path: '/hospitalizacion/agendamiento',
-    name: 'agendamientoHospitalizacion',
-    component: () => import(/* webpackChunkName: "hospitalizacion" */ '../views/hospitalizacion/AgendamientoHospitalizacionVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Agendamiento - Hospitalización'
     }
   }
 ]
