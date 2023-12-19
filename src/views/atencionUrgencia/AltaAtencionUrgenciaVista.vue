@@ -38,13 +38,13 @@
     <v-dialog v-model="dialogAlta" max-width="700">
       <v-card>
         <v-toolbar color="primary" dark>
-          <v-toolbar-title><v-icon left>mdi-plus</v-icon> Antecedentes Morbidos</v-toolbar-title>
+          <v-toolbar-title><v-icon left>mdi-close-box</v-icon> Cerrar Atención de Urgencia</v-toolbar-title>
         </v-toolbar>
 
         <v-card-text>
           <v-row class="mt-5">
             <v-col>
-              Alta
+              <p class="text-h3 text-center">Se cerrara de forma permanente la atención, ¿Desea continuar?</p>
             </v-col>
           </v-row>
         </v-card-text>
@@ -52,8 +52,11 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
+          <v-btn color="secondary" text @click="dialogAlta = false">
+            Cancelar
+          </v-btn>
           <v-btn color="error" text @click="dialogAlta = false">
-            Cerrar
+            Cerrar Atención
           </v-btn>
         </v-card-actions>
       </v-card>
