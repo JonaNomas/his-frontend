@@ -38,5 +38,15 @@ export default [
       permisosRequeridos: [],
       tituloPagina: 'MedSoft - Buscar - Imagenologia'
     }
+  },
+  {
+    path: '/imagenologia/buscar/:id',
+    name: 'buscarIDImagenologia',
+    component: () => import(/* webpackChunkName: "imagenologia" */ '../views/imagenologia/VerExamenImagenologiaVista.vue'),
+    meta: {
+      requiereAutentificacion: true,
+      permisosRequeridos: [],
+      tituloPagina: 'MedSoft - Informe - Imagenologia'
+    }
   }
 ]

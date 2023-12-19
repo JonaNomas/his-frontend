@@ -154,15 +154,15 @@ export default {
             { titulo: 'Cargar Examen', icono: 'mdi-test-tube', ruta: '/laboratorio/cargarExamen' },
             { titulo: 'Mantenedor', icono: 'mdi-test-tube', ruta: '/laboratorio/mantenedor' }
           ]
-        },
-        {
-          nombreConjunto: 'Banco de Sangre',
-          icono: 'mdi-blood-bag',
-          links: [
-            { titulo: 'Ingreso', icono: 'mdi-blood-bag', ruta: 'bancoSangre' },
-            { titulo: 'Registrar Donación', icono: 'mdi-blood-bag', ruta: '/bancoSangre/donacion' }
-          ]
         }
+        // {
+        //   nombreConjunto: 'Banco de Sangre',
+        //   icono: 'mdi-blood-bag',
+        //   links: [
+        //     { titulo: 'Ingreso', icono: 'mdi-blood-bag', ruta: 'bancoSangre' },
+        //     { titulo: 'Registrar Donación', icono: 'mdi-blood-bag', ruta: '/bancoSangre/donacion' }
+        //   ]
+        // }
       ]
     }
   }

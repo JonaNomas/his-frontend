@@ -112,7 +112,7 @@ export default {
     },
     async llenarTabla () {
       this.listadoTabla = [
-        { id: 35, tipo: 'TAC', examen: 'Columna Cervical', rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-16' },
+        { id: 35, tipo: 'TAC', examen: 'Encefalo', rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-16' },
         { id: 50, tipo: 'TAC', examen: 'Abdomen', rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-16' },
         { id: 60, tipo: 'Radiografía', examen: 'Cavidades Perinasales', rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-16' },
         { id: 90, tipo: 'Radiografía', examen: 'Torax APL.', rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-16' },
