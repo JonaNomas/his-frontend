@@ -48,7 +48,7 @@
       <v-row>
         <v-col>
           <v-autocomplete dense label="Tipo Examen" v-model="selectTipoDeExamen" prepend-inner-icon="mdi-account" outlined
-            hide-details :items="tiposDeExamen" item-text="nombre" item-value="id"></v-autocomplete>
+            hide-details :items="tiposDeExamen" item-text="nombre" item-value="id" @change="cambiarExamenesDisponibles"></v-autocomplete>
         </v-col>
         <v-col>
           <v-autocomplete dense label="Tipo Examen" v-model="selectExamenDisponible" prepend-inner-icon="mdi-account"
@@ -119,15 +119,20 @@ export default {
       seEncontroPaciente: false,
       // Autocomplete
       tiposDeExamen: [
-        { id: 1, nombre: 'Mamografía' },
-        { id: 2, nombre: 'Radiografía' },
-        { id: 3, nombre: 'Tac' }
+        {
+          id: 1,
+          nombre: 'Rayos X'
+        },
+        {
+          id: 2,
+          nombre: 'Tomografía Axial Computarizada'
+        },
+        {
+          id: 3,
+          nombre: 'Ecografía'
+        }
       ],
-      examenesDisponibles: [
-        { id: 1, nombre: 'Rx Torax' },
-        { id: 2, nombre: 'Rx Torax AP' },
-        { id: 3, nombre: 'Rx Columna Total' }
-      ],
+      examenesDisponibles: [],
       // Campos
       selectTipoDeExamen: '',
       selectExamenDisponible: '',
@@ -175,6 +180,27 @@ export default {
         this.textareaMotivoExamen = ''
         this.textareaImpresionDiagnostica = ''
       }, 1000)
+    },
+    cambiarExamenesDisponibles () {
+      if (this.selectTipoDeExamen === 1) {
+        this.examenesDisponibles = [
+          { id: 1, nombre: 'Rx Torax' },
+          { id: 2, nombre: 'Rx Torax AP' },
+          { id: 3, nombre: 'Rx Columna Total' }
+        ]
+      } else if (this.selectTipoDeExamen === 2) {
+        this.examenesDisponibles = [
+          { id: 1, nombre: 'TAC Cabeza' },
+          { id: 2, nombre: 'TAC Cabeza con Contraste' },
+          { id: 3, nombre: 'TAC Cabeza con Contraste y Sinus' }
+        ]
+      } else if (this.selectTipoDeExamen === 3) {
+        this.examenesDisponibles = [
+          { id: 1, nombre: 'Ecografía Abdominal' },
+          { id: 2, nombre: 'Ecografía Abdominal con Contraste' },
+          { id: 3, nombre: 'Ecografía Abdominal con Contraste y Sinus' }
+        ]
+      }
     }
   },
   components: {

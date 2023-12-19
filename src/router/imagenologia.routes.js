@@ -18,5 +18,15 @@ export default [
       permisosRequeridos: [],
       tituloPagina: 'MedSoft - Cargar Examen - Imagenologia'
     }
+  },
+  {
+    path: '/imagenologia/mantenedor',
+    name: 'mantenedorImagenologia',
+    component: () => import(/* webpackChunkName: "imagenologia" */ '../views/imagenologia/MantenedorExamenesImagenologiaVista.vue'),
+    meta: {
+      requiereAutentificacion: true,
+      permisosRequeridos: [],
+      tituloPagina: 'MedSoft - Mantenedor - Imagenologia'
+    }
   }
 ]

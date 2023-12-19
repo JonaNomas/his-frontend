@@ -142,7 +142,7 @@ export default {
           icono: 'mdi-radiology-box',
           links: [
             { titulo: 'Cargar Examen', icono: 'mdi-radiology-box', ruta: '/imagenologia/cargarExamen' },
-            { titulo: 'Mantenedor', icono: 'mdi-radiology-box', ruta: 'imagenologia' }
+            { titulo: 'Mantenedor', icono: 'mdi-radiology-box', ruta: '/imagenologia/mantenedor' }
           ]
         },
         {
