@@ -183,7 +183,7 @@
           <h2>Riesgos</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" @click="dialogRiesgos = true">Ingresar / Actualizar</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogRiesgos = true">Ingresar / Actualizar</v-btn>
         </v-col>
       </v-row>
 
@@ -243,7 +243,7 @@
           <h2>Antecedentes Morbidos</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" @click="dialogAntecedentesMorbidos = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogAntecedentesMorbidos = true">Registrar Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -253,7 +253,7 @@
             :headers="headersTablaAntedecendesMorbidos" :items="atencion.antecedentesMorbidos" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" @click="eliminarAntecedentesMorbidos(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarAntecedentesMorbidos(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -318,7 +318,7 @@
           <h2>Alergias</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" @click="dialogAlergias = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogAlergias = true">Registrar Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -328,7 +328,7 @@
             :items="atencion.alergias" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" @click="eliminarAlergias(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarAlergias(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -391,7 +391,7 @@
           <h2>Evaluación</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" @click="dialogEvaluacion = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogEvaluacion = true">Registrar Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -401,7 +401,7 @@
             :items="atencion.evaluaciones" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" @click="eliminarEvaluacion(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarEvaluacion(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -462,7 +462,7 @@
           <h2>Solicitud de exámenes de laboratorio</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" @click="dialogExamenesLaboratorio = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogExamenesLaboratorio = true">Registrar Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -472,7 +472,7 @@
             :headers="headersTablaExamenesLaboratorio" :items="atencion.examenesLaboratorio" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" @click="eliminarExamenesLaboratorio(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarExamenesLaboratorio(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -535,7 +535,7 @@
           <h2>Solicitud a Imagenologia</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" @click="dialogExamenesImagenologia = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogExamenesImagenologia = true">Registrar Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -545,7 +545,7 @@
             :headers="headersTablaExamenesImagenologia" :items="atencion.examenesImagenologia" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" @click="eliminarExamenesImagenologia(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarExamenesImagenologia(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -608,7 +608,7 @@
           <h2>Indicaciones de Medicamentos</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" @click="dialogIndicacionesMedicamentos = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogIndicacionesMedicamentos = true">Registrar Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -619,7 +619,7 @@
             class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" @click="eliminarIndicacionesMedicamentos(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarIndicacionesMedicamentos(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -695,7 +695,7 @@
           <h2>Indicaciones Generales</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" @click="dialogIndicacionesGenerales = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogIndicacionesGenerales = true">Registrar Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -705,7 +705,7 @@
             :headers="headersTablaIndicacionesGenerales" :items="atencion.indicacionesGenerales" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" @click="eliminarIndicacionesGenerales(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarIndicacionesGenerales(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -767,7 +767,7 @@
           <h2>Diagnostico</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" @click="dialogDiagnostico = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogDiagnostico = true">Registrar Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -777,7 +777,7 @@
             :items="atencion.diagnostico" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" @click="eliminarDiagnostico(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarDiagnostico(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -914,6 +914,9 @@ export default {
   name: 'AtencionIdUrgenciaVista',
   data () {
     return {
+      // --
+      esMedicoElUsuario: false,
+      // --
       atencion: {},
       paciente: {},
       listadoAntecedentesMorbidos: [],
@@ -1183,7 +1186,7 @@ export default {
           upp: 'Bajo',
           caidas: 'Bajo',
           responsable: {
-            nombre: 'Victor Guzman Contreras',
+            nombre: 'Francisco Perez Perez',
             rut: '19033183-0',
             cargo: 'Medico'
           }
@@ -1193,7 +1196,7 @@ export default {
             fechaHora: '2023-12-17T18:40:59.803Z',
             antecedente: 'Diabetes',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             }
@@ -1202,7 +1205,7 @@ export default {
             fechaHora: '2023-12-17T18:40:59.803Z',
             antecedente: 'Hipertension',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             }
@@ -1213,7 +1216,7 @@ export default {
             fechaHora: '2023-12-17T18:40:59.803Z',
             alergia: 'Penicilina',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             }
@@ -1222,7 +1225,7 @@ export default {
             fechaHora: '2023-12-17T18:40:59.803Z',
             alergia: 'Paracetamol',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             }
@@ -1231,18 +1234,18 @@ export default {
         evaluaciones: [
           {
             fechaHora: '2023-12-17T18:40:59.803Z',
-            evaluacion: 'Evaluacion 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum!',
+            evaluacion: 'Reconsulta por cuadro de dias de evolucion odinofagia y fiebre, con ausencia de tos y congestion Evaluado en urgencia dental, se deriva por sospecha de amigdalitis',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             }
           },
           {
             fechaHora: '2023-12-17T18:40:59.803Z',
-            evaluacion: 'Examen 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum!',
+            evaluacion: 'Se reevalua pero por cuadro de dias de evolucion odinofagia y fiebre, con ausencia de tos y congestion Evaluado en urgencia dental, se deriva por sospecha de amigdalitis',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             }
@@ -1253,7 +1256,7 @@ export default {
             fechaHora: '2023-12-17T18:40:59.803Z',
             examen: 'Uremia',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             }
@@ -1262,7 +1265,7 @@ export default {
             fechaHora: '2023-12-17T18:40:59.803Z',
             examen: 'Glucosa',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             }
@@ -1273,7 +1276,7 @@ export default {
             fechaHora: '2023-12-17T18:40:59.803Z',
             examen: 'Radiografia de Torax',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             }
@@ -1282,7 +1285,7 @@ export default {
             fechaHora: '2023-12-17T18:40:59.803Z',
             examen: 'Radiografia de Muñeca',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             }
@@ -1295,7 +1298,7 @@ export default {
             dosis: '1G',
             via: 'EV',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             }
@@ -1306,7 +1309,7 @@ export default {
             dosis: '30MG',
             via: 'EV',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             }
@@ -1317,18 +1320,18 @@ export default {
             fechaHora: '2023-12-17T18:40:59.803Z',
             indicacion: 'Reposo en cama 45°',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
-              cargo: 'Enfermero'
+              cargo: 'Medico'
             }
           },
           {
             fechaHora: '2023-12-17T18:40:59.803Z',
             indicacion: 'Regimen Liviano',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
-              cargo: 'Enfermero'
+              cargo: 'Medico'
             }
           }
         ],
@@ -1337,7 +1340,7 @@ export default {
             fechaHora: '2023-12-17T18:40:59.803Z',
             diagnostico: 'Fractura de Muñeca',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             },
@@ -1347,7 +1350,7 @@ export default {
             fechaHora: '2023-12-17T18:40:59.803Z',
             diagnostico: 'Fractura de Muñeca',
             responsable: {
-              nombre: 'Victor Guzman Contreras',
+              nombre: 'Francisco Perez Perez',
               rut: '19033183-0',
               cargo: 'Medico'
             },
@@ -1878,9 +1881,9 @@ export default {
       this.atencion.riesgos.upp = this.nuevoRiesgoUpp
       this.atencion.riesgos.caidas = this.nuevoRiesgoCaidas
       this.atencion.riesgos.responsable = {
-        nombre: 'Victor Guzman Contreras',
+        nombre: 'Francisco Perez Perez',
         rut: '19033183-0',
-        cargo: 'Enfermero'
+        cargo: 'Medico'
       }
       this.nuevoRiesgoIri = ''
       this.nuevoRiesgoUpp = ''
@@ -1893,7 +1896,7 @@ export default {
         fechaHora: new Date().toISOString(),
         antecedente: this.nuevoAntecedenteMorbido,
         responsable: {
-          nombre: 'Victor Guzman Contreras',
+          nombre: 'Francisco Perez Perez',
           rut: '19033183-0',
           cargo: 'Medico'
         }
@@ -1909,7 +1912,7 @@ export default {
         fechaHora: new Date().toISOString(),
         alergia: this.nuevoAlergia,
         responsable: {
-          nombre: 'Victor Guzman Contreras',
+          nombre: 'Francisco Perez Perez',
           rut: '19033183-0',
           cargo: 'Medico'
         }
@@ -1925,7 +1928,7 @@ export default {
         fechaHora: new Date().toISOString(),
         evaluacion: this.nuevoEvaluacion,
         responsable: {
-          nombre: 'Victor Guzman Contreras',
+          nombre: 'Francisco Perez Perez',
           rut: '19033183-0',
           cargo: 'Medico'
         }
@@ -1941,7 +1944,7 @@ export default {
         fechaHora: new Date().toISOString(),
         examen: this.nuevoExamenLaboratorio,
         responsable: {
-          nombre: 'Victor Guzman Contreras',
+          nombre: 'Francisco Perez Perez',
           rut: '19033183-0',
           cargo: 'Medico'
         }
@@ -1957,7 +1960,7 @@ export default {
         fechaHora: new Date().toISOString(),
         examen: this.nuevoExamenImagenologia,
         responsable: {
-          nombre: 'Victor Guzman Contreras',
+          nombre: 'Francisco Perez Perez',
           rut: '19033183-0',
           cargo: 'Medico'
         }
@@ -1975,9 +1978,9 @@ export default {
         dosis: this.nuevoDosis + this.nuevoConcentracion,
         via: this.nuevoVia,
         responsable: {
-          nombre: 'Victor Guzman Contreras',
+          nombre: 'Francisco Perez Perez',
           rut: '19033183-0',
-          cargo: 'Enfermero'
+          cargo: 'Medico'
         }
       }
       this.nuevoMedicamento = ''
@@ -1993,9 +1996,9 @@ export default {
         fechaHora: new Date().toISOString(),
         indicacion: this.nuevoIndicacionGeneral,
         responsable: {
-          nombre: 'Victor Guzman Contreras',
+          nombre: 'Francisco Perez Perez',
           rut: '19033183-0',
-          cargo: 'Enfermero'
+          cargo: 'Medico'
         }
       }
       this.nuevoIndicacionGeneral = ''
@@ -2011,7 +2014,7 @@ export default {
         diagnostico: this.nuevoDiagnostico,
         cie: this.nuevoCie,
         responsable: {
-          nombre: 'Victor Guzman Contreras',
+          nombre: 'Francisco Perez Perez',
           rut: '19033183-0',
           cargo: 'Medico'
         }
