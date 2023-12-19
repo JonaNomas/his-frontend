@@ -47,24 +47,25 @@
 
       <v-row ref="contenedorVista">
         <v-col>
-          <v-autocomplete ref="inputExamenLista" dense label="Examen" v-model="selectExamenDisponible" prepend-inner-icon="mdi-account" outlined
-            hide-details :items="examenesDisponibles" item-text="nombre" item-value="id"></v-autocomplete>
+          <v-autocomplete ref="inputExamenLista" dense label="Examen" v-model="selectExamenDisponible"
+            prepend-inner-icon="mdi-account" outlined hide-details :items="examenesDisponibles" item-text="nombre"
+            item-value="idExamenLaboratorio"></v-autocomplete>
         </v-col>
         <v-col>
           <v-text-field dense label="Resultado" v-model="resultadoExamenSeleccionado" prepend-inner-icon="mdi-counter"
             outlined hide-details></v-text-field>
         </v-col>
         <v-col>
-          <v-btn color="secondary" :disabled="selectExamenDisponible === '' || resultadoExamenSeleccionado===''" block @click="agregarNuevoExamen"><v-icon>mdi-plus</v-icon></v-btn>
+          <v-btn color="secondary" :disabled="selectExamenDisponible === '' || resultadoExamenSeleccionado === ''" block
+            @click="agregarNuevoExamen"><v-icon>mdi-plus</v-icon></v-btn>
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <v-data-table :headers="headersTabla" :items="examenesAgregados" class="elevation-1">
-            <template #[`item.actions`]="{item}">
+          <v-data-table dense :headers="headersTabla" :items="examenesAgregados" class="elevation-1">
+            <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="secondary" @click="windows.alert(item)">mdi-pencil-box</v-icon>
                 <v-icon color="error" @click="windows.alert(item)">mdi-delete</v-icon>
               </div>
             </template>
@@ -72,9 +73,17 @@
         </v-col>
       </v-row>
 
+      <v-alert text v-model="alertaErrorModel2" outlined dismissible type="error" class="mt-5">
+        {{ mensajeError2 }}
+      </v-alert>
+
+      <v-alert text v-model="alertaSuccessModel" outlined dismissible type="success" class="mt-5">
+        {{ mensajeSuccess }}
+      </v-alert>
+
       <v-row>
         <v-col>
-          <v-btn color="secondary" large block><v-icon left>mdi-content-save</v-icon>Guardar Exámenes Regitrados</v-btn>
+          <v-btn color="secondary" :loading="btnGuardandoExamenCargando" :disabled="btnGuardandoExamenCargando" large block @click="guardarRegistro"><v-icon left>mdi-content-save</v-icon>Guardar Exámenes Regitrados</v-btn>
         </v-col>
       </v-row>
     </div>
@@ -83,14 +92,21 @@
 <script>
 import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
 import TablaDatosSimplePaciente from '@/components/TablaDatosSimplePaciente.vue'
+import obtenerListadoExamenesLaboratorio from '@/services/laboratorio/obtenerListadoExamenes'
 
 export default {
   name: 'CargarExamenImagenologiaVista',
   data () {
     return {
-      // Manejo de error
+      // Mensajes
       alertaErrorModel: false,
       mensajeError: '',
+      alertaErrorModel2: false,
+      mensajeError2: '',
+      alertaSuccessModel: false,
+      mensajeSuccess: '',
+      // Cargando
+      btnGuardandoExamenCargando: false,
       // Formulario buscar por RUT
       formularioBuscarModel: true,
       btnBuscarCargando: false,
@@ -99,11 +115,7 @@ export default {
       pacienteEncontrado: {},
       seEncontroPaciente: false,
       // Autocomplete
-      examenesDisponibles: [
-        { id: 1, codigo: '022132', nombre: 'Uremia' },
-        { id: 2, codigo: '022132', nombre: 'Orina Completa' },
-        { id: 3, codigo: '022132', nombre: 'Glucosa en Sangre' }
-      ],
+      examenesDisponibles: [],
       // Campos
       selectExamenDisponible: '',
       resultadoExamenSeleccionado: '',
@@ -119,11 +131,14 @@ export default {
         { text: 'Acciones', value: 'actions', sortable: false, align: 'center' }
       ],
       examenesAgregados: [
-        { id: '0', codigo: '022132', nombre: 'Uremia', resultado: '10' }
       ]
     }
   },
   methods: {
+    async listarExamenesLaboratorio () {
+      // TODO: LLamada a API
+      this.examenesDisponibles = await obtenerListadoExamenesLaboratorio()
+    },
     buscarPacientePorRut () {
       this.btnBuscarCargando = true
       this.alertaErrorModel = false
@@ -148,21 +163,21 @@ export default {
     },
     agregarNuevoExamen () {
       if (this.selectExamenDisponible === '' || this.resultadoExamenSeleccionado === '') {
-        this.mensajeError = 'Debe seleccionar un examen y agregar un resultado.'
-        this.alertaErrorModel = true
+        this.mensajeError2 = 'Debe seleccionar un examen y agregar un resultado.'
+        this.alertaErrorModel2 = true
         return
       }
 
       if (this.examenesAgregados.find(objeto => objeto.id === this.selectExamenDisponible)) {
-        this.mensajeError = 'El examen seleccionado ya se encuentra agregado.'
-        this.alertaErrorModel = true
+        this.mensajeError2 = 'El examen seleccionado ya se encuentra agregado.'
+        this.alertaErrorModel2 = true
         return
       }
 
-      const objetoEncontrado = this.examenesDisponibles.find(objeto => objeto.id === this.selectExamenDisponible)
+      const objetoEncontrado = this.examenesDisponibles.find(objeto => objeto.idExamenLaboratorio === this.selectExamenDisponible)
 
       this.examenesAgregados.push({
-        id: objetoEncontrado.id,
+        id: objetoEncontrado.idExamenLaboratorio,
         codigo: objetoEncontrado.codigo,
         nombre: objetoEncontrado.nombre,
         resultado: this.resultadoExamenSeleccionado
@@ -171,7 +186,28 @@ export default {
       this.resultadoExamenSeleccionado = ''
 
       this.$refs.inputExamenLista.focus()
+    },
+    guardarRegistro () {
+      if (this.examenesAgregados.length === 0) {
+        this.mensajeError2 = 'Debe agregar al menos un examen.'
+        this.alertaErrorModel2 = true
+        return
+      }
+
+      this.btnGuardandoExamenCargando = true
+      setTimeout(() => {
+        this.btnGuardandoExamenCargando = false
+        this.alertaSuccessModel = true
+        this.mensajeSuccess = 'Se ha guardado el registro correctamente.'
+        this.textareaInforme = ''
+        this.selectExamenDisponible = ''
+        this.resultadoExamenSeleccionado = ''
+        this.examenesAgregados = []
+      }, 1000)
     }
+  },
+  mounted () {
+    this.listarExamenesLaboratorio()
   },
   components: {
     TablaDatosSimplePaciente
