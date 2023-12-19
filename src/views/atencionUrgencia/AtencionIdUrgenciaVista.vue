@@ -915,7 +915,7 @@ export default {
   data () {
     return {
       // --
-      esMedicoElUsuario: false,
+      esMedicoElUsuario: true,
       // --
       atencion: {},
       paciente: {},
