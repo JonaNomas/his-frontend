@@ -76,19 +76,12 @@
 
       <v-row>
         <v-col>
-          <v-autocomplete dense label="¿Que Ocurre?" v-model="selectQueOcurreModel" prepend-inner-icon="mdi-account"
-            outlined hide-details :items="selectQueOcurre"></v-autocomplete>
+          <v-autocomplete dense label="Tipo Operación" v-model="selectTipoOperacion" prepend-inner-icon="mdi-account"
+            outlined hide-details :items="listadoOperacionesDisponibles"></v-autocomplete>
         </v-col>
         <v-col>
-          <v-autocomplete dense label="Lugar Afectado" v-model="selectLugarAfectadoModel" prepend-inner-icon="mdi-account"
-            outlined hide-details :items="selectLugarAfectado"></v-autocomplete>
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col>
-          <v-textarea dense label="Descripción" v-model="txtaDescripcionMotivoConsulta" outlined
-            hide-details></v-textarea>
+          <v-autocomplete dense label="Asignar Pabellon Disponible" v-model="selectPabellonDisponible" prepend-inner-icon="mdi-account"
+            outlined hide-details :items="pabellonesDisponibles"></v-autocomplete>
         </v-col>
       </v-row>
 
@@ -102,7 +95,7 @@
 
       <v-row>
         <v-col>
-          <v-btn dense block color="accent" @click="ingresarPacienteUrgencia" :disabled="btnIngresandoPacienteCargando" :loading="btnIngresandoPacienteCargando"><v-icon left>mdi-account-plus</v-icon>Ingresar Paciente para Atención de Urgencia</v-btn>
+          <v-btn dense block color="accent" @click="ingresarPacienteUrgencia" :disabled="btnIngresandoPacienteCargando" :loading="btnIngresandoPacienteCargando"><v-icon left>mdi-account-plus</v-icon>Ingresar Paciente</v-btn>
         </v-col>
       </v-row>
     </div>
@@ -136,8 +129,37 @@ export default {
       selectQueOcurreModel: '',
       selectLugarAfectado: [],
       selectLugarAfectadoModel: '',
-      txtaDescripcionMotivoConsulta: ''
-
+      txtaDescripcionMotivoConsulta: '',
+      // Forumulario
+      selectPabellonDisponible: '',
+      pabellonesDisponibles: [
+        'Pabellon 1', 'Pabellon 2', 'Pabellon 4', 'Recuperación'
+      ],
+      selectTipoOperacion: '',
+      listadoOperacionesDisponibles: [
+        'Apendicectomía',
+        'Colecistectomía',
+        'Hernioplastia',
+        'Facoemulsificación',
+        'Artroscopia de rodilla',
+        'Artroplastia de cadera',
+        'Bypass coronario',
+        'Implante de marcapasos',
+        'Tiroidectomía',
+        'Colectomía',
+        'Mastectomía',
+        'Cesárea',
+        'Cirugía de columna vertebral (por ejemplo, laminectomía)',
+        'Cirugía de aneurisma cerebral',
+        'Cirugía de próstata (prostatectomía)',
+        'Cirugía de oído (por ejemplo, estapedectomía)',
+        'Cirugía de bypass gástrico (bariátrica)',
+        'Cirugía de reconstrucción facial',
+        'Cirugía de trasplante de órganos',
+        'Cirugía de corrección de deformidades congénitas',
+        'Cirugía de reemplazo de articulaciones (por ejemplo, rodilla o cadera)',
+        'Cirugía de tumor cerebral (craneotomía)'
+      ]
     }
   },
   methods: {
@@ -181,18 +203,13 @@ export default {
       ]
     },
     ingresarPacienteUrgencia () {
-      if (this.selectQueOcurreModel === '') {
-        this.mensajeError2 = 'Debe seleccionar un valor para ¿Que Ocurre?'
+      if (this.selectTipoOperacion === '') {
+        this.mensajeError2 = 'Debe Seleccionar un Tipo de Cirugía.'
         this.alertaErrorModel2 = true
         return
       }
-      if (this.selectLugarAfectadoModel === '') {
-        this.mensajeError2 = 'Debe seleccionar un valor para Lugar Afectado'
-        this.alertaErrorModel2 = true
-        return
-      }
-      if (this.txtaDescripcionMotivoConsulta === '') {
-        this.mensajeError2 = 'Debe ingresar una descripción para el motivo de consulta'
+      if (this.selectPabellonDisponible === '') {
+        this.mensajeError2 = 'Debe seleccionar un pabellon para asignar al paciente.'
         this.alertaErrorModel2 = true
         return
       }
@@ -200,7 +217,7 @@ export default {
       setTimeout(() => {
         this.btnIngresandoPacienteCargando = false
         this.alertaSuccessModel = true
-        this.mensajeSuccess = 'Se ha ingresado correctamente la nueva atención de urgencia.'
+        this.mensajeSuccess = 'Se ha ingresado correctamente el paciente.'
         this.txtaDescripcionMotivoConsulta = ''
       }, 1000)
     }
