@@ -53,7 +53,7 @@
             </v-col>
             <v-col>
               <v-autocomplete dense label="Tipo Atencion" v-model="nuevoExamenTipoExamen"
-                outlined hide-details :items="listadoTiposExamenes" item-text="nombre" item-value="id"></v-autocomplete>
+                outlined hide-details :items="listadoTiposExamenes" item-text="nombre" item-value="idTipoExamenLaboratorio"></v-autocomplete>
             </v-col>
           </v-row>
           <v-row>
@@ -112,6 +112,9 @@
 </template>
 
 <script>
+import obtenerListadoExamenesLaboratorio from '@/services/laboratorio/obtenerListadoExamenes'
+import obtenerListadoTiposExamenes from '@/services/laboratorio/obtenerListadoTiposExamenes'
+
 export default {
   name: 'MantenedorExamenesLaboratorioVista',
   data () {
@@ -128,7 +131,7 @@ export default {
       listadoTiposExamenes: [],
       filtroExamenes: '',
       headersTablaExamenesLaboratorio: [
-        { text: 'ID', value: 'id', align: 'center' },
+        { text: 'ID', value: 'idExamenLaboratorio', align: 'center' },
         { text: 'Codigo', value: 'codigo', align: 'center' },
         { text: 'Tipo Examen', value: 'tipoExamen' },
         { text: 'Nombre', value: 'nombre' },
@@ -145,115 +148,21 @@ export default {
     }
   },
   methods: {
-    listarExamenesLaboratorio () {
+    async listarExamenesLaboratorio () {
       // TODO: LLamada a API
-      this.listadoExamenesLaboratorio = [
-        {
-          id: 1,
-          codigo: '001',
-          tipoExamen: 'Hemograma',
-          nombre: 'Hemoglobina',
-          valorMinimo: 12,
-          valorMaximo: 18
-        },
-        {
-          id: 2,
-          codigo: '002',
-          tipoExamen: 'Hemograma',
-          nombre: 'Hematocrito',
-          valorMinimo: 40,
-          valorMaximo: 50
-        },
-        {
-          id: 3,
-          codigo: '003',
-          tipoExamen: 'Hemograma',
-          nombre: 'Leucocitos',
-          valorMinimo: 4,
-          valorMaximo: 10
-        },
-        {
-          id: 4,
-          codigo: '004',
-          tipoExamen: 'Hemograma',
-          nombre: 'Plaquetas',
-          valorMinimo: 150,
-          valorMaximo: 450
-        },
-        {
-          id: 5,
-          codigo: '005',
-          tipoExamen: 'Hemograma',
-          nombre: 'VSG',
-          valorMinimo: 0,
-          valorMaximo: 20
-        },
-        {
-          id: 6,
-          codigo: '006',
-          tipoExamen: 'Hemograma',
-          nombre: 'Neutrofilos',
-          valorMinimo: 40,
-          valorMaximo: 75
-        },
-        {
-          id: 7,
-          codigo: '007',
-          tipoExamen: 'Hemograma',
-          nombre: 'Linfocitos',
-          valorMinimo: 20,
-          valorMaximo: 40
-        },
-        {
-          id: 8,
-          codigo: '008',
-          tipoExamen: 'Hemograma',
-          nombre: 'Monocitos',
-          valorMinimo: 2,
-          valorMaximo: 8
-        },
-        {
-          id: 9,
-          codigo: '009',
-          tipoExamen: 'Hemograma',
-          nombre: 'Eosinofilos',
-          valorMinimo: 1,
-          valorMaximo: 4
+      this.listadoExamenesLaboratorio = await obtenerListadoExamenesLaboratorio()
+
+      this.listadoExamenesLaboratorio.forEach(examen => {
+        const tipoExamen = this.listadoTiposExamenes.find(tipoExamen => tipoExamen.idTipoExamenLaboratorio === examen.idTipoExamenLaboratorio)
+
+        if (tipoExamen) {
+          examen.tipoExamen = tipoExamen.nombre
         }
-      ]
+      })
     },
-    listarTiposExamenes () {
+    async listarTiposExamenes () {
       // TODO: Lamada a API
-      this.listadoTiposExamenes = [
-        {
-          id: 1,
-          nombre: 'Química Hemática'
-        },
-        {
-          id: 2,
-          nombre: 'Ex. Hematológicos'
-        },
-        {
-          id: 3,
-          nombre: 'Ex. Microbiológicos'
-        },
-        {
-          id: 4,
-          nombre: 'Orina'
-        },
-        {
-          id: 5,
-          nombre: 'Ex. Reumatológicos'
-        },
-        {
-          id: 6,
-          nombre: 'Ex. Hormonales'
-        },
-        {
-          id: 7,
-          nombre: 'Otros'
-        }
-      ]
+      this.listadoTiposExamenes = await obtenerListadoTiposExamenes()
     },
     editarExamen (item) {
       console.log(item)
@@ -295,9 +204,9 @@ export default {
       // TODO: Peticion a API para crear nuevo examen
       // INFO: Cuando se cree el nuevo examen debe devolver el objeto creado
       const nuevoExamen = {
-        id: this.listadoExamenesLaboratorio.length + 1,
+        idExamenLaboratorio: this.listadoExamenesLaboratorio.length + 1,
         codigo: this.nuevoExamenCodigo,
-        tipoExamen: this.listadoTiposExamenes.find(tipoExamen => tipoExamen.id === this.nuevoExamenTipoExamen).nombre,
+        tipoExamen: this.listadoTiposExamenes.find(tipoExamen => tipoExamen.idTipoExamenLaboratorio === this.nuevoExamenTipoExamen).nombre,
         nombre: this.nuevoExamenNombreExamen,
         valorMinimo: this.nuevoExamenValorMinimo,
         valorMaximo: this.nuevoExamenValorValorMaximo
@@ -308,8 +217,8 @@ export default {
     }
   },
   mounted () {
-    this.listarExamenesLaboratorio()
     this.listarTiposExamenes()
+    this.listarExamenesLaboratorio()
   }
 }
 </script>

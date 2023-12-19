@@ -61,14 +61,6 @@
               <v-text-field hide-details dense outlined label="Nombre Examen" required
                 v-model="nuevoExamenNombreExamen"></v-text-field>
             </v-col>
-            <v-col>
-              <v-text-field hide-details type="number" min="0" dense outlined label="Valor Minimo" required
-                v-model="nuevoExamenValorMinimo"></v-text-field>
-            </v-col>
-            <v-col>
-              <v-text-field hide-details type="number" min="0" dense outlined label="Valor Maximo" required
-                v-model="nuevoExamenValorValorMaximo"></v-text-field>
-            </v-col>
           </v-row>
 
           <v-row>
@@ -112,6 +104,8 @@
 </template>
 
 <script>
+import obtenerListadoExamenes from '@/services/imagenologia/obtenerListadoExamenes'
+
 export default {
   name: 'MantenedorExamenesImagenologiaVista',
   data () {
@@ -130,7 +124,7 @@ export default {
       headersTablaExamenesLaboratorio: [
         { text: 'ID', value: 'id', align: 'center' },
         { text: 'Codigo', value: 'codigo', align: 'center' },
-        { text: 'Tipo Examen', value: 'tipoExamen' },
+        { text: 'Tipo Examen', value: 'tipo' },
         { text: 'Nombre', value: 'nombre' },
         { text: 'Acciones', value: 'actions', sortable: false, align: 'center' }
       ],
@@ -145,29 +139,23 @@ export default {
   methods: {
     listarExamenesLaboratorio () {
       // TODO: LLamada a API
-      this.listadoExamenesLaboratorio = [
-        {
-          id: 1,
-          codigo: '001',
-          tipoExamen: 'Hemograma',
-          nombre: 'Hemoglobina'
-        }
-      ]
+
+      this.listadoExamenesLaboratorio = obtenerListadoExamenes()
     },
     listarTiposExamenes () {
       // TODO: Lamada a API
       this.listadoTiposExamenes = [
         {
           id: 1,
-          nombre: 'Rayos X'
+          nombre: 'Radiografía'
         },
         {
           id: 2,
-          nombre: 'Tomografía Axial Computarizada'
+          nombre: 'TAC'
         },
         {
           id: 3,
-          nombre: 'Ecografía'
+          nombre: 'Ecografías'
         }
       ]
     },
@@ -201,7 +189,7 @@ export default {
       this.itemEliminarExamen = null
     },
     crearNuevoExamenLaboratorio () {
-      if (this.nuevoExamenCodigo === '' || this.nuevoExamenTipoExamen === '' || this.nuevoExamenNombreExamen === '' || this.nuevoExamenValorMinimo === '' || this.nuevoExamenValorValorMaximo === '') {
+      if (this.nuevoExamenCodigo === '' || this.nuevoExamenTipoExamen === '' || this.nuevoExamenNombreExamen === '') {
         this.mensajeError = 'Debe completar todos los campos'
         this.alertaErrorModel = true
         this.dialogCrearExamen = false
@@ -213,7 +201,7 @@ export default {
       const nuevoExamen = {
         id: this.listadoExamenesLaboratorio.length + 1,
         codigo: this.nuevoExamenCodigo,
-        tipoExamen: this.listadoTiposExamenes.find(tipoExamen => tipoExamen.id === this.nuevoExamenTipoExamen).nombre,
+        tipo: this.listadoTiposExamenes.find(tipoExamen => tipoExamen.id === this.nuevoExamenTipoExamen).nombre,
         nombre: this.nuevoExamenNombreExamen,
         valorMinimo: this.nuevoExamenValorMinimo,
         valorMaximo: this.nuevoExamenValorValorMaximo
