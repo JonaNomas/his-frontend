@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <h1>Buscar Exámenes de Laboratorio Ingresados</h1>
+        <h1>Buscar Exámenes de Imagenologia Ingresados</h1>
       </v-col>
     </v-row>
 
@@ -46,7 +46,7 @@
             class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-btn x-small color="accent" button :to="`/laboratorio/buscar/${item.id}`">Ver</v-btn>
+                <v-btn x-small color="accent" button :to="`/imagenologia/buscar/${item.id}`">Ver</v-btn>
               </div>
             </template>
           </v-data-table>
@@ -78,6 +78,8 @@ export default {
         { text: 'ID', value: 'id' },
         { text: 'Rut', value: 'rut' },
         { text: 'Nombre', value: 'nombre' },
+        { text: 'Tipo', value: 'tipo' },
+        { text: 'Examen', value: 'examen' },
         { text: 'Fecha', value: 'fecha' },
         { text: 'Acciones', value: 'actions', sortable: false }
       ],
@@ -110,12 +112,12 @@ export default {
     },
     async llenarTabla () {
       this.listadoTabla = [
-        { id: 12, rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-15' },
-        { id: 22, rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-15' },
-        { id: 24, rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-15' },
-        { id: 25, rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-15' },
-        { id: 26, rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-16' },
-        { id: 42, rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-16' }
+        { id: 35, tipo: 'TAC', examen: 'Columna Cervical', rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-16' },
+        { id: 50, tipo: 'TAC', examen: 'Abdomen', rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-16' },
+        { id: 60, tipo: 'Radiografía', examen: 'Cavidades Perinasales', rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-16' },
+        { id: 90, tipo: 'Radiografía', examen: 'Torax APL.', rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-16' },
+        { id: 101, tipo: 'Radiografía', examen: 'Antebrazo F.L.', rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-17' },
+        { id: 102, tipo: 'Radiografía', examen: 'Codo F.L.', rut: this.pacienteEncontrado.run, nombre: `${this.pacienteEncontrado.nombrePrimer} ${this.pacienteEncontrado.nombreSegundo} ${this.pacienteEncontrado.apellidoPaterno} ${this.pacienteEncontrado.apellidoMaterno}`, fecha: '2023-12-17' }
       ]
     }
   }

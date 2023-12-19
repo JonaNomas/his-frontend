@@ -141,6 +141,7 @@ export default {
           nombreConjunto: 'Imagenología',
           icono: 'mdi-radiology-box',
           links: [
+            { titulo: 'Buscar Exámenes', icono: 'mdi-radiology-box', ruta: '/imagenologia/buscar' },
             { titulo: 'Cargar Examen', icono: 'mdi-radiology-box', ruta: '/imagenologia/cargarExamen' },
             { titulo: 'Mantenedor', icono: 'mdi-radiology-box', ruta: '/imagenologia/mantenedor' }
           ]
