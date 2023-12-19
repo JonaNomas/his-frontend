@@ -86,16 +86,6 @@
                   <td class="negrita">:</td>
                   <td>{{ pacienteEncontrado?.prevision ?? 'No Registra' }}</td>
                 </tr>
-                <tr>
-                  <td class="negrita">Estado Salud</td>
-                  <td class="negrita">:</td>
-                  <td>Vivo</td>
-                </tr>
-                <tr>
-                  <td class="negrita">Fecha Defunción</td>
-                  <td class="negrita">:</td>
-                  <td>Vivo</td>
-                </tr>
               </tbody>
             </template>
           </v-simple-table>

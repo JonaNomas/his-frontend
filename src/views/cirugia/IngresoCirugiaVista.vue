@@ -60,11 +60,6 @@
                   <td class="negrita">:</td>
                   <td>{{ pacienteEncontrado?.fechaNacimiento ? fechaDDMMAAAA(pacienteEncontrado.fechaNacimiento) : 'No Registra' }}</td>
                 </tr>
-                <tr>
-                  <td class="negrita">Fecha Defunción</td>
-                  <td class="negrita">:</td>
-                  <td>Vivo</td>
-                </tr>
               </tbody>
             </template>
           </v-simple-table>
