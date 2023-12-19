@@ -124,7 +124,7 @@ export default {
       btnBuscarCargando: false,
       btnIngresandoPacienteCargando: false,
       pacienteEncontrado: {},
-      seEncontroPaciente: true, /// ///////////////////
+      seEncontroPaciente: false,
 
       selectQueOcurre: [],
       selectQueOcurreModel: '',
