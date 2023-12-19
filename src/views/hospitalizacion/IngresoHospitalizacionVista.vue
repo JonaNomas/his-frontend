@@ -75,25 +75,14 @@
     <div v-if="seEncontroPaciente">
       <v-row>
         <v-col>
-          <h2>Motivo Consulta</h2>
+          <h2>Asignar Cama</h2>
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <v-autocomplete dense label="¿Que Ocurre?" v-model="selectQueOcurreModel" prepend-inner-icon="mdi-account"
-            outlined hide-details :items="selectQueOcurre"></v-autocomplete>
-        </v-col>
-        <v-col>
-          <v-autocomplete dense label="Lugar Afectado" v-model="selectLugarAfectadoModel" prepend-inner-icon="mdi-account"
-            outlined hide-details :items="selectLugarAfectado"></v-autocomplete>
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col>
-          <v-textarea dense label="Descripción" v-model="txtaDescripcionMotivoConsulta" outlined
-            hide-details></v-textarea>
+          <v-autocomplete dense label="Asiganar A Cama Disponible" v-model="selectCamaDisponible" prepend-inner-icon="mdi-account"
+            outlined hide-details :items="camasDisponibles"></v-autocomplete>
         </v-col>
       </v-row>
 
@@ -107,7 +96,7 @@
 
       <v-row>
         <v-col>
-          <v-btn dense block color="accent" @click="ingresarPacienteUrgencia" :disabled="btnIngresandoPacienteCargando" :loading="btnIngresandoPacienteCargando"><v-icon left>mdi-account-plus</v-icon>Ingresar Paciente para Atención de Urgencia</v-btn>
+          <v-btn dense block color="accent" @click="ingresarPacienteUrgencia" :disabled="btnIngresandoPacienteCargando" :loading="btnIngresandoPacienteCargando"><v-icon left>mdi-account-plus</v-icon>Ingresar Paciente</v-btn>
         </v-col>
       </v-row>
     </div>
@@ -135,14 +124,20 @@ export default {
       btnBuscarCargando: false,
       btnIngresandoPacienteCargando: false,
       pacienteEncontrado: {},
-      seEncontroPaciente: false,
+      seEncontroPaciente: true, /// ///////////////////
 
       selectQueOcurre: [],
       selectQueOcurreModel: '',
       selectLugarAfectado: [],
       selectLugarAfectadoModel: '',
-      txtaDescripcionMotivoConsulta: ''
-
+      txtaDescripcionMotivoConsulta: '',
+      // Formilario
+      selectCamaDisponible: '',
+      camasDisponibles: [
+        405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420,
+        304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320,
+        202, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220
+      ]
     }
   },
   methods: {
@@ -186,18 +181,8 @@ export default {
       ]
     },
     ingresarPacienteUrgencia () {
-      if (this.selectQueOcurreModel === '') {
-        this.mensajeError2 = 'Debe seleccionar un valor para ¿Que Ocurre?'
-        this.alertaErrorModel2 = true
-        return
-      }
-      if (this.selectLugarAfectadoModel === '') {
-        this.mensajeError2 = 'Debe seleccionar un valor para Lugar Afectado'
-        this.alertaErrorModel2 = true
-        return
-      }
-      if (this.txtaDescripcionMotivoConsulta === '') {
-        this.mensajeError2 = 'Debe ingresar una descripción para el motivo de consulta'
+      if (this.selectCamaDisponible === '') {
+        this.mensajeError2 = 'Debe seleccionar una cama para asignar al paciente.'
         this.alertaErrorModel2 = true
         return
       }
@@ -205,7 +190,7 @@ export default {
       setTimeout(() => {
         this.btnIngresandoPacienteCargando = false
         this.alertaSuccessModel = true
-        this.mensajeSuccess = 'Se ha ingresado correctamente la nueva atención de urgencia.'
+        this.mensajeSuccess = 'Se ha ingresado correctamente el paciente a la cama seleccionada.'
         this.txtaDescripcionMotivoConsulta = ''
       }, 1000)
     }
