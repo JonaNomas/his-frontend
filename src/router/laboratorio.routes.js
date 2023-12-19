@@ -38,5 +38,16 @@ export default [
       permisosRequeridos: [],
       tituloPagina: 'MedSoft - Mantenedor - Laboratorio'
     }
+  },
+  {
+    path: '/laboratorio/buscar/:id',
+    name: 'buscarIDLaboratorio',
+    component: () => import(/* webpackChunkName: "laboratorio" */ '../views/laboratorio/VerExamenLaboratorio.vue'),
+    meta: {
+      requiereAutentificacion: true,
+      permisosRequeridos: [],
+      tituloPagina: 'MedSoft - Resultados - Laboratorio'
+    }
   }
+
 ]
