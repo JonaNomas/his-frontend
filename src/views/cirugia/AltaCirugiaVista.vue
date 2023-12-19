@@ -11,7 +11,7 @@
         <v-card>
           <v-card-title>
             <v-row>
-              <v-col>Listado pacientes en atención</v-col>
+              <v-col>Listado pacientes en Cento Quirúrgico</v-col>
               <v-col><v-text-field dense v-model="filtroPacientes" append-icon="mdi-magnify" outlined
                   label="Filtrar Pacientes" hide-details></v-text-field></v-col>
             </v-row>
@@ -38,13 +38,13 @@
     <v-dialog v-model="dialogAlta" max-width="700">
       <v-card>
         <v-toolbar color="primary" dark>
-          <v-toolbar-title><v-icon left>mdi-plus</v-icon> Antecedentes Morbidos</v-toolbar-title>
+          <v-toolbar-title><v-icon left>mdi-close-box</v-icon> Cerrar Cirugía</v-toolbar-title>
         </v-toolbar>
 
         <v-card-text>
           <v-row class="mt-5">
             <v-col>
-              Alta
+              <p class="text-h3 text-center">Se cerrara de forma permanente esta Cirugía, ¿Desea continuar?</p>
             </v-col>
           </v-row>
         </v-card-text>
@@ -52,8 +52,11 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
+          <v-btn color="secondary" text @click="dialogAlta = false">
+            Cancelar
+          </v-btn>
           <v-btn color="error" text @click="dialogAlta = false">
-            Cerrar
+            Cerrar Cirugía
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -76,19 +79,14 @@ export default {
         { text: 'ID', value: 'idAtencion', align: 'center' },
         { text: 'Rut', value: 'rut', align: 'center' },
         { text: 'Nombre', value: 'nombre' },
-        { text: 'Motivo', value: 'motivo' },
+        { text: 'Tipo Cirugía', value: 'motivo' },
         { text: 'Acciones', value: 'actions', sortable: false, align: 'center' }
       ],
       listadoPacientesEnAtencion: [
-        { idAtencion: 97, rut: '12345678-5', nombre: 'Victor Alexis Guzman Contreras', motivo: 'Corte - Cabeza' },
-        { idAtencion: 86, rut: '19876543-2', nombre: 'Valentina Isabella González Ramírez', motivo: 'Dolor - Cabeza' },
-        { idAtencion: 72, rut: '17654321-0', nombre: 'Diego Andrés Martínez Castro', motivo: 'Quemadura - Torax' },
-        { idAtencion: 61, rut: '12345678-9', nombre: 'Camila Sofía Fernández Díaz', motivo: 'Corte - Cuello' },
-        { idAtencion: 58, rut: '11098765-4', nombre: 'Mateo Nicolás Pérez Herrera', motivo: 'Fractura-Extremidades   Superiores' },
-        { idAtencion: 54, rut: '13210987-6', nombre: 'Isabella Gabriela López Ramírez', motivo: 'Perdida de Conocimiento - Otro' },
-        { idAtencion: 47, rut: '18901234-5', nombre: 'Andrés Alejandro Díaz Castro', motivo: 'Hemorragia - Espalda' },
-        { idAtencion: 43, rut: '14567890-1', nombre: 'Sofía Valentina Herrera González', motivo: 'Molestia - Abdomen' },
-        { idAtencion: 39, rut: '17654321-9', nombre: 'Nicolás Diego Martínez López', motivo: 'Perdida Extremidad - Extremidades nferiores' }
+        { idAtencion: 16, rut: '19876543-2', nombre: 'Valentina Isabella González Ramírez', motivo: 'CX FX Cadera' },
+        { idAtencion: 18, rut: '17654321-0', nombre: 'Diego Andrés Martínez Castro', motivo: 'Aseo Quirurgico' },
+        { idAtencion: 24, rut: '19033183-0', nombre: 'Victor Alexis Guzman Contreras', motivo: 'Apendicitis Aguda' },
+        { idAtencion: 32, rut: '12345678-9', nombre: 'Camila Sofía Fernández Díaz', motivo: 'Rotura Ligamento Cruzado' }
       ]
     }
   },
