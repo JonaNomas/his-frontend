@@ -29,7 +29,7 @@
         <v-list-item
           v-for="(item, index) in items"
           :key="index"
-          :to="{ name: item.ruta }" exact
+          :to="{ path: item.ruta }" exact
         >
           <v-list-item-title><v-icon left>{{ item.icono }}</v-icon>{{ item.titulo }}</v-list-item-title>
         </v-list-item>
@@ -48,7 +48,9 @@ export default {
   data () {
     return {
       items: [
-        { titulo: 'Inicio', icono: 'mdi-home', ruta: 'home' }
+        { titulo: 'Inicio', icono: 'mdi-home', ruta: '/' },
+        { titulo: 'Cambiar Contraseña', icono: 'mdi-form-textbox-password', ruta: '/usuario/cambiar/contrasena' },
+        { titulo: 'Agregar Funcionario', icono: 'mdi-account-plus', ruta: '/usuario/funcionarios/nuevo' }
       ]
     }
   },

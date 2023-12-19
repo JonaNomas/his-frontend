@@ -11,6 +11,7 @@ import atencionesMedicasRoutes from './atencionesMedicas.routes.js'
 import imagenologiaRoutes from './imagenologia.routes.js'
 import laboratorioRoutes from './laboratorio.routes.js'
 import bancoSangreRoutes from './bancoSangre.routes.js'
+import usuarioRoutes from './usuario.routes.js'
 
 Vue.use(VueRouter)
 
@@ -55,6 +56,7 @@ const routes = [
       tituloPagina: 'MedSoft - Listado Pacientes Citados'
     }
   },
+  ...usuarioRoutes,
   ...pacienteRoutes,
   ...urgenciasRoutes,
   ...hospitalizacionRoutes,
