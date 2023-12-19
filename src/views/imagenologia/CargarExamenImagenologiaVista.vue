@@ -48,7 +48,7 @@
       <v-row>
         <v-col>
           <v-autocomplete dense label="Tipo Examen" v-model="selectTipoDeExamen" prepend-inner-icon="mdi-account" outlined
-            hide-details :items="tiposDeExamen" item-text="nombre" item-value="id" @change="cambiarExamenesDisponibles"></v-autocomplete>
+            hide-details :items="tiposDeExamen" item-text="nombre" item-value="nombre" @change="cambiarExamenesDisponibles"></v-autocomplete>
         </v-col>
         <v-col>
           <v-autocomplete dense label="Tipo Examen" v-model="selectExamenDisponible" prepend-inner-icon="mdi-account"
@@ -95,6 +95,7 @@
 <script>
 import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
 import TablaDatosSimplePaciente from '@/components/TablaDatosSimplePaciente.vue'
+import obtenerListadoExamenes from '@/services/imagenologia/obtenerListadoExamenes'
 
 export default {
   name: 'CargarExamenImagenologiaVista',
@@ -121,15 +122,15 @@ export default {
       tiposDeExamen: [
         {
           id: 1,
-          nombre: 'Rayos X'
+          nombre: 'Radiografía'
         },
         {
           id: 2,
-          nombre: 'Tomografía Axial Computarizada'
+          nombre: 'TAC'
         },
         {
           id: 3,
-          nombre: 'Ecografía'
+          nombre: 'Ecografías'
         }
       ],
       examenesDisponibles: [],
@@ -182,25 +183,7 @@ export default {
       }, 1000)
     },
     cambiarExamenesDisponibles () {
-      if (this.selectTipoDeExamen === 1) {
-        this.examenesDisponibles = [
-          { id: 1, nombre: 'Rx Torax' },
-          { id: 2, nombre: 'Rx Torax AP' },
-          { id: 3, nombre: 'Rx Columna Total' }
-        ]
-      } else if (this.selectTipoDeExamen === 2) {
-        this.examenesDisponibles = [
-          { id: 1, nombre: 'TAC Cabeza' },
-          { id: 2, nombre: 'TAC Cabeza con Contraste' },
-          { id: 3, nombre: 'TAC Cabeza con Contraste y Sinus' }
-        ]
-      } else if (this.selectTipoDeExamen === 3) {
-        this.examenesDisponibles = [
-          { id: 1, nombre: 'Ecografía Abdominal' },
-          { id: 2, nombre: 'Ecografía Abdominal con Contraste' },
-          { id: 3, nombre: 'Ecografía Abdominal con Contraste y Sinus' }
-        ]
-      }
+      this.examenesDisponibles = obtenerListadoExamenes().filter((examen) => examen.tipo === this.selectTipoDeExamen)
     }
   },
   components: {

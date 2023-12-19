@@ -199,7 +199,7 @@ export default {
       // TODO: Peticion a API para crear nuevo examen
       // INFO: Cuando se cree el nuevo examen debe devolver el objeto creado
       const nuevoExamen = {
-        id: this.listadoExamenesLaboratorio.length + 1,
+        id: this.listadoExamenesLaboratorio.length + 18,
         codigo: this.nuevoExamenCodigo,
         tipo: this.listadoTiposExamenes.find(tipoExamen => tipoExamen.id === this.nuevoExamenTipoExamen).nombre,
         nombre: this.nuevoExamenNombreExamen,
