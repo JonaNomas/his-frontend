@@ -310,6 +310,12 @@
                       </v-dialog>
                     </v-col>
                   </v-row>
+                  <v-row>
+                    <v-col>
+                      <v-text-field hide-details label="Cantidad Bloques" outlined dense type="number"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
 
                   <v-row>
                     <v-col>
