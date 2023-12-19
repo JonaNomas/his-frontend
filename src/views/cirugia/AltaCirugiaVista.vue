@@ -11,7 +11,7 @@
         <v-card>
           <v-card-title>
             <v-row>
-              <v-col>Listado pacientes en Cento Quirúrgico</v-col>
+              <v-col>Listado pacientes en Centro Quirúrgico</v-col>
               <v-col><v-text-field dense v-model="filtroPacientes" append-icon="mdi-magnify" outlined
                   label="Filtrar Pacientes" hide-details></v-text-field></v-col>
             </v-row>

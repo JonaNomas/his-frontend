@@ -84,15 +84,15 @@ export default {
         { text: 'Acciones', value: 'actions', sortable: false, align: 'center' }
       ],
       listadoPacientesEnAtencion: [
-        { idAtencion: 12, rut: '17654321-0', nombre: 'Diego Andrés Martínez Castro', diagnostico: 'Quemadura - Torax', cama: '301' },
-        { idAtencion: 15, rut: '12345678-5', nombre: 'Victor Alexis Guzman Contreras', diagnostico: 'Corte - Cabeza', cama: '302' },
-        { idAtencion: 20, rut: '19876543-2', nombre: 'Valentina Isabella González Ramírez', diagnostico: 'Dolor - Cabeza', cama: '303' },
-        { idAtencion: 22, rut: '11098765-4', nombre: 'Mateo Nicolás Pérez Herrera', diagnostico: 'Fractura-Extremidades   Superiores', cama: '401' },
-        { idAtencion: 23, rut: '12345678-9', nombre: 'Camila Sofía Fernández Díaz', diagnostico: 'Corte - Cuello', cama: '402' },
-        { idAtencion: 32, rut: '13210987-6', nombre: 'Isabella Gabriela López Ramírez', diagnostico: 'Perdida de Conocimiento - Otro', cama: '403' },
-        { idAtencion: 33, rut: '14567890-1', nombre: 'Sofía Valentina Herrera González', diagnostico: 'Molestia - Abdomen', cama: '404' },
-        { idAtencion: 34, rut: '17654321-9', nombre: 'Nicolás Diego Martínez López', diagnostico: 'Perdida Extremidad - Extremidades nferiores', cama: '201' },
-        { idAtencion: 35, rut: '18901234-5', nombre: 'Andrés Alejandro Díaz Castro', diagnostico: 'Hemorragia - Espalda', cama: '203' }
+        { idAtencion: 12, rut: '17654321-0', nombre: 'Diego Andrés Martínez Castro', diagnostico: 'Infarto Agudo de Miocardio (IAM)', cama: '301' },
+        { idAtencion: 15, rut: '12345678-5', nombre: 'Victor Alexis Guzman Contreras', diagnostico: 'Neumonía', cama: '302' },
+        { idAtencion: 20, rut: '19876543-2', nombre: 'Valentina Isabella González Ramírez', diagnostico: 'Insuficiencia Cardíaca Congestiva', cama: '303' },
+        { idAtencion: 22, rut: '11098765-4', nombre: 'Mateo Nicolás Pérez Herrera', diagnostico: 'Fractura de Cadera', cama: '401' },
+        { idAtencion: 23, rut: '12345678-9', nombre: 'Camila Sofía Fernández Díaz', diagnostico: 'Diabetes Descompensada', cama: '402' },
+        { idAtencion: 32, rut: '13210987-6', nombre: 'Isabella Gabriela López Ramírez', diagnostico: 'Enfermedad Pulmonar Obstructiva Crónica (EPOC)', cama: '403' },
+        { idAtencion: 33, rut: '14567890-1', nombre: 'Sofía Valentina Herrera González', diagnostico: 'Insuficiencia Renal Aguda', cama: '404' },
+        { idAtencion: 34, rut: '17654321-9', nombre: 'Nicolás Diego Martínez López', diagnostico: 'Sepsis ', cama: '201' },
+        { idAtencion: 35, rut: '18901234-5', nombre: 'Andrés Alejandro Díaz Castro', diagnostico: 'Cirugía de Apendicitis Aguda', cama: '203' }
       ]
     }
   },
