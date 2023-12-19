@@ -97,9 +97,17 @@
         </v-col>
       </v-row>
 
+      <v-alert text v-model="alertaErrorModel2" outlined dismissible type="error" class="mt-5">
+        {{ mensajeError2 }}
+      </v-alert>
+
+      <v-alert text v-model="alertaSuccessModel" outlined dismissible type="success" class="mt-5">
+        {{ mensajeSuccess }}
+      </v-alert>
+
       <v-row>
         <v-col>
-          <v-btn dense block color="accent" @click="ingresarPacienteUrgencia" :loading="btnIngresandoPacienteCargando"><v-icon left>mdi-account-plus</v-icon>Ingresar Paciente para Atención de Urgencia</v-btn>
+          <v-btn dense block color="accent" @click="ingresarPacienteUrgencia" :disabled="btnIngresandoPacienteCargando" :loading="btnIngresandoPacienteCargando"><v-icon left>mdi-account-plus</v-icon>Ingresar Paciente para Atención de Urgencia</v-btn>
         </v-col>
       </v-row>
     </div>
@@ -114,6 +122,12 @@ export default {
   name: 'IngresoAtencionUrgenciaVista',
   data () {
     return {
+      alertaErrorModel2: false,
+      mensajeError2: '',
+
+      alertaSuccessModel: false,
+      mensajeSuccess: '',
+
       buscarRun: '',
       alertaErrorModel: false,
       mensajeError: '',
@@ -172,8 +186,28 @@ export default {
       ]
     },
     ingresarPacienteUrgencia () {
+      if (this.selectQueOcurreModel === '') {
+        this.mensajeError2 = 'Debe seleccionar un valor para ¿Que Ocurre?'
+        this.alertaErrorModel2 = true
+        return
+      }
+      if (this.selectLugarAfectadoModel === '') {
+        this.mensajeError2 = 'Debe seleccionar un valor para Lugar Afectado'
+        this.alertaErrorModel2 = true
+        return
+      }
+      if (this.txtaDescripcionMotivoConsulta === '') {
+        this.mensajeError2 = 'Debe ingresar una descripción para el motivo de consulta'
+        this.alertaErrorModel2 = true
+        return
+      }
       this.btnIngresandoPacienteCargando = true
-      this.btnIngresandoPacienteCargando = false
+      setTimeout(() => {
+        this.btnIngresandoPacienteCargando = false
+        this.alertaSuccessModel = true
+        this.mensajeSuccess = 'Se ha ingresado correctamente la nueva atención de urgencia.'
+        this.txtaDescripcionMotivoConsulta = ''
+      }, 1000)
     }
   },
   created () {
