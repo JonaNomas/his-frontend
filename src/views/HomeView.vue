@@ -22,7 +22,7 @@
         <v-card color="secondary" dark>
           <v-card-text color="white">
             <div class="contenedor-card">
-              <div class="titulo-card-inicio d-flex align-center justify-center">Pacientes en Hospitalizados</div>
+              <div class="titulo-card-inicio d-flex align-center justify-center">Pacientes Hospitalizados</div>
               <div class="numero-card-inicio d-flex align-center justify-center"><v-icon
                   x-large left>mdi-bed</v-icon>12</div>
             </div>
