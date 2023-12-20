@@ -4,7 +4,15 @@
       <v-col>
         <h1>Viendo Resultados Examen Laboratorio</h1>
       </v-col>
+
+      <v-col class="d-flex justify-end">
+        <v-btn color="primary" @click="imprimir">Imprimir</v-btn>
+      </v-col>
     </v-row>
+
+      <div ref="imp1">
+        <DocumentoImpresionLaboratorio />
+      </div>
 
     <div v-if="mostrarResultado">
       <v-row>
@@ -39,11 +47,13 @@
 <script>
 import TablaDatosSimplePaciente from '@/components/TablaDatosSimplePaciente.vue'
 import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
+import DocumentoImpresionLaboratorio from '@/components/DocumentoImpresionLaboratorio.vue'
 
 export default {
   name: 'VerExamenLaboratorio',
   data () {
     return {
+      imprimirCampo: true,
       // Resultado
       mostrarResultado: true,
       pacienteEncontrado: {},
@@ -65,6 +75,17 @@ export default {
     }
   },
   methods: {
+    imprimir () {
+      this.imprimirCampo = true
+      const printContents = this.$refs.imp1.innerHTML
+      const w = window.open()
+      w.document.write(printContents)
+      w.document.close() // necesario para IE >= 10
+      w.focus() // necesario para IE >= 10
+      w.print()
+      w.close()
+      this.imprimirCampo = false
+    },
     buscarPacientePorRut () {
       this.btnBuscarCargando = true
       this.alertaErrorModel = false
@@ -187,6 +208,6 @@ export default {
   mounted () {
     this.buscarPacientePorRut()
   },
-  components: { TablaDatosSimplePaciente }
+  components: { TablaDatosSimplePaciente, DocumentoImpresionLaboratorio }
 }
 </script>

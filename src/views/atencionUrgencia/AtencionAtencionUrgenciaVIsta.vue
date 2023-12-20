@@ -58,9 +58,18 @@
                   </v-row>
                 </v-card-text>
                 <v-card-actions>
-                  <v-btn color="accent" :to="`/urgencias/atencion/${item.idAtencionUrgencia}`" text block>
-                    Ver Atención
-                  </v-btn>
+                  <v-row>
+                    <v-col>
+                      <v-btn color="accent" :to="`/urgencias/atencion/${item.idAtencionUrgencia}`" text block>
+                        Ver Atención
+                      </v-btn>
+                    </v-col>
+                    <v-col>
+                      <v-btn color="error" :to="`/urgencias/atencion/${item.idAtencionUrgencia}`" text block>
+                        Quitar
+                      </v-btn>
+                    </v-col>
+                  </v-row>
                 </v-card-actions>
               </div>
               <div v-else>

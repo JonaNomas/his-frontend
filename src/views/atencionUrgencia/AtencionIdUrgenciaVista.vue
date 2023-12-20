@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="imp1">
     <v-row>
       <v-col cols="10" class="d-flex flex-inline align-center">
         <h1>Atención</h1>
@@ -20,7 +20,52 @@
 
       <v-row>
         <v-col>
-          --
+          <v-simple-table dense>
+            <template v-slot:default>
+              <tbody>
+                <tr>
+                  <td class="negrita">ID Atención</td>
+                  <td class="negrita">:</td>
+                  <td>{{ $route.params.id }}</td>
+                </tr>
+                <tr>
+                  <td class="negrita">Hora Inicio Atención</td>
+                  <td class="negrita">:</td>
+                  <td>{{ datosPacienteParaTomarHora?.idPaciente ?? '' }}</td>
+                </tr>
+                <tr>
+                  <td class="negrita">Hora Termino Atención</td>
+                  <td class="negrita">:</td>
+                  <td>{{ datosPacienteParaTomarHora?.idPaciente ?? '' }}</td>
+                </tr>
+                <tr>
+                  <td class="negrita">Categorización Triage</td>
+                  <td class="negrita">:</td>
+                  <td><TriageCategorizacionEtiqueta categoria="1" /></td>
+                </tr>
+                <tr>
+                  <td class="negrita">Estado Atención</td>
+                  <td class="negrita">:</td>
+                  <td>En Box</td>
+                </tr>
+                <tr>
+                  <td class="negrita">¿Que Ocurre?</td>
+                  <td class="negrita">:</td>
+                  <td>Corte</td>
+                </tr>
+                <tr>
+                  <td class="negrita">Lugar Afectado</td>
+                  <td class="negrita">:</td>
+                  <td>Cabeza</td>
+                </tr>
+                <tr>
+                  <td class="negrita">Descripcion Consulta</td>
+                  <td class="negrita">:</td>
+                  <td>Refiere golpe en cabeza en domicilio lo que produjo un corte sangrante.</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
         </v-col>
       </v-row>
     </div>
@@ -183,7 +228,8 @@
           <h2>Riesgos</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogRiesgos = true">Ingresar / Actualizar</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogRiesgos = true">Ingresar /
+            Actualizar</v-btn>
         </v-col>
       </v-row>
 
@@ -243,7 +289,8 @@
           <h2>Antecedentes Morbidos</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogAntecedentesMorbidos = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogAntecedentesMorbidos = true">Registrar
+            Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -253,7 +300,8 @@
             :headers="headersTablaAntedecendesMorbidos" :items="atencion.antecedentesMorbidos" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarAntecedentesMorbidos(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario"
+                  @click="eliminarAntecedentesMorbidos(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -422,7 +470,8 @@
             </v-row>
             <v-row>
               <v-col>
-                <v-btn dense block color="success" @click="insertarNuevoRegistroEvaluacion">Agregar nueva evaluación medica</v-btn>
+                <v-btn dense block color="success" @click="insertarNuevoRegistroEvaluacion">Agregar nueva evaluación
+                  medica</v-btn>
               </v-col>
             </v-row>
           </v-card-text>
@@ -462,7 +511,8 @@
           <h2>Solicitud de exámenes de laboratorio</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogExamenesLaboratorio = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogExamenesLaboratorio = true">Registrar
+            Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -472,7 +522,8 @@
             :headers="headersTablaExamenesLaboratorio" :items="atencion.examenesLaboratorio" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarExamenesLaboratorio(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario"
+                  @click="eliminarExamenesLaboratorio(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -495,7 +546,8 @@
             </v-row>
             <v-row>
               <v-col>
-                <v-btn dense block color="success" @click="insertarNuevoRegistroExamenLaboratorio">Agregar nuevo examen solicitado</v-btn>
+                <v-btn dense block color="success" @click="insertarNuevoRegistroExamenLaboratorio">Agregar nuevo examen
+                  solicitado</v-btn>
               </v-col>
             </v-row>
           </v-card-text>
@@ -535,7 +587,8 @@
           <h2>Solicitud a Imagenologia</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogExamenesImagenologia = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogExamenesImagenologia = true">Registrar
+            Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -545,7 +598,8 @@
             :headers="headersTablaExamenesImagenologia" :items="atencion.examenesImagenologia" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarExamenesImagenologia(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario"
+                  @click="eliminarExamenesImagenologia(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -568,7 +622,8 @@
             </v-row>
             <v-row>
               <v-col>
-                <v-btn dense block color="success" @click="insertarNuevoRegistroExamenImagenologia">Agregar nuevo examen solicitado</v-btn>
+                <v-btn dense block color="success" @click="insertarNuevoRegistroExamenImagenologia">Agregar nuevo examen
+                  solicitado</v-btn>
               </v-col>
             </v-row>
           </v-card-text>
@@ -608,7 +663,8 @@
           <h2>Indicaciones de Medicamentos</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogIndicacionesMedicamentos = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogIndicacionesMedicamentos = true">Registrar
+            Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -619,7 +675,8 @@
             class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarIndicacionesMedicamentos(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario"
+                  @click="eliminarIndicacionesMedicamentos(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -635,28 +692,28 @@
           <v-card-text>
             <v-row class="mt-5">
               <v-col>
-                <v-autocomplete dense label="Medicamento" v-model="nuevoMedicamento"
-                  prepend-inner-icon="mdi-view-list" outlined hide-details :items="listadoMedicamentos"
-                  item-value="nombre" item-text="nombre"></v-autocomplete>
+                <v-autocomplete dense label="Medicamento" v-model="nuevoMedicamento" prepend-inner-icon="mdi-view-list"
+                  outlined hide-details :items="listadoMedicamentos" item-value="nombre"
+                  item-text="nombre"></v-autocomplete>
               </v-col>
               <v-col>
-                <v-text-field type="number" dense label="Dosis" v-model="nuevoDosis"
-                  prepend-inner-icon="mdi-view-list" outlined hide-details min="0"></v-text-field>
+                <v-text-field type="number" dense label="Dosis" v-model="nuevoDosis" prepend-inner-icon="mdi-view-list"
+                  outlined hide-details min="0"></v-text-field>
               </v-col>
               <v-col>
-                <v-autocomplete dense label="Medicamento" v-model="nuevoConcentracion"
-                  prepend-inner-icon="mdi-view-list" outlined hide-details :items="listadoConcentracion"
-                  item-value="nombre" item-text="nombre"></v-autocomplete>
+                <v-autocomplete dense label="Medicamento" v-model="nuevoConcentracion" prepend-inner-icon="mdi-view-list"
+                  outlined hide-details :items="listadoConcentracion" item-value="nombre"
+                  item-text="nombre"></v-autocomplete>
               </v-col>
               <v-col>
-                <v-autocomplete dense label="Vía" v-model="nuevoVia"
-                  prepend-inner-icon="mdi-view-list" outlined hide-details :items="listadoVias"
-                  item-value="nombre" item-text="nombre"></v-autocomplete>
+                <v-autocomplete dense label="Vía" v-model="nuevoVia" prepend-inner-icon="mdi-view-list" outlined
+                  hide-details :items="listadoVias" item-value="nombre" item-text="nombre"></v-autocomplete>
               </v-col>
             </v-row>
             <v-row>
               <v-col>
-                <v-btn dense block color="success" @click="insertarNuevoRegistroMedicamentos">Agregar nuevo medicamento a administrar</v-btn>
+                <v-btn dense block color="success" @click="insertarNuevoRegistroMedicamentos">Agregar nuevo medicamento a
+                  administrar</v-btn>
               </v-col>
             </v-row>
           </v-card-text>
@@ -695,7 +752,8 @@
           <h2>Indicaciones Generales</h2>
         </v-col>
         <v-col class="d-flex justify-end">
-          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogIndicacionesGenerales = true">Registrar Nuevo</v-btn>
+          <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogIndicacionesGenerales = true">Registrar
+            Nuevo</v-btn>
         </v-col>
       </v-row>
 
@@ -705,7 +763,8 @@
             :headers="headersTablaIndicacionesGenerales" :items="atencion.indicacionesGenerales" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarIndicacionesGenerales(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario"
+                  @click="eliminarIndicacionesGenerales(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -727,7 +786,8 @@
             </v-row>
             <v-row>
               <v-col>
-                <v-btn dense block color="success" @click="insertarNuevoRegistroIndicacionGeneral">Agregar nueva indicacion a seguir</v-btn>
+                <v-btn dense block color="success" @click="insertarNuevoRegistroIndicacionGeneral">Agregar nueva
+                  indicacion a seguir</v-btn>
               </v-col>
             </v-row>
           </v-card-text>
@@ -777,7 +837,8 @@
             :items="atencion.diagnostico" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
-                <v-icon color="error" :disabled="!esMedicoElUsuario" @click="eliminarDiagnostico(item)">mdi-delete</v-icon>
+                <v-icon color="error" :disabled="!esMedicoElUsuario"
+                  @click="eliminarDiagnostico(item)">mdi-delete</v-icon>
               </div>
             </template>
           </v-data-table>
@@ -800,7 +861,8 @@
             </v-row>
             <v-row>
               <v-col>
-                <v-btn dense block color="success" @click="insertarNuevoRegistroDiagnostico">Agregar nuevo diagnostico</v-btn>
+                <v-btn dense block color="success" @click="insertarNuevoRegistroDiagnostico">Agregar nuevo
+                  diagnostico</v-btn>
               </v-col>
             </v-row>
           </v-card-text>
@@ -872,7 +934,8 @@
             </v-row>
             <v-row>
               <v-col>
-                <v-btn dense block color="success" @click="insertarNuevoRegistroEnfermeria">Agregar nuevo registro de enfermeria</v-btn>
+                <v-btn dense block color="success" @click="insertarNuevoRegistroEnfermeria">Agregar nuevo registro de
+                  enfermeria</v-btn>
               </v-col>
             </v-row>
           </v-card-text>
@@ -910,6 +973,7 @@
 import TablaDatosSimplePaciente from '@/components/TablaDatosSimplePaciente.vue'
 import RiesgosUrgencia from '@/components/urgencias/RiesgosUrgencia.vue'
 import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
+import TriageCategorizacionEtiqueta from '@/components/urgencias/TriageCategorizacionEtiqueta.vue'
 export default {
   name: 'AtencionIdUrgenciaVista',
   data () {
@@ -2052,7 +2116,14 @@ export default {
   },
   components: {
     TablaDatosSimplePaciente,
-    RiesgosUrgencia
+    RiesgosUrgencia,
+    TriageCategorizacionEtiqueta
   }
 }
 </script>
+
+<style scoped>
+.negrita {
+  font-weight: bold;
+}
+</style>

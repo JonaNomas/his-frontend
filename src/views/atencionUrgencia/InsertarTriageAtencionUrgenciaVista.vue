@@ -25,12 +25,12 @@
               <tr>
                 <td class="negrita">Run</td>
                 <td class="negrita">:</td>
-                <td>12.345.678-9</td>
+                <td>19033183-0</td>
               </tr>
               <tr>
                 <td class="negrita">Nombre Completo</td>
                 <td class="negrita">:</td>
-                <td>Maximiliano Maximiliano Sepulveda Sepulveda</td>
+                <td>Victor Alexis Guzman Contreras</td>
               </tr>
               <tr>
                 <td class="negrita">Previsión</td>
@@ -40,17 +40,17 @@
               <tr>
                 <td class="negrita">Sexo</td>
                 <td class="negrita">:</td>
-                <td>Masculino</td>
+                <td>M</td>
               </tr>
               <tr>
                 <td class="negrita">Fecha de Nacimiento</td>
                 <td class="negrita">:</td>
-                <td>12/12/1990</td>
+                <td>06-02-1995</td>
               </tr>
               <tr>
                 <td class="negrita">¿Que Ocurre?</td>
                 <td class="negrita">:</td>
-                <td>Dolor</td>
+                <td>Corte</td>
               </tr>
               <tr>
                 <td class="negrita">Lugar Afectado</td>
@@ -60,7 +60,7 @@
               <tr>
                 <td class="negrita">Descripción Consulta</td>
                 <td class="negrita">:</td>
-                <td>Dolor en la cabeza que se intensifica durante el dia, presenta vomitos recurrentes.</td>
+                <td>Refiere golpe en cabeza en domicilio lo que produjo un corte sangrante.</td>
               </tr>
             </tbody>
           </template>
