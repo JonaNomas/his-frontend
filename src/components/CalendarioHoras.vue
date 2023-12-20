@@ -9,8 +9,7 @@
               <h1 class="mb-3">Agendamiento Horas Medicas</h1>
             </v-col>
             <v-col cols="12" sm="12" md="4">
-              <v-btn block color="secondary" @click="crearNuevaHoraDialog = true"><v-icon left>mdi-plus</v-icon>Agregar
-                Nueva Hora Disponible</v-btn>
+              <v-btn block color="secondary" @click="crearNuevaHoraDialog = true"><v-icon left>mdi-plus</v-icon>Nuevo Bloque Hora</v-btn>
             </v-col>
             <v-col cols="12" sm="12" md="4">
               <v-btn :loading="seEstanCargandoLasHoras" :disabled="seEstanCargandoLasHoras" block color="secondary"
