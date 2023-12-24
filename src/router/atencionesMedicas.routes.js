@@ -18,15 +18,5 @@ export default [
       permisosRequeridos: [],
       tituloPagina: 'MedSoft - Agendamiento - Atenciones Medicas'
     }
-  },
-  {
-    path: '/atencionesMedicas/citados',
-    name: 'citadosAtencionesMedicas',
-    component: () => import(/* webpackChunkName: "policlinico" */ '../views/atencionesMedicas/ListadoCitadosAtencionMedicaVista.vue'),
-    meta: {
-      requiereAutentificacion: true,
-      permisosRequeridos: [],
-      tituloPagina: 'MedSoft - Citados - Atenciones Medicas'
-    }
   }
 ]

@@ -31,7 +31,7 @@ export default [
   },
   {
     path: '/laboratorio/mantenedor',
-    name: 'buscarLaboratorio',
+    name: 'mantenedorLaboratorio',
     component: () => import(/* webpackChunkName: "laboratorio" */ '../views/laboratorio/MantenedorExamenesLaboratorioVista.vue'),
     meta: {
       requiereAutentificacion: true,
