@@ -94,6 +94,7 @@ export default {
           nombreConjunto: 'Historia Clinica',
           icono: 'mdi-account-group',
           links: [
+            { titulo: 'Actualizar Paciente', icono: 'mdi-account-edit-outline', ruta: '/paciente/actualizar' },
             { titulo: 'Buscar Paciente', icono: 'mdi-text-box-search-outline', ruta: '/paciente/buscar' },
             { titulo: 'Nuevo Paciente', icono: 'mdi-account-plus-outline', ruta: '/paciente/nuevo' }
           ]
