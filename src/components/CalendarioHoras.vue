@@ -20,8 +20,8 @@
           <!--  FILTRO  -->
           <v-row>
             <v-col>
-              <v-autocomplete :items="especialidades" v-model="modelEspecialidad" label="Unidad" item-text="nombre"
-                item-value="id" outlined dense hide-details @change="traerEspecialistas($event.value)">
+              <v-autocomplete :items="listadoUnidadesDeAtencion" v-model="modelUnidadesDeAtencion" label="Unidad" item-text="nombre"
+                item-value="id" outlined dense hide-details>
               </v-autocomplete>
             </v-col>
             <v-col>
@@ -235,9 +235,7 @@
                 </v-row>
 
                 <v-row>
-                  <v-col>
-                    <v-btn block small color="secondary"><v-icon left>mdi-email</v-icon>Comprobante por Email</v-btn>
-                  </v-col>
+                  <v-spacer></v-spacer>
                   <v-col>
                     <v-btn block small color="secondary"><v-icon left>mdi-printer</v-icon>Imprimir Comprobante</v-btn>
                   </v-col>
@@ -416,7 +414,9 @@ export default {
       modelEspecialidad: 0,
       modelRutPacienteBuscar: '',
       modelMesParaBusqueda: new Date().getMonth() + 1,
-      modelAnoParaBusqueda: new Date().getFullYear()
+      modelAnoParaBusqueda: new Date().getFullYear(),
+      listadoUnidadesDeAtencion: [],
+      modelUnidadesDeAtencion: null
     }
   },
   mounted () {
@@ -463,8 +463,6 @@ export default {
 
       const agendaEncontrada = await obtenerAgenda(idEspecialidad, idProfesional, rutPaciente, ano, mes)
 
-      console.table(agendaEncontrada)
-
       agendaEncontrada.forEach(element => {
         element.color = element.name === 'Disponible' ? 'success' : 'error'
       })
@@ -498,8 +496,20 @@ export default {
       this.datosPacienteParaTomarHora = datosObtenidosDeUsuario
       this.seEstaBuscandoPaciente = false
     },
+    cargarUnidadesDeAtencion () {
+      this.listadoUnidadesDeAtencion = [
+        { id: 1, nombre: 'Centro Quirúrgico' },
+        { id: 2, nombre: 'Hospitalización' },
+        { id: 3, nombre: 'Imagenología' },
+        { id: 4, nombre: 'Laboratorio' },
+        { id: 5, nombre: 'Policlinico' }
+      ]
+    },
     fechaDDMMAAAA,
     obtenerHoraDesdeFecha
+  },
+  created () {
+    this.cargarUnidadesDeAtencion()
   }
 }
 </script>
