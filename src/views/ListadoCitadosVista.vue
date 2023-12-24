@@ -8,7 +8,7 @@
     <v-row>
       <v-col>
         <v-autocomplete :disabled="estaCargandoInformacion" dense label="Tipo Atencion" v-model="selectTipoAtencion"
-          prepend-inner-icon="mdi-hospital-building" outlined hide-details :items="listadoTipoAtencion" item-text="nombre"
+          prepend-inner-icon="mdi-hospital-building" outlined hide-details :items="listadoUnidadesDeAtencion" item-text="nombre"
           item-value="nombre"></v-autocomplete>
       </v-col>
       <v-col>
@@ -68,13 +68,12 @@ export default {
       modalSeleccionarFecha: false,
       selectTipoAtencion: '',
       listadoCitados: [],
-      listadoTipoAtencion: [
+      listadoUnidadesDeAtencion: [
         { id: 1, nombre: 'Hospitalización' },
         { id: 2, nombre: 'Centro Quirúrgico' },
         { id: 3, nombre: 'Policlínico' },
         { id: 4, nombre: 'Imagenología' },
-        { id: 5, nombre: 'Laboratorio' },
-        { id: 6, nombre: 'Banco de Sangre' }
+        { id: 5, nombre: 'Laboratorio' }
       ],
       headersTablaCitados: [
         { text: 'RUN', value: 'run' },
@@ -102,8 +101,6 @@ export default {
         { run: '19876543-2', nombre: 'Valentina Isabella González Ramírez', motivo: 'Policlínico', fecha: this.fechaSeleccionada },
         { run: '17654321-0', nombre: 'Diego Andrés Martínez Castro', motivo: 'Policlínico', fecha: this.fechaSeleccionada },
         { run: '12345678-9', nombre: 'Camila Sofía Fernández Díaz', motivo: 'Policlínico', fecha: this.fechaSeleccionada },
-        { run: '11098765-4', nombre: 'Mateo Nicolás Pérez Herrera', motivo: 'Banco de Sangre', fecha: this.fechaSeleccionada },
-        { run: '13210987-6', nombre: 'Isabella Gabriela López Ramírez', motivo: 'Banco de Sangre', fecha: this.fechaSeleccionada },
         { run: '18901234-5', nombre: 'Andrés Alejandro Díaz Castro', motivo: 'Laboratorio', fecha: this.fechaSeleccionada },
         { run: '14567890-1', nombre: 'Sofía Valentina Herrera González', motivo: 'Laboratorio', fecha: this.fechaSeleccionada },
         { run: '17654321-9', nombre: 'Nicolás Diego Martínez López', motivo: 'Laboratorio', fecha: this.fechaSeleccionada },
