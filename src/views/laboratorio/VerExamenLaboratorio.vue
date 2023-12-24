@@ -47,7 +47,7 @@
 <script>
 import TablaDatosSimplePaciente from '@/components/TablaDatosSimplePaciente.vue'
 import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
-import DocumentoImpresionLaboratorio from '@/components/DocumentoImpresionLaboratorio.vue'
+import DocumentoImpresionLaboratorio from '@/components/impresiones/DocumentoImpresionLaboratorio.vue'
 
 export default {
   name: 'VerExamenLaboratorio',

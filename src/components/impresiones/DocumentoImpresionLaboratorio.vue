@@ -3,7 +3,7 @@
 
     <table style="width: 100%;">
       <tr>
-        <td style="width: 20%;" :style="headerTableDocumento"><img :style="logoApp" src="../assets/medsoft2_x128.png" alt="Logo"></td>
+        <td style="width: 20%;" :style="headerTableDocumento"><img :style="logoApp" src="@/assets/medsoft2_x128.png" alt="Logo"></td>
         <td style="width: 80%;" :style="headerTableDocumento"><h1 :style="estiloTitulo">Resultados Examen Laboratorio</h1></td>
       </tr>
     </table>
