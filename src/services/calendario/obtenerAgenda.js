@@ -12,14 +12,15 @@ import api from '@/services/api'
  * @throws {Error} - Se arroja un error si ocurre algún problema al obtener la agenda desde la API.
  *
  */
-export default async function (idEspecialidad, idProfesional, rutPaciente, ano, mes) {
+export default async function (idEspecialidad, idProfesional, rutPaciente, ano, mes, unidad) {
   try {
     const respuestaAPI = await api().post('/api/Agenda/obtenerAgenda', {
       idEspecialidad: idEspecialidad,
       idProfesional: idProfesional,
       rutPaciente: rutPaciente,
       ano: ano,
-      mes: mes
+      mes: mes,
+      unidad: unidad
     })
     return respuestaAPI.data
   } catch (error) {

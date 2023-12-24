@@ -182,11 +182,11 @@
                       prepend-inner-icon="mdi-account-box" outlined hide-details></v-text-field>
                   </v-col>
                   <v-col cols="2">
-                    <v-btn :loading="seEstaBuscandoPaciente" :disabled="seEstaBuscandoPaciente" dense color="success"
+                    <v-btn :loading="seEstaBuscandoPaciente" :disabled="seEstaBuscandoPaciente || estaElPacienteAsignadoAlBlocke" dense color="success"
                       @click="buscarPacienteParaTomarHoraPorRut"><v-icon>mdi-magnify</v-icon></v-btn>
                   </v-col>
                   <v-col cols="2">
-                    <v-btn dense color="error"><v-icon>mdi-close-thick</v-icon></v-btn>
+                    <v-btn dense color="error" :disabled="!estaElPacienteAsignadoAlBlocke"><v-icon>mdi-close-thick</v-icon></v-btn>
                   </v-col>
                 </v-row>
 
@@ -230,14 +230,14 @@
 
                 <v-row>
                   <v-col>
-                    <v-btn dense block color="success"><v-icon left>mdi-account-plus</v-icon>Asignar Hora</v-btn>
+                    <v-btn dense block color="success" @click="asignarHoraAlPacienteSeleccionado" :disabled="estaElPacienteAsignadoAlBlocke || seEstaAsignandoHoraAPaciente" :loading="seEstaAsignandoHoraAPaciente"><v-icon left>mdi-account-plus</v-icon>Asignar Hora</v-btn>
                   </v-col>
                 </v-row>
 
                 <v-row>
                   <v-spacer></v-spacer>
                   <v-col>
-                    <v-btn block small color="secondary"><v-icon left>mdi-printer</v-icon>Imprimir Comprobante</v-btn>
+                    <v-btn block small color="secondary" :disabled="!estaElPacienteAsignadoAlBlocke"><v-icon left>mdi-printer</v-icon>Imprimir Comprobante</v-btn>
                   </v-col>
                 </v-row>
 
@@ -410,13 +410,15 @@ export default {
       seEstaBuscandoPaciente: false,
       // Estados de carga
       seEstanCargandoLasHoras: false,
+      seEstaAsignandoHoraAPaciente: false,
       // Buscador
       modelEspecialidad: 0,
       modelRutPacienteBuscar: '',
       modelMesParaBusqueda: new Date().getMonth() + 1,
       modelAnoParaBusqueda: new Date().getFullYear(),
       listadoUnidadesDeAtencion: [],
-      modelUnidadesDeAtencion: null
+      modelUnidadesDeAtencion: null,
+      estaElPacienteAsignadoAlBlocke: false
     }
   },
   mounted () {
@@ -461,7 +463,7 @@ export default {
       const ano = this.modelAnoParaBusqueda
       const mes = this.modelMesParaBusqueda
 
-      const agendaEncontrada = await obtenerAgenda(idEspecialidad, idProfesional, rutPaciente, ano, mes)
+      const agendaEncontrada = await obtenerAgenda(idEspecialidad, idProfesional, rutPaciente, ano, mes, this.modelEspecialidad)
 
       agendaEncontrada.forEach(element => {
         element.color = element.name === 'Disponible' ? 'success' : 'error'
@@ -504,6 +506,9 @@ export default {
         { id: 4, nombre: 'Laboratorio' },
         { id: 5, nombre: 'Policlinico' }
       ]
+    },
+    asignarHoraAlPacienteSeleccionado () {
+      this.estaElPacienteAsignadoAlBlocke = true
     },
     fechaDDMMAAAA,
     obtenerHoraDesdeFecha
