@@ -237,7 +237,7 @@
                 <v-row>
                   <v-spacer></v-spacer>
                   <v-col>
-                    <v-btn block small color="secondary" :disabled="!estaElPacienteAsignadoAlBlocke"><v-icon left>mdi-printer</v-icon>Imprimir Comprobante</v-btn>
+                    <v-btn block small color="secondary" @click="imprimirDocumento" :disabled="!estaElPacienteAsignadoAlBlocke"><v-icon left>mdi-printer</v-icon>Imprimir Comprobante</v-btn>
                   </v-col>
                 </v-row>
 
@@ -342,6 +342,10 @@
       </v-col>
     </v-row>
 
+    <!--IMPRESION-->
+    <div ref="imp1">
+      <DocumentoImpresionHoraMedica :paciente="datosPacienteParaTomarHora" />
+    </div>
   </div>
 </template>
 <script>
@@ -353,6 +357,8 @@ import obtenerHoraDesdeFecha from '@/utils/obtenerHoraDesdeFecha'
 import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
 import obtenerEspecialidades from '@/services/especialidad/obtenerEspecialidades'
 import obtenerAgenda from '@/services/calendario/obtenerAgenda'
+import DocumentoImpresionHoraMedica from './impresiones/DocumentoImpresionHoraMedica.vue'
+import imprimirDocumento from '@/utils/imprimirDocumento'
 
 export default {
   name: 'CalendarioHoras',
@@ -372,13 +378,11 @@ export default {
         '4day': '4 Días'
       },
       vistaSemana: 'Lunes a Viernes',
-
       weekdays: [
         { texto: 'Lunes a Domingo', valor: [1, 2, 3, 4, 5, 6, 0] },
         { texto: 'Lunes a Sabado', valor: [1, 2, 3, 4, 5, 6] },
         { texto: 'Lunes a Viernes', valor: [1, 2, 3, 4, 5] }
       ],
-
       selectedEvent: {},
       selectedElement: null,
       selectedOpen: false,
@@ -423,7 +427,6 @@ export default {
   },
   mounted () {
     this.$refs.calendar.checkChange()
-
     this.traerEspecialidades()
   },
   methods: {
@@ -449,28 +452,22 @@ export default {
     },
     traerEspecialistas (especialidadSeleccionada) {
       // TODO: traer especialistas desde la base de datos
-
       this.especialistas = [
         'Juan Perez', 'Pedro Gonzalez', 'Maria Lopez', 'Josefa Martinez', 'Luisa Rodriguez', 'Jorge Hernandez', 'Miguel Sanchez', 'Carlos Gonzalez', 'Fernando Perez', 'Ricardo Lopez', 'Javier Martinez', 'Raul Rodriguez', 'Roberto Hernandez', 'Francisco Sanchez', 'Eduardo Gonzalez', 'Ramon Perez', 'Daniel Lopez', 'Alejandro Martinez', 'Rafael Rodriguez', 'Jose Hernandez', 'Arturo Sanchez', 'Manuel Gonzalez', 'Joaquin Perez', 'Sergio Lopez', 'Oscar Martinez', 'Guillermo Rodriguez', 'Julio Hernandez', 'Ignacio Sanchez', 'Hector Gonzalez', 'Alfonso Perez', 'Mauricio Lopez', 'Victor Martinez', 'Alberto Rodriguez', 'Mario Hernandez', 'Enrique Sanchez', 'Gustavo Gonzalez', 'Adrian Perez', 'Pablo Lopez', 'Emilio Martinez', 'Salvador Rodriguez', 'Agustin Hernandez', 'Jeronimo Sanchez', 'Cristian Gonzalez', 'Elias Perez', 'Benjamin Lopez', 'Eugenio Martinez', 'Cesar Rodriguez', 'Federico Hernandez', 'Rodrigo Sanchez'
       ]
     },
     async cargarHoras () {
       this.seEstanCargandoLasHoras = true
-
       const idEspecialidad = this.modelEspecialidad
       const idProfesional = 0
       const rutPaciente = this.modelRutPacienteBuscar
       const ano = this.modelAnoParaBusqueda
       const mes = this.modelMesParaBusqueda
-
       const agendaEncontrada = await obtenerAgenda(idEspecialidad, idProfesional, rutPaciente, ano, mes, this.modelEspecialidad)
-
       agendaEncontrada.forEach(element => {
         element.color = element.name === 'Disponible' ? 'success' : 'error'
       })
-
       this.events = agendaEncontrada
-
       this.seEstanCargandoLasHoras = false
     },
     showEvent ({ nativeEvent, event }) {
@@ -479,14 +476,12 @@ export default {
         this.selectedElement = nativeEvent.target
         requestAnimationFrame(() => requestAnimationFrame(() => { this.selectedOpen = true }))
       }
-
       if (this.selectedOpen) {
         this.selectedOpen = false
         requestAnimationFrame(() => requestAnimationFrame(() => open()))
       } else {
         open()
       }
-
       nativeEvent.stopPropagation()
     },
     async buscarPacienteParaTomarHoraPorRut () {
@@ -511,10 +506,12 @@ export default {
       this.estaElPacienteAsignadoAlBlocke = true
     },
     fechaDDMMAAAA,
-    obtenerHoraDesdeFecha
+    obtenerHoraDesdeFecha,
+    imprimirDocumento
   },
   created () {
     this.cargarUnidadesDeAtencion()
-  }
+  },
+  components: { DocumentoImpresionHoraMedica }
 }
 </script>
