@@ -16,22 +16,30 @@
                 @click="cargarHoras">Cargar</v-btn>
             </v-col>
           </v-row>
+
+          <!--  FILTRO  -->
           <v-row>
-            <v-col cols="12" sm="12" md="4">
+            <v-col>
+              <v-autocomplete :items="especialidades" v-model="modelEspecialidad" label="Unidad" item-text="nombre"
+                item-value="id" outlined dense hide-details @change="traerEspecialistas($event.value)">
+              </v-autocomplete>
+            </v-col>
+            <v-col>
               <v-autocomplete :items="especialidades" v-model="modelEspecialidad" label="Especialidad" item-text="nombre"
                 item-value="id" outlined dense hide-details @change="traerEspecialistas($event.value)">
               </v-autocomplete>
             </v-col>
-            <v-col cols="12" sm="12" md="4">
+            <v-col>
               <v-autocomplete :items="especialistas" label="Especialista" outlined dense hide-details>
               </v-autocomplete>
             </v-col>
-            <v-col cols="12" sm="12" md="4">
+          </v-row>
+
+          <v-row>
+            <v-col>
               <v-text-field dense label="Run Paciente" v-model="modelRutPacienteBuscar"
                 prepend-inner-icon="mdi-account" outlined hide-details></v-text-field>
             </v-col>
-          </v-row>
-          <v-row>
             <v-col>
               <v-text-field dense label="Año" v-model="modelAnoParaBusqueda"
                 prepend-inner-icon="mdi-account" outlined hide-details></v-text-field>
