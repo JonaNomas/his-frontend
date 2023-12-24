@@ -125,7 +125,7 @@ export default {
           icono: 'mdi-box-cutter',
           links: [
             { titulo: 'Ingreso', icono: 'mdi-account-plus', ruta: '/cirugia/ingreso' },
-            { titulo: 'Gestion Pabellones', icono: 'mdi-bed', ruta: '/cirugia/gestionPabellones' },
+            { titulo: 'Gestión Pabellones', icono: 'mdi-bed', ruta: '/cirugia/gestionPabellones' },
             { titulo: 'Registro Cirugía', icono: 'mdi-file-document', ruta: '/cirugia/registro' },
             { titulo: 'Alta', icono: 'mdi-account-minus', ruta: '/cirugia/alta' }
           ]

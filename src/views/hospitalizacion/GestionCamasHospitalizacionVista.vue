@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <h1>Gestion Camas</h1>
+        <h1>Gestión Camas</h1>
       </v-col>
     </v-row>
 
@@ -80,7 +80,7 @@ export default {
         { text: 'ID', value: 'idAtencion', align: 'center' },
         { text: 'Rut', value: 'rut', align: 'center' },
         { text: 'Nombre', value: 'nombre' },
-        { text: 'Diagnostico', value: 'diagnostico' },
+        { text: 'Diagnóstico', value: 'diagnostico' },
         { text: 'Cama', value: 'cama' },
         { text: 'Acciones', value: 'actions', sortable: false, align: 'center' }
       ],

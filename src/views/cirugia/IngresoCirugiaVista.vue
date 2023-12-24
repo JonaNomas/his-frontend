@@ -70,7 +70,7 @@
     <div v-if="seEncontroPaciente">
       <v-row>
         <v-col>
-          <h2>Motivo Consulta</h2>
+          <h2>Motivo ingreso al Centro Quirúrgico</h2>
         </v-col>
       </v-row>
 

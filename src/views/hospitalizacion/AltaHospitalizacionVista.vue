@@ -79,7 +79,7 @@ export default {
         { text: 'ID', value: 'idAtencion', align: 'center' },
         { text: 'Rut', value: 'rut', align: 'center' },
         { text: 'Nombre', value: 'nombre' },
-        { text: 'Diagnostico', value: 'diagnostico' },
+        { text: 'Diagnóstico', value: 'diagnostico' },
         { text: 'Cama', value: 'cama' },
         { text: 'Acciones', value: 'actions', sortable: false, align: 'center' }
       ],

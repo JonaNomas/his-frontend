@@ -76,7 +76,7 @@
 
       <v-row>
         <v-col>
-          <v-autocomplete dense label="Asiganar A Cama Disponible" v-model="selectCamaDisponible" prepend-inner-icon="mdi-account"
+          <v-autocomplete dense label="Asignar a Cama Disponible" v-model="selectCamaDisponible" prepend-inner-icon="mdi-account"
             outlined hide-details :items="camasDisponibles"></v-autocomplete>
         </v-col>
       </v-row>

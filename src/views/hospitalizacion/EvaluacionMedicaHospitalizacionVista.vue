@@ -43,7 +43,7 @@ export default {
         { text: 'Cama', value: 'cama' },
         { text: 'Rut', value: 'rut', align: 'center' },
         { text: 'Nombre', value: 'nombre' },
-        { text: 'Diagnostico', value: 'diagnostico' },
+        { text: 'Diagnóstico', value: 'diagnostico' },
         { text: 'Acciones', value: 'actions', sortable: false, align: 'center' }
       ],
       listadoPacientesEnAtencion: [

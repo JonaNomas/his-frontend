@@ -236,7 +236,7 @@
       <div class="mt-5">
         <v-row>
           <v-col>
-            <h2>Diagnostico</h2>
+            <h2>Diagnóstico</h2>
           </v-col>
           <v-col class="d-flex justify-end">
             <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogDiagnostico = true">Registrar
@@ -837,7 +837,7 @@ export default {
       // Tablas
       headersTablaDiagnostico: [
         { text: 'Fecha', value: 'fechaHora' },
-        { text: 'Diagnostico', value: 'diagnostico' },
+        { text: 'Diagnóstico', value: 'diagnostico' },
         { text: 'CIE-10', value: 'cie' },
         { text: 'Cargo', value: 'responsable.cargo' },
         { text: 'Responsable', value: 'responsable.nombre' },

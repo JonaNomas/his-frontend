@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <h1>Alta Centro Quirúgico</h1>
+        <h1>Alta Centro Quirúrgico</h1>
       </v-col>
     </v-row>
 

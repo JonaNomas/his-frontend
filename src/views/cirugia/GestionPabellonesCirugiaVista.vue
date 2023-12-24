@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <h1>Gestion Pabellones Quirúrgicos</h1>
+        <h1>Gestión Pabellones Quirúrgicos</h1>
       </v-col>
     </v-row>
 

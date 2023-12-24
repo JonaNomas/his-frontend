@@ -25,7 +25,7 @@
             <v-row>
               <v-col>Días Regitrados</v-col>
               <v-col><v-text-field dense v-model="filtroPacientes" append-icon="mdi-magnify" outlined
-                  label="Filtrar Pacientes" hide-details></v-text-field></v-col>
+                  label="Filtrar" hide-details></v-text-field></v-col>
             </v-row>
 
           </v-card-title>
@@ -78,7 +78,7 @@ export default {
       headersTablaDePacientes: [
         { text: 'Dia', value: 'dia' },
         { text: 'Fecha', value: 'fecha', align: 'center' },
-        { text: 'Diagnostico', value: 'diagnostico' },
+        { text: 'Diagnóstico', value: 'diagnostico' },
         { text: 'Acciones', value: 'actions', sortable: false, align: 'center' }
       ],
       listadoDiasDeAtencion: []
