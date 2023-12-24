@@ -4,7 +4,15 @@
       <v-col>
         <h1>Viendo Resultados Examen Imagenología </h1>
       </v-col>
+
+      <v-col class="d-flex justify-end">
+        <v-btn color="primary" @click="imprimirDocumento">Imprimir</v-btn>
+      </v-col>
     </v-row>
+
+    <div ref="imp1">
+      <DocumentoImpresionImagenologia :paciente="pacienteEncontrado" :examenes="listadoTabla" />
+    </div>
 
     <v-row>
       <v-col>
@@ -64,7 +72,9 @@
 
 <script>
 import TablaDatosSimplePaciente from '@/components/TablaDatosSimplePaciente.vue'
+import DocumentoImpresionImagenologia from '@/components/impresiones/DocumentoImpresionImagenologia.vue'
 import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
+import imprimirDocumento from '@/utils/imprimirDocumento'
 
 export default {
   name: 'VerExamenImagenologiaVista',
@@ -96,11 +106,12 @@ export default {
           this.btnBuscarCargando = false
           this.seEncontroPaciente = false
         })
-    }
+    },
+    imprimirDocumento
   },
   mounted () {
     this.buscarPacientePorRut()
   },
-  components: { TablaDatosSimplePaciente }
+  components: { TablaDatosSimplePaciente, DocumentoImpresionImagenologia }
 }
 </script>
