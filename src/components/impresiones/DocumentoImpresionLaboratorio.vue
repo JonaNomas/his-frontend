@@ -8,30 +8,36 @@
       </tr>
     </table>
 
-    <table class="pure-table pure-table-bordered mb-5" style="border-collapse: collapse; width: 100%;">
+    <table class="pure-table pure-table-bordered w-100 mb-5">
       <tr>
         <td><strong>N° Orden</strong></td>
-        <td>3213212</td>
-        <td><strong>Fecha</strong></td>
+        <td>116</td>
+        <td><strong>Fecha Examen</strong></td>
         <td>20-12-2023</td>
       </tr>
       <tr>
         <td><strong>Nombre</strong></td>
-        <td>Victor Guzman Contreras</td>
+        <td>{{ nombreCompleto }}</td>
         <td><strong>RUN</strong></td>
-        <td>19033183-0</td>
+        <td>{{ paciente.run }}</td>
       </tr>
       <tr>
         <td><strong>Fecha Nacimiento</strong></td>
-        <td>06-02-1995</td>
+        <td>{{ fechaDDMMAAAA(paciente.fechaNacimiento) }}</td>
         <td><strong>Edad</strong></td>
-        <td>28 Años</td>
+        <td>{{ calcularEdad(paciente.fechaNacimiento) }} Años</td>
       </tr>
       <tr>
         <td><strong>Sexo</strong></td>
-        <td>M</td>
+        <td>{{ paciente.sexo }}</td>
         <td><strong>Nombre Social</strong></td>
-        <td>El</td>
+        <td>{{ paciente.nombreSocial }}</td>
+      </tr>
+      <tr>
+        <td><strong>Impreso por:</strong></td>
+        <td>{{ `${$store.state.usuario.nombre} ${$store.state.usuario.apellidoPaterno} ${$store.state.usuario.apellidoMaterno}` }}</td>
+        <td><strong>Fecha Impresión:</strong></td>
+        <td>{{ fechaDDMMAAAA(new Date()) }}</td>
       </tr>
     </table>
 
@@ -44,20 +50,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Glucosa</td>
-          <td>89</td>
-          <td>70 - 100</td>
-        </tr>
-        <tr>
-          <td>Colesterol Total</td>
-          <td>150</td>
-          <td>0 - 200</td>
-        </tr>
-        <tr>
-          <td>Trigliceridos</td>
-          <td>89</td>
-          <td>0 - 150</td>
+        <tr v-for="(examen, index) in examenes" :key="index">
+          <td>{{ examen.nombre }}</td>
+          <td>{{ examen.resultado }}</td>
+          <td>{{ examen.valorMinimo }} - {{ examen.valorMaximo }}</td>
         </tr>
       </tbody>
     </table>
@@ -65,11 +61,33 @@
   </div>
 </template>
 <script>
+import fechaDDMMAAAA from '@/utils/fechaDDMMAAAA'
+import calcularEdad from '@/utils/calcularEdad'
 export default {
   name: 'DocumentoImpresionLaboratorio',
   data () {
     return {
 
+    }
+  },
+  computed: {
+    nombreCompleto () {
+      return `${this.paciente.nombrePrimer} ${this.paciente.nombreSegundo} ${this.paciente.apellidoPaterno} ${this.paciente.apellidoMaterno}`
+    }
+
+  },
+  methods: {
+    fechaDDMMAAAA,
+    calcularEdad
+  },
+  props: {
+    paciente: {
+      type: Object,
+      required: true
+    },
+    examenes: {
+      type: Array,
+      required: true
     }
   }
 }

@@ -11,7 +11,7 @@
     </v-row>
 
     <div ref="imp1">
-      <DocumentoImpresionLaboratorio />
+      <DocumentoImpresionLaboratorio :paciente="pacienteEncontrado" :examenes="listadoTabla" />
     </div>
 
     <div v-if="mostrarResultado">
@@ -190,6 +190,83 @@ export default {
           resultado: '100',
           valorMinimo: '70',
           valorMaximo: '100'
+        },
+        {
+          id: 14,
+          nombre: 'T4 Total',
+          resultado: '200',
+          valorMinimo: '150',
+          valorMaximo: '400'
+        },
+        {
+          id: 15,
+          nombre: 'T3 Total',
+          resultado: '100',
+          valorMinimo: '70',
+          valorMaximo: '100'
+        },
+        {
+          id: 16,
+          nombre: 'Tiroglobulina',
+          resultado: '200',
+          valorMinimo: '150',
+          valorMaximo: '400'
+        },
+        {
+          id: 17,
+          nombre: 'Anticuerpos Anti Tiroglobulina',
+          resultado: '100',
+          valorMinimo: '70',
+          valorMaximo: '100'
+        },
+        {
+          id: 18,
+          nombre: 'Anticuerpos Anti Tiroperoxidasa',
+          resultado: '200',
+          valorMinimo: '150',
+          valorMaximo: '400'
+        },
+        {
+          id: 19,
+          nombre: 'Anticuerpos Anti Receptor TSH',
+          resultado: '100',
+          valorMinimo: '70',
+          valorMaximo: '100'
+        },
+        {
+          id: 20,
+          nombre: 'Anticuerpos Anti Microsomales',
+          resultado: '200',
+          valorMinimo: '150',
+          valorMaximo: '400'
+        },
+        {
+          id: 21,
+          nombre: 'Anticuerpos Anti Tiroglobulina',
+          resultado: '100',
+          valorMinimo: '70',
+          valorMaximo: '100'
+        },
+        {
+          id: 22,
+          nombre: 'Anticuerpos Anti Tiroperoxidasa',
+          resultado: '200',
+          valorMinimo: '150',
+          valorMaximo: '400'
+        },
+        {
+          id: 23,
+          nombre: 'Anticuerpos Anti Receptor TSH',
+          resultado: '100',
+          valorMinimo: '70',
+          valorMaximo: '100'
+        },
+        {
+          id: 24,
+          nombre: 'Anticuerpos Anti Microsomales',
+          resultado: '200',
+          valorMinimo: '150',
+          valorMaximo: '400'
         }
       ]
     },
