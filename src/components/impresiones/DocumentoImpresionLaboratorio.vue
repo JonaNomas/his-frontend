@@ -1,41 +1,41 @@
 <template>
   <div class="d-none">
 
-    <table style="width: 100%;">
+    <table class="w-100 pure-table pure-table-center mb-5">
       <tr>
-        <td style="width: 20%;" :style="headerTableDocumento"><img :style="logoApp" src="@/assets/medsoft2_x128.png" alt="Logo"></td>
-        <td style="width: 80%;" :style="headerTableDocumento"><h1 :style="estiloTitulo">Resultados Examen Laboratorio</h1></td>
+        <td class="text-center pure-img"><img width="100px" src="@/assets/medsoft2_x128.png" alt="Logo"></td>
+        <td class="text-center"><h1>Resultados Examen Laboratorio</h1></td>
       </tr>
     </table>
 
-    <table style="border-collapse: collapse; width: 100%;">
+    <table class="pure-table pure-table-bordered mb-5" style="border-collapse: collapse; width: 100%;">
       <tr>
-        <td :style="estiloCeldasTabla"><strong>N° Orden</strong></td>
-        <td :style="estiloCeldasTabla">3213212</td>
-        <td :style="estiloCeldasTabla"><strong>Fecha</strong></td>
-        <td :style="estiloCeldasTabla">20-12-2023</td>
+        <td><strong>N° Orden</strong></td>
+        <td>3213212</td>
+        <td><strong>Fecha</strong></td>
+        <td>20-12-2023</td>
       </tr>
       <tr>
-        <td :style="estiloCeldasTabla"><strong>Nombre</strong></td>
-        <td :style="estiloCeldasTabla">Victor Guzman Contreras</td>
-        <td :style="estiloCeldasTabla"><strong>RUN</strong></td>
-        <td :style="estiloCeldasTabla">19033183-0</td>
+        <td><strong>Nombre</strong></td>
+        <td>Victor Guzman Contreras</td>
+        <td><strong>RUN</strong></td>
+        <td>19033183-0</td>
       </tr>
       <tr>
-        <td :style="estiloCeldasTabla"><strong>Fecha Nacimiento</strong></td>
-        <td :style="estiloCeldasTabla">06-02-1995</td>
-        <td :style="estiloCeldasTabla"><strong>Edad</strong></td>
-        <td :style="estiloCeldasTabla">28 Años</td>
+        <td><strong>Fecha Nacimiento</strong></td>
+        <td>06-02-1995</td>
+        <td><strong>Edad</strong></td>
+        <td>28 Años</td>
       </tr>
       <tr>
-        <td :style="estiloCeldasTabla"><strong>Sexo</strong></td>
-        <td :style="estiloCeldasTabla">M</td>
-        <td :style="estiloCeldasTabla"><strong>Nombre Social</strong></td>
-        <td :style="estiloCeldasTabla">El</td>
+        <td><strong>Sexo</strong></td>
+        <td>M</td>
+        <td><strong>Nombre Social</strong></td>
+        <td>El</td>
       </tr>
     </table>
 
-    <table style="width: 100%; text-align: center; font-family: 'Arial'; margin-top: 15px;">
+    <table class="w-100 pure-table pure-table-center pure-table-horizontal">
       <thead>
         <tr>
           <th style="font-weight: bold;">Nombre Examen</th>
@@ -69,26 +69,7 @@ export default {
   name: 'DocumentoImpresionLaboratorio',
   data () {
     return {
-      estiloTitulo: {
-        textAlign: 'center',
-        fontFamily: 'Arial',
-        fontSize: '25px'
-      },
-      estiloCeldasTabla: {
-        fontFamily: 'Arial',
-        border: '1px solid #929292',
-        padding: '5px'
-      },
-      logoApp: {
-        width: '100px',
-        height: '100px'
-      },
-      headerTableDocumento: {
-        fontFamily: 'Arial',
-        border: '1px solid #929292',
-        padding: '5px',
-        textAlign: 'center'
-      }
+
     }
   }
 }

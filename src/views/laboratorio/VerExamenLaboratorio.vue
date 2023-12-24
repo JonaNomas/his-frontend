@@ -6,13 +6,13 @@
       </v-col>
 
       <v-col class="d-flex justify-end">
-        <v-btn color="primary" @click="imprimir">Imprimir</v-btn>
+        <v-btn color="primary" @click="imprimirDocumento">Imprimir</v-btn>
       </v-col>
     </v-row>
 
-      <div ref="imp1">
-        <DocumentoImpresionLaboratorio />
-      </div>
+    <div ref="imp1">
+      <DocumentoImpresionLaboratorio />
+    </div>
 
     <div v-if="mostrarResultado">
       <v-row>
@@ -29,9 +29,8 @@
 
       <v-row>
         <v-col>
-          <v-data-table :hide-default-footer="true" :disable-pagination="true"
-            :headers="headersTabla" :items="listadoTabla"
-            class="elevation-1">
+          <v-data-table :hide-default-footer="true" :disable-pagination="true" :headers="headersTabla"
+            :items="listadoTabla" class="elevation-1">
             <template #[`item.actions`]="{ item }">
               <div>
                 <v-btn x-small color="accent" button :to="`/laboratorio/buscar/${item.id}`">Ver</v-btn>
@@ -48,6 +47,7 @@
 import TablaDatosSimplePaciente from '@/components/TablaDatosSimplePaciente.vue'
 import obtenerPacientePorRut from '@/services/paciente/obtenerPacientePorRut'
 import DocumentoImpresionLaboratorio from '@/components/impresiones/DocumentoImpresionLaboratorio.vue'
+import imprimirDocumento from '@/utils/imprimirDocumento'
 
 export default {
   name: 'VerExamenLaboratorio',
@@ -75,17 +75,6 @@ export default {
     }
   },
   methods: {
-    imprimir () {
-      this.imprimirCampo = true
-      const printContents = this.$refs.imp1.innerHTML
-      const w = window.open()
-      w.document.write(printContents)
-      w.document.close() // necesario para IE >= 10
-      w.focus() // necesario para IE >= 10
-      w.print()
-      w.close()
-      this.imprimirCampo = false
-    },
     buscarPacientePorRut () {
       this.btnBuscarCargando = true
       this.alertaErrorModel = false
@@ -203,7 +192,8 @@ export default {
           valorMaximo: '100'
         }
       ]
-    }
+    },
+    imprimirDocumento
   },
   mounted () {
     this.buscarPacientePorRut()
