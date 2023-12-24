@@ -76,7 +76,7 @@ export default {
       // Tabla
       headersTabla: [
         { text: 'ID', value: 'id' },
-        { text: 'Rut', value: 'rut' },
+        { text: 'Run', value: 'rut' },
         { text: 'Nombre', value: 'nombre' },
         { text: 'Tipo', value: 'tipo' },
         { text: 'Examen', value: 'examen' },

@@ -43,7 +43,7 @@
                   <div class="text-center">{{ item.nombre }}</div>
                 </v-card-title>
                 <v-card-subtitle>
-                  <span class="font-weight-bold">Rut:</span> {{ item.rut }}
+                  <span class="font-weight-bold">Run:</span> {{ item.rut }}
                 </v-card-subtitle>
                 <v-card-text>
                   <v-row>

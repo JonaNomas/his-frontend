@@ -8,7 +8,7 @@
             <template v-slot:default>
               <tbody>
                 <tr>
-                  <td class="negrita">Rut</td>
+                  <td class="negrita">Run</td>
                   <td class="negrita">:</td>
                   <td>{{ pacienteEncontrado?.run ?? 'No Registra' }}</td>
                 </tr>

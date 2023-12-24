@@ -77,7 +77,7 @@ export default {
         { id: 6, nombre: 'Banco de Sangre' }
       ],
       headersTablaCitados: [
-        { text: 'RUT', value: 'run' },
+        { text: 'RUN', value: 'run' },
         { text: 'Nombre', value: 'nombre' },
         { text: 'Motivo', value: 'motivo' },
         { text: 'Fecha', value: 'fecha' }

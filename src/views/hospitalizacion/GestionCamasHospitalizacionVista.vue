@@ -78,7 +78,7 @@ export default {
       filtroPacientes: '',
       headersTablaDePacientes: [
         { text: 'ID', value: 'idAtencion', align: 'center' },
-        { text: 'Rut', value: 'rut', align: 'center' },
+        { text: 'Run', value: 'rut', align: 'center' },
         { text: 'Nombre', value: 'nombre' },
         { text: 'Diagnóstico', value: 'diagnostico' },
         { text: 'Cama', value: 'cama' },

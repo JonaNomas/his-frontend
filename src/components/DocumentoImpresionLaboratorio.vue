@@ -18,7 +18,7 @@
       <tr>
         <td :style="estiloCeldasTabla"><strong>Nombre</strong></td>
         <td :style="estiloCeldasTabla">Victor Guzman Contreras</td>
-        <td :style="estiloCeldasTabla"><strong>RUT</strong></td>
+        <td :style="estiloCeldasTabla"><strong>RUN</strong></td>
         <td :style="estiloCeldasTabla">19033183-0</td>
       </tr>
       <tr>

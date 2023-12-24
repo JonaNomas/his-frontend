@@ -27,7 +27,7 @@
               </v-autocomplete>
             </v-col>
             <v-col cols="12" sm="12" md="4">
-              <v-text-field dense label="Rut Paciente" v-model="modelRutPacienteBuscar"
+              <v-text-field dense label="Run Paciente" v-model="modelRutPacienteBuscar"
                 prepend-inner-icon="mdi-account" outlined hide-details></v-text-field>
             </v-col>
           </v-row>
