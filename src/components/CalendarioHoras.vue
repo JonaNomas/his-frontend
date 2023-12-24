@@ -421,7 +421,7 @@ export default {
       modelMesParaBusqueda: new Date().getMonth() + 1,
       modelAnoParaBusqueda: new Date().getFullYear(),
       listadoUnidadesDeAtencion: [],
-      modelUnidadesDeAtencion: null,
+      modelUnidadesDeAtencion: 5,
       estaElPacienteAsignadoAlBlocke: false
     }
   },
