@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <h1>Cargar Examenes de Laboratorio</h1>
+        <h1>Cargar Exámenes de Laboratorio</h1>
       </v-col>
     </v-row>
 

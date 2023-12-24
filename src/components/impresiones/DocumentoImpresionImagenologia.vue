@@ -50,7 +50,7 @@
     <h3>Informe</h3>
     <p>Base de cráneo y calota de configuración anatomica normal. Amplia neumatización de celdas aéreas mastoideas y cavidades paranasales. Contenido de la fosa posterior sin hallazgos patológicos, observándose IV ventrículo y cisternas regionales permeables. Hemisferios cerebrales de morfología conservada, destacando normal gradiente de diferenciación de sustancia gris y blanca,con adecuada representación de núcleos de la base y tálamos ópticos.No se aprecian lesiones focales intra-axiales. Sistema ventricular supratentorial de forma y tamaño conservado. Compartimiento cisternal y espacio subaracnoídeo epicortical permeable. El uso de contraste endovenoso solo realza las estructuras vasculares normales del encéfalo. Calcificación de la glándula pineal y plexo coroideo de atrios ventriculares.</p>
 
-    <h3>Impresión Diagnostica</h3>
+    <h3>Impresión Diagnóstica</h3>
     <p>Examen sin hallazgos patológicos.</p>
 
     <h3>Medico Responsable</h3>

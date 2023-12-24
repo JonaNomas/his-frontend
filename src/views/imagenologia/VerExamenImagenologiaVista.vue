@@ -58,7 +58,7 @@
 
     <v-row>
       <v-col>
-        <h3>Impresión Diagnostica</h3>
+        <h3>Impresión Diagnóstica</h3>
       </v-col>
     </v-row>
 

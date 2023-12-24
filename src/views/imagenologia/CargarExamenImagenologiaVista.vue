@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <h1>Cargar Examenes de Imagenología</h1>
+        <h1>Cargar Exámenes de Imagenología</h1>
       </v-col>
     </v-row>
 
@@ -51,7 +51,7 @@
             hide-details :items="tiposDeExamen" item-text="nombre" item-value="nombre" @change="cambiarExamenesDisponibles"></v-autocomplete>
         </v-col>
         <v-col>
-          <v-autocomplete dense label="Tipo Examen" v-model="selectExamenDisponible" prepend-inner-icon="mdi-account"
+          <v-autocomplete dense label="Examen" v-model="selectExamenDisponible" prepend-inner-icon="mdi-account"
             outlined hide-details :items="examenesDisponibles" item-text="nombre" item-value="id"></v-autocomplete>
         </v-col>
       </v-row>
@@ -70,7 +70,7 @@
 
       <v-row>
         <v-col>
-          <v-textarea outlined v-model="textareaImpresionDiagnostica" label="Impresión Diagnostica"
+          <v-textarea outlined v-model="textareaImpresionDiagnostica" label="Impresión Diagnóstica"
             hide-details></v-textarea>
         </v-col>
       </v-row>
