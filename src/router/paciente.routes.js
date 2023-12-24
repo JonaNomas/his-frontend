@@ -22,7 +22,7 @@ export default [
   {
     path: '/paciente/actualizar',
     name: 'actualizarPaciente',
-    component: () => import(/* webpackChunkName: "paciente" */ '../views/pacientes/IngresarPacienteVista.vue'),
+    component: () => import(/* webpackChunkName: "paciente" */ '../views/pacientes/ActualizarPacienteVista.vue'),
     meta: {
       requiereAutentificacion: true,
       permisosRequeridos: [],
