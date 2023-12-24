@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <h1>Buscar Exámenes de Imagenologia Ingresados</h1>
+        <h1>Buscar Exámenes de Imagenología Ingresados</h1>
       </v-col>
     </v-row>
 

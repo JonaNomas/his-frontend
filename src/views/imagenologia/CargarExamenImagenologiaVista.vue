@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <h1>Cargar Examenes de Imagenologia</h1>
+        <h1>Cargar Examenes de Imagenología</h1>
       </v-col>
     </v-row>
 

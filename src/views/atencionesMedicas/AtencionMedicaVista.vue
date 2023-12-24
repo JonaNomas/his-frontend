@@ -552,7 +552,7 @@
       <div>
         <v-row>
           <v-col>
-            <h2>Solicitud a Imagenologia</h2>
+            <h2>Solicitud a Imagenología</h2>
           </v-col>
           <v-col class="d-flex justify-end">
             <v-btn color="success" :disabled="!esMedicoElUsuario" @click="dialogExamenesImagenologia = true">Registrar
@@ -577,7 +577,7 @@
         <v-dialog v-model="dialogExamenesImagenologia" max-width="700">
           <v-card>
             <v-toolbar color="primary" dark>
-              <v-toolbar-title><v-icon left>mdi-plus</v-icon> Exámenes de Imagenologia</v-toolbar-title>
+              <v-toolbar-title><v-icon left>mdi-plus</v-icon> Exámenes de Imagenología</v-toolbar-title>
             </v-toolbar>
 
             <v-card-text>
