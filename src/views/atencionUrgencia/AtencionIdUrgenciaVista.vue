@@ -1196,8 +1196,8 @@ export default {
           saturacionOxigeno: 98,
           frecuenciaRespiratoria: 16,
           escalaVisualAnaloga: 5,
-          omv: 0,
-          hgt: 120,
+          omv: 15,
+          hgt: 98,
           categoria: '1',
           fechaHora: '2023-12-17T18:40:59.803Z',
           responsable: {

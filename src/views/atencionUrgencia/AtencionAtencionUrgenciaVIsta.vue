@@ -176,12 +176,9 @@ export default {
     moment,
     cargarPacientesEnEspera () {
       const listadoDePacientesEnEsperaDeApi = [
-        { id: 1, idConsultaUrgencia: 300, rut: '19033183-0', nombre: 'Victor Alexis Guzman Contreras', categoria: '2' },
-        { id: 2, idConsultaUrgencia: 300, rut: '12345678-5', nombre: 'Victor Alexis Guzman Contreras', categoria: '3' },
-        { id: 3, idConsultaUrgencia: 300, rut: '19033183-0', nombre: 'Victor Alexis Guzman Contreras', categoria: '4' },
-        { id: 4, idConsultaUrgencia: 300, rut: '19033183-0', nombre: 'Victor Alexis Guzman Contreras', categoria: '4' },
-        { id: 5, idConsultaUrgencia: 300, rut: '19033183-0', nombre: 'Victor Alexis Guzman Contreras', categoria: '5' },
-        { id: 6, idConsultaUrgencia: 300, rut: '19033183-0', nombre: 'Victor Alexis Guzman Contreras', categoria: '1' },
+        { id: 1, idConsultaUrgencia: 300, rut: '19033183-0', nombre: 'Laura Valentina Rojas Diaz', categoria: '2' },
+        { id: 4, idConsultaUrgencia: 300, rut: '19033183-0', nombre: 'Juan Carlos Perez Muñoz', categoria: '3' },
+        { id: 5, idConsultaUrgencia: 300, rut: '19033183-0', nombre: 'Carlos Luis Gomes Rodriguez', categoria: '5' },
         { id: 7, idConsultaUrgencia: 300, rut: '19033183-0', nombre: 'Victor Alexis Guzman Contreras', categoria: '1' }
       ]
       // Ordenar por categoria
@@ -223,7 +220,7 @@ export default {
       return fechaPublicacion.fromNow()
     },
     asignarBox () {
-      this.boxs[this.selectAsignarABoxDisponible - 1] = { idBox: 1, nombre: 'Box 1', horaInicio: new Date(), rut: '22222222-0', nombrePaciente: 'Victor Alexis Guzman Contreras', categoria: '4', idAtencionUrgencia: 23122 }
+      this.boxs[this.selectAsignarABoxDisponible - 1] = { idBox: 1, nombre: 'Box 1', horaInicio: new Date(), rut: '19033183-0', nombrePaciente: 'Victor Alexis Guzman Contreras', categoria: '1', idAtencionUrgencia: 23122 }
       this.dialogoPacientesEnEspera = false
     }
   },
